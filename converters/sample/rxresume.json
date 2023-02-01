@@ -1,0 +1,443 @@
+{
+    "basics": {
+        "name": "Cat Bird",
+        "email": "catbird@example.com",
+        "phone": "(929) 266 8017",
+        "photo": {
+            "url": "https://cdn.rxresu.me/uploads/295357/364529/1675231730085.png",
+            "filters": {
+                "size": 128,
+                "shape": "square",
+                "border": false,
+                "grayscale": false
+            },
+            "visible": true
+        },
+        "summary": "This is my summary",
+        "website": "https://example.com",
+        "headline": "This is my headline",
+        "location": {
+            "city": "New York",
+            "region": "Brooklyn",
+            "address": "Wallstreet 110",
+            "country": "US",
+            "postalCode": "97200"
+        },
+        "profiles": [
+            {
+                "network": "Twitter",
+                "username": "foo",
+                "url": "https://twitter.com/foo",
+                "id": "9b619722-b458-4f53-97ae-a9b4041ccdeb"
+            },
+            {
+                "network": "LinkedIn",
+                "username": "foo1",
+                "url": "https://linkedin.com/foo1",
+                "id": "a771f04a-1fe0-482e-94d5-7ec1608920b4"
+            }
+        ],
+        "birthdate": "1990-01-01"
+    },
+    "sections": {
+        "work": {
+            "id": "work",
+            "name": "Work Experience",
+            "type": "work",
+            "items": [
+                {
+                    "id": "4fc76d7c-985d-4608-b270-a3fa158f1442",
+                    "url": "https://example.com",
+                    "date": {
+                        "end": "2021-08-04",
+                        "start": "2020-05-31T16:00:00.000Z"
+                    },
+                    "name": "Dodo",
+                    "summary": "- Worked with design and development teams to make custom software solutions.\n- Deployed and delivered the website to CDN and dedicated servers.\n- Troubleshot and resolved any issues that arose from the customers.",
+                    "position": "Technical Director"
+                }
+            ],
+            "columns": 1,
+            "visible": true
+        },
+        "awards": {
+            "id": "awards",
+            "name": "Awards",
+            "type": "basic",
+            "items": [
+                {
+                    "title": "Award 1",
+                    "awarder": "SCP",
+                    "date": "2022-02-01",
+                    "url": "https://scp-wiki.wikidot.com/",
+                    "summary": "Unless otherwise stated, the content of this page is licensed under Creative Commons Attribution-ShareAlike 3.0 License",
+                    "id": "2526e842-3883-4057-81ca-9fcdfa925cb2"
+                }
+            ],
+            "columns": 2,
+            "visible": false
+        },
+        "skills": {
+            "id": "skills",
+            "name": "Skills",
+            "type": "basic",
+            "items": [
+                {
+                    "id": "8da94824-4545-4842-961a-dd5bdb9ef303",
+                    "name": "Back-end Dev",
+                    "level": "Expert - 10 years",
+                    "keywords": [
+                        "Python",
+                        "Django",
+                        "Go",
+                        "gRPC",
+                        "Docker",
+                        "Linux"
+                    ],
+                    "levelNum": 0
+                },
+                {
+                    "id": "c549c120-fd05-4145-9094-a715d15997c4",
+                    "name": "Front-end Dev",
+                    "level": "Advanced - 6 years",
+                    "keywords": [
+                        "JavaScript",
+                        "TypeScript",
+                        "Webpack",
+                        "CSS",
+                        "SCSS"
+                    ],
+                    "levelNum": 0
+                }
+            ],
+            "columns": 2,
+            "visible": true
+        },
+        "projects": {
+            "id": "projects",
+            "name": "Projects",
+            "type": "basic",
+            "items": [
+                {
+                    "id": "d714c2ed-9f84-40b3-ade6-8ecd78d4afc6",
+                    "url": "",
+                    "date": {
+                        "end": "2021-10-29T16:00:00.000Z",
+                        "start": "2021-05-31T16:00:00.000Z"
+                    },
+                    "name": "Dodo Cloud for Business",
+                    "summary": "Collected and analyzed customer requirements, designed the on-premises system, managed the developer team, and delivered the product in a limited time.",
+                    "keywords": [
+                        "Go",
+                        "Kubernetes",
+                        "HPC",
+                        "WebRTC"
+                    ],
+                    "description": "A hybrid cloud platform for computer-aided engineering in HPC clusters."
+                },
+                {
+                    "id": "51be9a1f-5930-4ccc-a2d3-dcfc1d88d840",
+                    "url": "https://www.example.com.cn/",
+                    "date": {
+                        "end": "2020-09-30T16:00:00.000Z",
+                        "start": "2020-04-30T16:00:00.000Z"
+                    },
+                    "name": "Example.com.cn",
+                    "summary": "Rebuilt front-end and back-end of the website with the latest technology and systematic modules.",
+                    "keywords": [
+                        "Gatsby",
+                        "React",
+                        "Chart.js",
+                        "Netlify CMS"
+                    ],
+                    "description": "The official website of Example."
+                }
+            ],
+            "columns": 1,
+            "visible": true
+        },
+        "education": {
+            "id": "education",
+            "name": "Education",
+            "type": "basic",
+            "items": [
+                {
+                    "id": "ec3a46c0-d6a3-458c-82fc-2c30dacaa8f8",
+                    "url": "https://www.big.edu.cn/",
+                    "area": "Computer Science and Technology",
+                    "date": {
+                        "end": "2013-01-01T00:00:00.000Z",
+                        "start": "2009-01-01T00:00:00.000Z"
+                    },
+                    "degree": "Bachelor of Engineering",
+                    "courses": [
+                        "Course 1"
+                    ],
+                    "institution": "Big University, School of Computer Science",
+                    "score": "7",
+                    "summary": "Just learned some casual CS skills here."
+                }
+            ],
+            "columns": 1,
+            "visible": true
+        },
+        "interests": {
+            "id": "interests",
+            "name": "Interests",
+            "type": "basic",
+            "items": [
+                {
+                    "name": "Astrology",
+                    "keywords": [
+                        "Zodiac signs",
+                        "horoscopes",
+                        "planetary alignment"
+                    ],
+                    "id": "d2e5b39e-f6c8-404e-bb51-47790a42e568"
+                }
+            ],
+            "columns": 2,
+            "visible": false
+        },
+        "languages": {
+            "id": "languages",
+            "name": "Languages",
+            "type": "basic",
+            "items": [
+                {
+                    "name": "English",
+                    "level": "Fluent",
+                    "levelNum": 10,
+                    "id": "da5f850f-2628-4dab-9c9c-70a1f8b68b7d"
+                }
+            ],
+            "columns": 2,
+            "visible": false
+        },
+        "volunteer": {
+            "id": "volunteer",
+            "name": "Volunteer Experience",
+            "type": "basic",
+            "items": [
+                {
+                    "organization": "Vol Org",
+                    "position": "Worker",
+                    "date": {
+                        "start": "2018-05-01",
+                        "end": "2021-06-01"
+                    },
+                    "url": "https://example.com",
+                    "summary": "Vol summary",
+                    "id": "ced94fd5-f134-425f-803b-8a5a9dd7ced9"
+                }
+            ],
+            "columns": 2,
+            "visible": false
+        },
+        "references": {
+            "id": "references",
+            "name": "References",
+            "type": "basic",
+            "items": [
+                {
+                    "name": "John Smith",
+                    "relationship": "Friend",
+                    "phone": "9293334444",
+                    "email": "john@example.com",
+                    "summary": "Ref summary",
+                    "id": "b25da525-a0c3-4612-99f2-62e9e46a5ac2"
+                }
+            ],
+            "columns": 1,
+            "visible": false
+        },
+        "publications": {
+            "id": "publications",
+            "name": "Publications",
+            "type": "basic",
+            "items": [
+                {
+                    "name": "Pub 1",
+                    "publisher": "Amazon",
+                    "date": "2018-06-01",
+                    "url": "https://amazon.com",
+                    "summary": "Pub summary",
+                    "id": "705d2bbd-5186-43e8-a5b3-907585802e4d"
+                }
+            ],
+            "columns": 2,
+            "visible": false
+        },
+        "certifications": {
+            "id": "certifications",
+            "name": "Certifications",
+            "type": "basic",
+            "items": [
+                {
+                    "name": "Cert 1",
+                    "issuer": "Duolingo",
+                    "date": "2017-01-05",
+                    "url": "https://www.duolingo.com/",
+                    "summary": "Cert summary",
+                    "id": "a0a3279b-412e-4133-8da5-e8ea40299239"
+                }
+            ],
+            "columns": 2,
+            "visible": false
+        },
+        "596aa615-b3cb-48a2-8d9c-d70e92e36d20": {
+            "name": "Open-source",
+            "type": "custom",
+            "items": [
+                {
+                    "id": "1f4f92aa-cb12-493a-8f48-df6e26a3c033",
+                    "url": "",
+                    "date": {
+                        "end": "",
+                        "start": ""
+                    },
+                    "level": "",
+                    "title": "httpstat",
+                    "summary": "A CLI tool to show HTTP statistics in a beautiful and clear way.\n\n[Link](https://github.com/reorx/httpstat)",
+                    "keywords": [],
+                    "levelNum": 0,
+                    "subtitle": ""
+                },
+                {
+                    "id": "67bf3677-9332-4ef6-804f-e7554538f38a",
+                    "url": "",
+                    "date": {
+                        "end": "",
+                        "start": ""
+                    },
+                    "level": "",
+                    "title": "sui2",
+                    "summary": "A self-hosted Startpage app that supports keyboard navigation and PWA.\n\n[Link](https://github.com/reorx/sui2), [Demo](https://reorx.github.io/sui2/)",
+                    "keywords": [],
+                    "levelNum": 0,
+                    "subtitle": ""
+                },
+                {
+                    "id": "7bb0ba5d-3beb-453d-af3e-2730afe76279",
+                    "url": "",
+                    "date": {
+                        "end": "",
+                        "start": ""
+                    },
+                    "level": "",
+                    "title": "python-terminal-color",
+                    "summary": "A drop-in single file Python library for printing colors in terminal.\n\n[Link](https://github.com/reorx/python-terminal-color)",
+                    "keywords": [],
+                    "levelNum": 0,
+                    "subtitle": ""
+                },
+                {
+                    "id": "312306bb-067b-4c31-aa64-8d9dd6f02d33",
+                    "url": "",
+                    "date": {
+                        "end": "",
+                        "start": ""
+                    },
+                    "level": "",
+                    "title": "Deptest",
+                    "summary": "A Python testing framework that can control the execution order of the test units.\n\n[Link](https://github.com/reorx/deptest)",
+                    "keywords": [],
+                    "levelNum": 0,
+                    "subtitle": ""
+                },
+                {
+                    "id": "fa356d82-31da-43ce-bc92-2dddee46f920",
+                    "url": "",
+                    "date": {
+                        "end": "",
+                        "start": ""
+                    },
+                    "level": "",
+                    "title": "Obsidian paste image rename",
+                    "summary": "An Obsidian plugin that provides an intuitive interface to rename pasted images and other attachments.\n\n[Link](https://github.com/reorx/obsidian-paste-image-rename)\n\n",
+                    "keywords": [],
+                    "levelNum": 0,
+                    "subtitle": ""
+                }
+            ],
+            "columns": 2,
+            "visible": true
+        },
+        "cc9952c7-4ce3-44ab-82b6-995a6a3f2f9e": {
+            "name": "Custom Section",
+            "type": "custom",
+            "visible": true,
+            "columns": 2,
+            "items": [
+                {
+                    "title": "Custom 1",
+                    "subtitle": "sub title",
+                    "date": {
+                        "start": "2022-05-01",
+                        "end": "2023-01-01"
+                    },
+                    "url": "https://example.com",
+                    "level": "Whatever",
+                    "levelNum": 10,
+                    "summary": "Custom summary",
+                    "keywords": [
+                        "key1",
+                        "key2"
+                    ],
+                    "id": "a4392fc9-08f3-4865-b653-02344fef5ec1"
+                }
+            ]
+        }
+    },
+    "metadata": {
+        "css": {
+            "value": "/* Enter custom CSS here */\n\nh4 {\n    margin: 15px 0;\n}\nh4.font-bold {\n    font-size: 17px !important;\n}\n.markdown p {\n    line-height: normal !important;\n}",
+            "visible": true
+        },
+        "date": {
+            "format": "MMM YYYY"
+        },
+        "page": {
+            "format": "A4"
+        },
+        "theme": {
+            "text": "#000000",
+            "primary": "#f44336",
+            "background": "#ffffff"
+        },
+        "layout": [
+            [
+                [
+                    "education",
+                    "work",
+                    "projects",
+                    "skills",
+                    "596aa615-b3cb-48a2-8d9c-d70e92e36d20",
+                    "cc9952c7-4ce3-44ab-82b6-995a6a3f2f9e"
+                ],
+                [
+                    "interests",
+                    "languages",
+                    "awards",
+                    "references",
+                    "certifications",
+                    "volunteer",
+                    "publications"
+                ]
+            ]
+        ],
+        "locale": "en",
+        "template": "leafish",
+        "typography": {
+            "size": {
+                "body": 13,
+                "heading": 28
+            },
+            "family": {
+                "body": "Open Sans",
+                "heading": "Open Sans"
+            }
+        }
+    },
+    "public": true
+}
