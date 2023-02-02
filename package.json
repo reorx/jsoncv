@@ -16,10 +16,11 @@
     "vite-plugin-handlebars": "^1.6.0"
   },
   "dependencies": {
+    "@iconify/json": "^2.2.15",
     "ajv": "^8.12.0",
     "ajv-formats": "^2.1.1",
     "dayjs": "^1.11.7",
-    "iconify-icon": "^1.0.0",
+    "iconify-icon": "^1.0.3",
     "object-path": "^0.11.8"
   }
 }

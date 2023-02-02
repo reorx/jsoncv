@@ -1,11 +1,17 @@
+import 'iconify-icon'; // import only
+
 import objectPath from 'object-path';
 
 import { JSONEditor } from '@json-editor/json-editor/dist/jsoneditor';
 
 import * as exampleData from '../sample.resume.json';
-import * as jsoncvSchema from '../schema/jsoncv.schema.json';
+import * as jsoncvSchemaModule from '../schema/jsoncv.schema.json';
+import { registerIconLib } from './iconlib';
 import { registerTheme } from './theme';
-import { createElement } from './utils';
+import {
+  createElement,
+  traverseDownObject,
+} from './utils';
 
 const propertiesInOrder = ['basics', 'education', 'work', 'skills', 'projects', 'languages', 'interests', 'references', 'awards', 'publications', 'volunteer']
 const basicsPropertiesInOrder = ['name', 'label', 'email', 'phone', 'url', 'summary', 'image', 'location', 'profiles']
@@ -19,7 +25,9 @@ const basicsUl = createElement('ul', {
   parent: tocUl
 })
 
-const attrSchemaPathTo = 'data-schemapath-to'
+
+// copy the object to remove the readonly restriction on module
+const jsoncvSchema = {...jsoncvSchemaModule.default}
 
 // add propertyOrder to schema, and add links to toc
 propertiesInOrder.forEach((name, index) => {
@@ -50,6 +58,15 @@ basicsPropertiesInOrder.forEach((name, index) => {
   })
 })
 
+// add headerTemplate for each type:array in schema
+traverseDownObject(jsoncvSchema, (key, obj) => {
+  let noun = key
+  if (noun.endsWith('s')) noun = noun.slice(0, -1)
+  if (obj.type === 'array' && obj.items) {
+    obj.items.headerTemplate = `${noun} {{i1}}`
+  }
+})
+
 // add format to schema
 const keyFormatMap = {
   'basics.properties.summary': 'textarea',
@@ -58,12 +75,17 @@ for (const [key, format] of Object.entries(keyFormatMap)) {
   objectPath.get(jsoncvSchema.properties, key).format = format
 }
 
+// change schema title
+jsoncvSchema.title = 'Resume'
+
 // initialize editor
 registerTheme(JSONEditor)
+registerIconLib(JSONEditor)
 const elEditorContainer = document.querySelector('.editor-container')
 const editor = new JSONEditor(elEditorContainer, {
   schema: jsoncvSchema,
   theme: 'mytheme',
+  iconlib: 'myiconlib',
 });
 editor.on('ready',() => {
   editor.setValue(exampleData)
@@ -72,6 +94,5 @@ editor.on('ready',() => {
   document.querySelectorAll('[data-schemapath]').forEach(el => {
     const schemapath = el.getAttribute('data-schemapath')
     el.id = schemapath
-    console.log('el', schemapath)
   })
 })

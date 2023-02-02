@@ -14,3 +14,13 @@ export const createElement = function(tagName, {className, text, attrs, parent})
   }
   return el
 }
+
+export const traverseDownObject = function(obj, callback) {
+  for (const key in obj) {
+    const value = obj[key]
+    if (typeof value === 'object') {
+      callback(key, value)
+      traverseDownObject(value, callback)
+    }
+  }
+}
