@@ -73,6 +73,7 @@
   }
   input[type=text],
   input[type=email],
+  select,
   textarea {
     border: 1px solid #888;
     border-radius: 2px;
@@ -123,9 +124,13 @@
   }
 
   .je-form-input-label {
-    display: block;
+    // only label in user added property should be inline-block
+    display: inline-block;
     margin-bottom: calc(var(--gap) / 2);
     font-weight: 500;
+  }
+  .form-control > .je-form-input-label {
+    display: block;
   }
   .je-form-input-description {
     margin: 0;
@@ -181,5 +186,12 @@
     min-height: 150px;
     max-height: 500px;
     resize: vertical;
+  }
+
+  .je-edit-json--textarea {
+    width: 300px;
+    height: 400px;
+    font-family: "Lucida Sans Typewriter", "Lucida Console", monaco, "Bitstream Vera Sans Mono", monospace;
+    font-size: 12px;
   }
 }
