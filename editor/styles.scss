@@ -1,0 +1,32 @@
+#main {
+  display: flex;
+
+  .left {
+    flex-grow: 1;
+  }
+  .right {
+    width: 300px;
+  }
+}
+
+#editor-container {
+  [data-schemapath]:target {
+    animation: bgFade 2s forwards;
+  }
+}
+
+#editor-toc {
+  position: fixed;
+}
+
+@keyframes bgFade {
+  0% {
+    background-color: #fff0a5;
+  }
+  50% {
+    background-color: #fff6b3da;
+  }
+  100% {
+    background-color: transparent;
+  }
+}
