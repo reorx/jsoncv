@@ -1,0 +1,72 @@
+.editor-container {
+  font-size: 14px;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  --gap: 8px;
+
+  h1 {}
+  h2 {}
+  h3 {}
+  p {
+    margin: 0 0 var(--gap) 0;
+  }
+  input[type=text],
+  input[type=email] {
+    padding: 2px 4px;
+  }
+  textarea {
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    line-height: 1.3;
+    padding: var(--gap);
+  }
+
+  // override theme-default
+  .je-indented-panel {
+    padding-left: var(--gap);
+    margin-left: var(--gap);
+    border-left: 1px solid #ccc
+  }
+
+  .je-indented-panel--top {
+    padding-left: var(--gap);
+    margin-left: var(--gap);
+  }
+
+  .je-object__container {
+
+  }
+
+  .form-control {
+    margin-bottom: var(--gap);
+  }
+
+  .je-form-input-label {
+    display: block;
+    margin-bottom: calc(var(--gap) / 2);
+    font-weight: bold;
+  }
+  .je-form-input-description {
+    margin: 0;
+    font-size: 12px;
+    color: #999;
+  }
+  .je-child-editor-holder {
+    margin-bottom: var(--gap);
+  }
+  .je-header-button-holder {
+    display: inline-block;
+    margin-left: 10px;
+    font-size: 0.8em;
+    vertical-align: middle;
+  }
+  .je-table {
+    margin-bottom: 5px;
+    border-bottom: 1px solid #ccc;
+  }
+
+  .je-textarea {
+    height: 150px;
+    min-height: 150px;
+    max-height: 500px;
+    resize: vertical;
+  }
+}

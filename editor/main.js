@@ -1,14 +1,17 @@
+import objectPath from 'object-path';
+
 import { JSONEditor } from '@json-editor/json-editor/dist/jsoneditor';
 
 import * as exampleData from '../sample.resume.json';
 import * as jsoncvSchema from '../schema/jsoncv.schema.json';
+import { registerTheme } from './theme';
 import { createElement } from './utils';
 
 const propertiesInOrder = ['basics', 'education', 'work', 'skills', 'projects', 'languages', 'interests', 'references', 'awards', 'publications', 'volunteer']
 const basicsPropertiesInOrder = ['name', 'label', 'email', 'phone', 'url', 'summary', 'image', 'location', 'profiles']
 
 // toc elements
-const elToc = document.querySelector('#editor-toc')
+const elToc = document.querySelector('.editor-toc')
 const tocUl = createElement('ul', {
   parent: elToc
 })
@@ -47,10 +50,20 @@ basicsPropertiesInOrder.forEach((name, index) => {
   })
 })
 
+// add format to schema
+const keyFormatMap = {
+  'basics.properties.summary': 'textarea',
+}
+for (const [key, format] of Object.entries(keyFormatMap)) {
+  objectPath.get(jsoncvSchema.properties, key).format = format
+}
+
 // initialize editor
-const elEditorContainer = document.querySelector('#editor-container')
+registerTheme(JSONEditor)
+const elEditorContainer = document.querySelector('.editor-container')
 const editor = new JSONEditor(elEditorContainer, {
   schema: jsoncvSchema,
+  theme: 'mytheme',
 });
 editor.on('ready',() => {
   editor.setValue(exampleData)

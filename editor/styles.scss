@@ -1,21 +1,24 @@
+@use 'json-editor';
+
 #main {
   display: flex;
 
   .left {
     flex-grow: 1;
+    padding-right: 16px;
   }
   .right {
     width: 300px;
   }
 }
 
-#editor-container {
+.editor-container {
   [data-schemapath]:target {
     animation: bgFade 2s forwards;
   }
 }
 
-#editor-toc {
+.editor-toc {
   position: fixed;
 }
 
