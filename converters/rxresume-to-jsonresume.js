@@ -1,6 +1,9 @@
-import dayjs from 'dayjs';
-import { readFileSync } from 'fs';
-import objectPath from 'object-path';
+const Ajv = require('ajv')
+const ajvAddFormats = require("ajv-formats")
+const dayjs = require('dayjs')
+const fs = require('fs')
+const objectPath = require('object-path')
+const path = require('path')
 
 // defines which property in source json (value) to map to which property in JSONResume json (key).
 // the first level keys of conversionMap are the same keys in JSONResume.
@@ -210,6 +213,7 @@ function convertObject(obj, objMap, customFunc) {
   for (const [key, conversion] of Object.entries(objMap)) {
     const value = objectPath.get(obj, key)
     if (value === undefined) continue
+    if (value === "") continue
 
     if (typeof conversion === 'string') {
       result[conversion] = value
@@ -236,10 +240,27 @@ function formatDatesInResult(result) {
 /* main */
 
 // read json from file, which is the first argument
-const sourceJSON = readFileSync(process.argv[2], 'utf8')
+const sourceJSON = fs.readFileSync(process.argv[2], 'utf8')
 
 // parse json
 const source = JSON.parse(sourceJSON)
 
 const result = convert(source)
 // console.log(`result: ${JSON.stringify(result, null, 2)}`)
+
+// validate result with jsoncv schema
+const ajv = new Ajv()
+ajvAddFormats(ajv)
+const schemaPath = path.resolve(__dirname, '..', 'schema/jsoncv.schema.json')
+const schema = JSON.parse(fs.readFileSync(schemaPath))
+const valid = ajv.validate(schema, result)
+if (valid) {
+  console.log('Validation succeeded.')
+} else {
+  console.log('Validation failed:', ajv.errors)
+}
+
+// write to target file
+const targetPath = process.argv[3]
+console.log(`write to ${targetPath}`)
+fs.writeFileSync(targetPath, JSON.stringify(result, null, 2))
