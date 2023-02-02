@@ -86,9 +86,12 @@ const editor = new JSONEditor(elEditorContainer, {
   schema: jsoncvSchema,
   theme: 'mytheme',
   iconlib: 'myiconlib',
+  disable_array_delete_all_rows: true,
+  no_additional_properties: true,
+  startval: exampleData,
 });
 editor.on('ready',() => {
-  editor.setValue(exampleData)
+  // editor.setValue(exampleData)
 
   // add anchor to each schema element
   document.querySelectorAll('[data-schemapath]').forEach(el => {
