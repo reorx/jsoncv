@@ -1,33 +1,72 @@
 @use 'json-editor';
 
-#main {
-  display: flex;
+:root {
+  --gap: 8px;
+  --gap2: calc(var(--gap) * 2);
+  --blue-0: #D0EBFF;
+  --blue-1: #A5D8FF;
+  --red-0: #FFE3E3;
+  --red-1: #FFC9C9;
+  --yellow-0: #FFF3BF;
+  --yellow-1: #FFEC99;
+  --green-0: #D3F9D8;
+  --green-1: #B2F2BB;
+}
 
-  .left {
-    flex-grow: 1;
-    padding-right: 16px;
+
+html {
+  font-family: system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue","Noto Sans","Liberation Sans",Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";
+}
+
+body {
+  margin: 0;
+}
+
+#main {
+  display: grid;
+  grid-template-columns: 150px 1fr 1fr;
+  grid-template-rows: 100vh;
+
+  .sidebar {
+    padding: var(--gap);
+  }
+  .middle {
+    padding-right: var(--gap2);
+    margin-left: var(--sidebar-width);
+    overflow-y: auto;
   }
   .right {
-    width: 300px;
+    background-color: #eee;
   }
 }
 
 .editor-container {
   [data-schemapath]:target {
-    animation: bgFade 2s forwards;
+    animation: bgFade 1s forwards;
   }
 }
 
 .editor-toc {
-  position: fixed;
+  ul {
+    margin: 0;
+    padding: 4px 0 4px 14px;
+
+    a {
+      text-decoration: none;
+      color: #333;
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+  }
 }
 
 @keyframes bgFade {
   0% {
-    background-color: #fff0a5;
+    background-color: #FFF3BF;
   }
   50% {
-    background-color: #fff6b3da;
+    background-color: #FFF9DB;
   }
   100% {
     background-color: transparent;
