@@ -4,14 +4,14 @@ import objectPath from 'object-path';
 
 import { JSONEditor } from '@json-editor/json-editor/dist/jsoneditor';
 
-import * as exampleData from '../sample.resume.json';
-import * as jsoncvSchemaModule from '../schema/jsoncv.schema.json';
-import { registerIconLib } from './iconlib';
-import { registerTheme } from './theme';
+import * as exampleData from '../../sample.resume.json';
 import {
   createElement,
   traverseDownObject,
-} from './utils';
+} from '../lib/utils';
+import * as jsoncvSchemaModule from '../schema/jsoncv.schema.json';
+import { registerIconLib } from './iconlib';
+import { registerTheme } from './theme';
 
 const propertiesInOrder = ['basics', 'education', 'work', 'skills', 'projects', 'languages', 'interests', 'references', 'awards', 'publications', 'volunteer']
 const basicsPropertiesInOrder = ['name', 'label', 'email', 'phone', 'url', 'summary', 'image', 'location', 'profiles']

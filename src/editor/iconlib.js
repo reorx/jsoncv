@@ -1,6 +1,6 @@
 import { AbstractIconLib } from '@json-editor/json-editor/src/iconlib.js';
 
-import { getIconSVG } from '../icons';
+import { getIconSVG } from '../lib/icons';
 
 const iconMapping = {
   collapse: 'mdi:chevron-down',
