@@ -99,3 +99,9 @@ editor.on('ready',() => {
     el.id = schemapath
   })
 })
+
+// listen to change
+const elOutput = document.querySelector('.editor-output')
+editor.on('change', () => {
+  elOutput.textContent = JSON.stringify(editor.getValue(), null, 2)
+})

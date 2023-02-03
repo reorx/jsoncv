@@ -11,11 +11,13 @@
   --yellow-1: #FFEC99;
   --green-0: #D3F9D8;
   --green-1: #B2F2BB;
+  --font-default: system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue","Noto Sans","Liberation Sans",Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";
+  --font-mono: "Lucida Sans Typewriter", "Lucida Console", monaco, "Bitstream Vera Sans Mono", monospace;
 }
 
 
 html {
-  font-family: system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue","Noto Sans","Liberation Sans",Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";
+  font-family: var(--font-default);
 }
 
 body {
@@ -27,16 +29,20 @@ body {
   grid-template-columns: 150px 1fr 1fr;
   grid-template-rows: 100vh;
 
+  > .column {
+    overflow-y: auto;
+  }
+
   .sidebar {
     padding: var(--gap);
   }
   .middle {
     padding-right: var(--gap2);
     margin-left: var(--sidebar-width);
-    overflow-y: auto;
   }
   .right {
     background-color: #eee;
+    padding: var(--gap);
   }
 }
 
@@ -60,6 +66,15 @@ body {
     }
   }
 }
+
+.code-block {
+  font-size: 12px;
+  font-family: var(--font-mono);
+  white-space: pre-wrap;
+  word-wrap: break-word;
+  overflow-x: auto;
+}
+
 
 @keyframes bgFade {
   0% {

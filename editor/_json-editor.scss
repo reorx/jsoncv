@@ -44,8 +44,6 @@
 .editor-container {
   font-size: 14px;
 
-  h1 {}
-  h2 {}
   h3 {
     margin: 12px 0 12px 0;
   }
@@ -57,7 +55,7 @@
     padding: 2px 4px;
   }
   textarea {
-    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-family: var(--font-default);
     line-height: 1.3;
     padding: var(--gap);
   }
@@ -181,7 +179,7 @@
   .je-edit-json--textarea {
     width: 300px;
     height: 400px;
-    font-family: "Lucida Sans Typewriter", "Lucida Console", monaco, "Bitstream Vera Sans Mono", monospace;
+    font-family: var(--font-mono);
     font-size: 12px;
   }
 }
