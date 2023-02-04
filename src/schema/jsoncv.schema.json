@@ -455,6 +455,43 @@
         }
       }
     },
+    "sideProjects": {
+      "type": "array",
+      "description": "Specify side projects",
+      "items": {
+        "type": "object",
+        "additionalProperties": true,
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "e.g. The World Wide Web"
+          },
+          "url": {
+            "type": "string",
+            "format": "uri",
+            "description": "e.g. http://www.computer.org/csdl/mags/co/1996/10/rx069-abs.html"
+          },
+          "description": {
+            "type": "string",
+            "description": "Short summary of project. e.g. Collated works of 2017."
+          },
+          "keywords": {
+            "type": "array",
+            "description": "Specify special elements involved",
+            "items": {
+              "type": "string",
+              "description": "e.g. AngularJS"
+            }
+          },
+          "startDate": {
+            "$ref": "#/definitions/iso8601"
+          },
+          "endDate": {
+            "$ref": "#/definitions/iso8601"
+          }
+        }
+      }
+    },
     "meta": {
       "type": "object",
       "description": "The schema version and any other tooling configuration lives here",
