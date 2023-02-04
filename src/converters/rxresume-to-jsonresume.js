@@ -116,6 +116,13 @@ function convert(source) {
   })
 
   // basics.profiles
+  if (source.basics.profiles) {
+    result.basics.profiles = source.basics.profiles.map(profile => {
+      const newProfile = {...profile}
+      delete newProfile.id
+      return newProfile
+    })
+  }
 
   /* sections */
 
@@ -211,14 +218,17 @@ function convertObject(obj, objMap, customFunc) {
   // console.log(`convert ${JSON.stringify(obj)} by ${objMap}`)
   const result = {}
   for (const [key, conversion] of Object.entries(objMap)) {
-    const value = objectPath.get(obj, key)
-    if (value === undefined) continue
-    if (value === "") continue
 
     if (typeof conversion === 'string') {
-      result[conversion] = value
+      const value = objectPath.get(obj, conversion)
+      if (value === undefined || value === "") continue
+
+      result[key] = value
     } else if (typeof conversion === 'object') {
-      result[conversion.key] = convertObject(value, conversion.conversion)
+      const value = objectPath.get(obj, conversion.key)
+      if (!value) continue
+
+      result[key] = convertObject(value, conversion.conversion)
     }
   }
   if (customFunc)
