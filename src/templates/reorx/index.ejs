@@ -6,6 +6,7 @@
 </div>
 
 <!-- Educations -->
+<% if (locals.education) { %>
 <section>
   <h2>Educations</h2>
   <% for (const item of education) { %>
@@ -18,8 +19,10 @@
     </div>
   <% } %>
 </section>
+<% } %>
 
 <!-- Work -->
+<% if (locals.work) { %>
 <section>
   <h2>Work</h2>
   <% for (const item of work) { %>
@@ -37,13 +40,16 @@
     </div>
   <% } %>
 </section>
+<% } %>
 
 <!-- Projects -->
+<% if (locals.projects) { %>
 <section>
   <h2>Projects</h2>
   <% for (const item of projects) { %>
     <div class="project">
       <h3><%= item.name %></h3>
+      <p><%= item.url %></p>
       <p><%= item.description %></p>
       <p><%= item.startDate %> - <%= item.endDate %></p>
       <div class="highlights">
@@ -59,13 +65,30 @@
     </div>
   <% } %>
 </section>
+<% } %>
 
 <!-- Side-projects -->
+<% if (locals.sideProjects) { %>
 <section>
   <h2>Side-projects</h2>
+  <% for (const item of sideProjects) { %>
+    <div class="sideproject">
+      <h3><%= item.name %></h3>
+      <p><%= item.url %></p>
+      <p><%= item.description %></p>
+      <p><%= item.startDate %> - <%= item.endDate %></p>
+      <div class="keywords">
+        <% for (const kw of item.keywords) { %>
+          <span class="item"><%= kw %></span>
+        <% } %>
+      </div>
+    </div>
+  <% } %>
 </section>
+<% } %>
 
 <!-- Skills -->
+<% if (locals.skills) { %>
 <section>
   <h2>Skills</h2>
   <% for (const item of skills) { %>
@@ -80,8 +103,10 @@
     </div>
   <% } %>
 </section>
+<% } %>
 
 <!-- Languages -->
+<% if (locals.languages) { %>
 <section>
   <h2>Languages</h2>
   <% for (const item of languages) { %>
@@ -91,3 +116,4 @@
     </div>
   <% } %>
 </section>
+<% } %>

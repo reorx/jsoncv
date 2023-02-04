@@ -102,6 +102,16 @@ const conversionMap = {
     "endDate": 'date.end',
     "summary": 'summary',
   },
+
+  // custom section
+  sideProjects: {
+    'name': 'title',
+    'url': 'url',
+    'description': 'summary',
+    'keywords': 'keywords',
+    "startDate": 'date.start',
+    "endDate": 'date.end',
+  }
 }
 
 // convert function
@@ -213,6 +223,20 @@ function convert(source) {
   sectionToResult('volunteer', (item, result) => {
     formatDatesInResult(result)
   })
+
+  /* custom sections */
+  const sideProjectsSectionNames = ['side-projects', 'open-source']
+  for (const section of Object.values(sections)) {
+    if (section.type !== 'custom') continue
+
+    const sectionName = section.name.toLowerCase()
+    if (!sideProjectsSectionNames.includes(sectionName)) continue
+
+    result.sideProjects = section.items.map(item => convertObject(item, conversionMap.sideProjects, (item, result) => {
+      formatDatesInResult(result)
+    }))
+    break
+  }
 
   return result
 }
