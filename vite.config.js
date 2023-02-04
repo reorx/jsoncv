@@ -45,6 +45,12 @@ export default defineConfig({
       },
     },
   },
+  resolve: {
+    alias: {
+      // remove the "Module "fs" has been externalized" warning for ejs
+      'fs': 'src/lib/fs-polyfill.js',
+    },
+  },
   plugins: [
     TransformEjs(),
   ],

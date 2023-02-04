@@ -1,11 +1,5 @@
-import {
-  getTemplate,
-  render,
-} from './renderer';
-
-const template = getTemplate('default')
-console.log('template', template)
-
+import { applyThemeTo } from './themer';
 
 const elCV = document.querySelector('#cv-container')
-elCV.innerHTML = render(template, {})
+
+applyThemeTo('default', {}, elCV)
