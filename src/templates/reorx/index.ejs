@@ -1,1 +1,40 @@
-<h1>reorx</h1>
+<!-- Basics -->
+<h1><%= basics.name %></h1>
+<p><%= basics.summary %></p>
+<div class="contact">
+  <%= basics.email %> | <%= basics.phone %>
+</div>
+
+<!-- Educations -->
+<section>
+  <h2>Educations</h2>
+  <% for (const item of education) { %>
+    <div class="education">
+      <h3><%= item.institution %></h3>
+      <p><%= item.url %></p>
+      <p><%= item.area %></p>
+      <p><%= item.score %></p>
+      <p><%= item.startDate %> - <%= item.endDate %></p>
+    </div>
+  <% } %>
+</section>
+
+<!-- Work -->
+<section>
+  <h2></h2>
+</section>
+
+<!-- Projects -->
+<section>
+  <h2>Projects</h2>
+</section>
+
+<!-- Side-projects -->
+<section>
+  <h2>Side-projects</h2>
+</section>
+
+<!-- Skills -->
+<section>
+  <h2>Skills</h2>
+</section>
