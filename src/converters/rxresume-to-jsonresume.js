@@ -147,6 +147,9 @@ function convert(source) {
 
   // work
   sectionToResult('work', (item, result) => {
+    if (item.summary) {
+      result.highlights = item.summary.split('\n')
+    }
     formatDatesInResult(result)
   })
 
