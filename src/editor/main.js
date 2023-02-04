@@ -15,7 +15,7 @@ import * as jsoncvSchemaModule from '../schema/jsoncv.schema.json';
 import { registerIconLib } from './iconlib';
 import { registerTheme } from './theme';
 
-const propertiesInOrder = ['basics', 'education', 'work', 'skills', 'projects', 'languages', 'interests', 'references', 'awards', 'publications', 'volunteer']
+const propertiesInOrder = ['basics', 'education', 'work', 'skills', 'projects', 'sideProjects', 'languages', 'interests', 'references', 'awards', 'publications', 'volunteer']
 const basicsPropertiesInOrder = ['name', 'label', 'email', 'phone', 'url', 'summary', 'image', 'location', 'profiles']
 
 // toc elements
@@ -72,6 +72,17 @@ traverseDownObject(jsoncvSchema, (key, obj) => {
 // add format to schema
 const keyFormatMap = {
   'basics.properties.summary': 'textarea',
+  'work.items.properties.description': 'textarea',
+  'work.items.properties.summary': 'textarea',
+  'work.items.properties.highlights.items': 'textarea',
+  'projects.items.properties.description': 'textarea',
+  'projects.items.properties.highlights.items': 'textarea',
+  'sideProjects.items.properties.description': 'textarea',
+  'references.items.properties.reference': 'textarea',
+  'awards.items.properties.summary': 'textarea',
+  'publications.items.properties.summary': 'textarea',
+  'volunteer.items.properties.summary': 'textarea',
+  'volunteer.items.properties.highlights.items': 'textarea',
 }
 for (const [key, format] of Object.entries(keyFormatMap)) {
   objectPath.get(jsoncvSchema.properties, key).format = format
