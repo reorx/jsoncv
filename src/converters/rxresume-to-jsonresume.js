@@ -155,53 +155,53 @@ function convert(source) {
 
   // skills
   sectionToResult('skills', (item, result) => {
-      if (item.levelNum) {
-        if (result.level) {
-          result.level = `${result.level}, ${item.levelNum}`
-        } else {
-          result.level = `${item.levelNum}`
-        }
+    if (item.levelNum) {
+      if (result.level) {
+        result.level = `${result.level}, ${item.levelNum}`
+      } else {
+        result.level = `${item.levelNum}`
       }
-    })
+    }
+  })
 
   // projects
   sectionToResult('projects', (item, result) => {
-      if (item.summary) {
-        result.highlights = item.summary.split('\n')
-      }
-      formatDatesInResult(result)
-    })
+    if (item.summary) {
+      result.highlights = item.summary.split('\n')
+    }
+    formatDatesInResult(result)
+  })
 
   // languages
   sectionToResult('languages', (item, result) => {
-      if (item.levelNum) {
-        if (result.fluency) {
-          result.fluency = `${result.fluency}, ${item.levelNum}`
-        } else {
-          result.fluency = `${item.levelNum}`
-        }
+    if (item.levelNum) {
+      if (result.fluency) {
+        result.fluency = `${result.fluency}, ${item.levelNum}`
+      } else {
+        result.fluency = `${item.levelNum}`
       }
-    })
+    }
+  })
 
   // references
   sectionToResult('references', (item, result) => {
-      const lines = []
-      if (item.relationship)
-        lines.push(`relationship: ${item.relationship}`)
-      if (item.phone)
-        lines.push(`phone: ${item.phone}`)
-      if (item.email)
-        lines.push(`email: ${item.email}`)
-      if (lines.length > 0)
-        result.reference = lines.join('\n') + '\n\n' + result.reference
-    })
+    const lines = []
+    if (item.relationship)
+      lines.push(`relationship: ${item.relationship}`)
+    if (item.phone)
+      lines.push(`phone: ${item.phone}`)
+    if (item.email)
+      lines.push(`email: ${item.email}`)
+    if (lines.length > 0)
+      result.reference = lines.join('\n') + '\n\n' + result.reference
+  })
 
   // awards
   sectionToResult('awards', (item, result) => {
-      if (item.url) {
-        result.summary = `${item.url}\n\n${result.summary}`
-      }
-    })
+    if (item.url) {
+      result.summary = `${item.url}\n\n${result.summary}`
+    }
+  })
 
   // publications
   sectionToResult('publications')
@@ -211,8 +211,8 @@ function convert(source) {
 
   // volunteer
   sectionToResult('volunteer', (item, result) => {
-      formatDatesInResult(result)
-    })
+    formatDatesInResult(result)
+  })
 
   return result
 }
