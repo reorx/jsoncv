@@ -1,0 +1,45 @@
+@use 'vars';
+
+input[type=text],
+input[type=email] {
+  padding: 2px 4px;
+  display: block;
+}
+
+textarea {
+  font-family: var(--font-default);
+  line-height: 1.3;
+  padding: var(--gap);
+}
+
+input[type=text],
+input[type=email],
+textarea {
+  width: 100%;
+  box-sizing: border-box;
+}
+
+input[type=text],
+input[type=email],
+select,
+textarea {
+  border: 1px solid #999;
+  border-radius: 2px;
+}
+
+button {
+  @include vars.normal-button;
+
+  margin-right: var(--gap);
+  // last-of-type should not be used here
+  &:last-child {
+    margin-right: 0;
+  }
+
+  svg {
+    vertical-align: middle;
+    font-size: 14px;
+    position: relative;
+    bottom: 1px;
+  }
+}

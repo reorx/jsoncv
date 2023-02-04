@@ -1,45 +1,4 @@
-@mixin button-base {
-  appearance: none;
-  user-select: none;
-  vertical-align: middle;
-  outline: 0;
-  display: inline-block;
-  cursor: pointer;
-  position: relative;
-}
-
-@mixin normal-button {
-  @include button-base;
-
-  background-color: #eee;
-  border: 1px solid transparent;
-  border-radius: 2px;
-  padding: 0px 8px;
-  line-height: 22px;
-
-  &:hover {
-    background-color: #e1e1e1;
-  }
-  &:active {
-    border-color: #555;
-  }
-}
-
-@mixin text-button {
-  @include button-base;
-  background-color: transparent;
-  padding: 0;
-  font-size: 12px;
-  line-height: 1;
-  color: #555;
-  &:hover {
-    border-bottom: 1px solid #999;
-  }
-  &:active {
-    border-color: transparent;
-    border-bottom: 1px solid #000;
-  }
-}
+@use 'vars';
 
 .editor-container {
   font-size: 14px;
@@ -49,38 +8,6 @@
   }
   p {
     margin: 0 0 var(--gap) 0;
-  }
-  input[type=text],
-  input[type=email] {
-    padding: 2px 4px;
-  }
-  textarea {
-    font-family: var(--font-default);
-    line-height: 1.3;
-    padding: var(--gap);
-  }
-  input[type=text],
-  input[type=email],
-  select,
-  textarea {
-    border: 1px solid #888;
-    border-radius: 2px;
-  }
-  button {
-    @include normal-button;
-
-    margin-right: var(--gap);
-    // last-of-type should not be used here
-    &:last-child {
-      margin-right: 0;
-    }
-
-    svg {
-      vertical-align: middle;
-      font-size: 14px;
-      position: relative;
-      bottom: 1px;
-    }
   }
   iconify-icon {
     font-size: 15px;
@@ -147,7 +74,7 @@
     top: 2px;
 
     button {
-      @include text-button;
+      @include vars.text-button;
     }
   }
   .json-editor-btn-add {
@@ -170,8 +97,8 @@
   }
 
   .je-textarea {
-    height: 150px;
-    min-height: 150px;
+    height: 120px;
+    min-height: 120px;
     max-height: 500px;
     resize: vertical;
   }
