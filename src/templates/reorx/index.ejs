@@ -1,35 +1,48 @@
 <!-- Basics -->
-<h1><%= basics.name %></h1>
-<p><%= basics.summary %></p>
+<h1><%= cv.basics.name %></h1>
+<p><%= cv.basics.summary %></p>
 <div class="contact">
-  <%= basics.email %> | <%= basics.phone %>
+  <%= cv.basics.email %> | <%= cv.basics.phone %>
 </div>
 
+<%
+function dateRange(item, preserveDay) {
+  let {startDate, endDate} = item
+  if (!startDate && !endDate) return ''
+  if (!preserveDay) {
+    const format = 'YYYY-MM'
+    startDate = fn.reformatDate(startDate, format)
+    endDate = fn.reformatDate(endDate, format)
+  }
+  return `<p>${startDate}~${endDate}</p>`
+}
+%>
+
 <!-- Educations -->
-<% if (locals.education) { %>
+<% if (cv.education) { %>
 <section>
   <h2>Educations</h2>
-  <% for (const item of education) { %>
+  <% for (const item of cv.education) { %>
     <div class="education">
       <h3><%= item.institution %></h3>
       <p><%= item.url %></p>
       <p><%= item.area %></p>
       <p><%= item.score %></p>
-      <p><%= item.startDate %> - <%= item.endDate %></p>
+      <%- dateRange(item) %>
     </div>
   <% } %>
 </section>
 <% } %>
 
 <!-- Work -->
-<% if (locals.work) { %>
+<% if (cv.work) { %>
 <section>
   <h2>Work</h2>
-  <% for (const item of work) { %>
+  <% for (const item of cv.work) { %>
     <div class="work">
       <h3><%= item.name %></h3>
       <p><%= item.url %></p>
-      <p><%= item.startDate %> - <%= item.endDate %></p>
+      <%- dateRange(item) %>
       <p><%= item.position %></p>
       <div class="summary"><%= item.summary %></div>
       <div class="highlights">
@@ -43,15 +56,15 @@
 <% } %>
 
 <!-- Projects -->
-<% if (locals.projects) { %>
+<% if (cv.projects) { %>
 <section>
   <h2>Projects</h2>
-  <% for (const item of projects) { %>
+  <% for (const item of cv.projects) { %>
     <div class="project">
       <h3><%= item.name %></h3>
       <p><%= item.url %></p>
       <p><%= item.description %></p>
-      <p><%= item.startDate %> - <%= item.endDate %></p>
+      <%- dateRange(item) %>
       <div class="highlights">
         <% for (const hl of item.highlights) { %>
           <div class="item"><%= hl %></div>
@@ -68,15 +81,15 @@
 <% } %>
 
 <!-- Side-projects -->
-<% if (locals.sideProjects) { %>
+<% if (cv.sideProjects) { %>
 <section>
   <h2>Side-projects</h2>
-  <% for (const item of sideProjects) { %>
+  <% for (const item of cv.sideProjects) { %>
     <div class="sideproject">
       <h3><%= item.name %></h3>
       <p><%= item.url %></p>
       <p><%= item.description %></p>
-      <p><%= item.startDate %> - <%= item.endDate %></p>
+      <%- dateRange(item) %>
       <div class="keywords">
         <% for (const kw of item.keywords) { %>
           <span class="item"><%= kw %></span>
@@ -88,10 +101,10 @@
 <% } %>
 
 <!-- Skills -->
-<% if (locals.skills) { %>
+<% if (cv.skills) { %>
 <section>
   <h2>Skills</h2>
-  <% for (const item of skills) { %>
+  <% for (const item of cv.skills) { %>
     <div class="skill">
       <h3><%= item.name %></h3>
       <div class="level"><%= item.level %></div>
@@ -106,10 +119,10 @@
 <% } %>
 
 <!-- Languages -->
-<% if (locals.languages) { %>
+<% if (cv.languages) { %>
 <section>
   <h2>Languages</h2>
-  <% for (const item of languages) { %>
+  <% for (const item of cv.languages) { %>
     <div class="language">
       <h3><%= item.language %></h3>
       <div class="fluency"><%= item.fluency %></div>
