@@ -21,12 +21,43 @@
 
 <!-- Work -->
 <section>
-  <h2></h2>
+  <h2>Work</h2>
+  <% for (const item of work) { %>
+    <div class="work">
+      <h3><%= item.name %></h3>
+      <p><%= item.url %></p>
+      <p><%= item.startDate %> - <%= item.endDate %></p>
+      <p><%= item.position %></p>
+      <div class="summary"><%= item.summary %></div>
+      <div class="highlights">
+        <% for (const hl of item.highlights) { %>
+          <div class="item"><%= hl %></div>
+        <% } %>
+      </div>
+    </div>
+  <% } %>
 </section>
 
 <!-- Projects -->
 <section>
   <h2>Projects</h2>
+  <% for (const item of projects) { %>
+    <div class="project">
+      <h3><%= item.name %></h3>
+      <p><%= item.description %></p>
+      <p><%= item.startDate %> - <%= item.endDate %></p>
+      <div class="highlights">
+        <% for (const hl of item.highlights) { %>
+          <div class="item"><%= hl %></div>
+        <% } %>
+      </div>
+      <div class="keywords">
+        <% for (const kw of item.keywords) { %>
+          <span class="item"><%= kw %></span>
+        <% } %>
+      </div>
+    </div>
+  <% } %>
 </section>
 
 <!-- Side-projects -->
@@ -37,4 +68,26 @@
 <!-- Skills -->
 <section>
   <h2>Skills</h2>
+  <% for (const item of skills) { %>
+    <div class="skill">
+      <h3><%= item.name %></h3>
+      <div class="level"><%= item.level %></div>
+      <div class="keywords">
+        <% for (const kw of item.keywords) { %>
+          <span class="item"><%= kw %></span>
+        <% } %>
+      </div>
+    </div>
+  <% } %>
+</section>
+
+<!-- Languages -->
+<section>
+  <h2>Languages</h2>
+  <% for (const item of languages) { %>
+    <div class="language">
+      <h3><%= item.language %></h3>
+      <div class="fluency"><%= item.fluency %></div>
+    </div>
+  <% } %>
 </section>
