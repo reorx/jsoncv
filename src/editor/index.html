@@ -15,10 +15,17 @@
         <div>Editor</div>
       </div>
       <div class="editor-toc"></div>
+      <div class="app-actions">
+        <button id="fn-show-preview">Show Preview</button>
+        <button id="fn-show-json">Show JSON</button>
+        <button id="fn-download-json">Download JSON</button>
+        <button id="fn-download-html">Download HTML</button>
+      </div>
     </div>
     <div class="middle column editor-container"></div>
     <div class="right column">
-      <div class="editor-output code-block"></div>
+      <div class="output-json code-block" style="display: none;"></div>
+      <iframe class="output-html" src="/editor/preview.html" frameborder="0"></iframe>
     </div>
   </div>
 

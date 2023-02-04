@@ -42,6 +42,7 @@ export default defineConfig({
       input: {
         main: resolve(rootDir, 'index.html'),
         editor: resolve(rootDir, 'editor/index.html'),
+        editorPreview: resolve(rootDir, 'editor/preview.html'),
       },
     },
   },

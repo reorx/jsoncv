@@ -34,7 +34,6 @@ export const getIconSVG = function(name, { dom }) {
     ...svgAttributesBase,
     ...renderData.attributes,
   };
-  console.log('attrs', svgAttributesBase, renderData.attributes)
 
   // Generate SVG
   const svgAttributesStr = Object.keys(svgAttributes)

@@ -1,5 +1,7 @@
 import ejs from 'ejs';
 
+import { reformatDate } from '../lib/date';
+
 const themes = {}
 
 const themeNames = ['reorx']
@@ -28,15 +30,20 @@ export function getTheme(name) {
   return themes[name]
 }
 
-export function render(template, data, options) {
-  return ejs.render(template, data, options)
+export function renderTheme(template, data, options) {
+  return ejs.render(template, {
+    cv: data,
+    fn: {
+      reformatDate,
+    }
+  }, options)
 }
 
 const cvStyleId = 'cv-style'
 
-export function applyThemeTo(name, data, el) {
+export function applyThemeTo(name, el, data) {
   const theme = getTheme(name)
-  el.innerHTML = render(theme.template, data)
+  el.innerHTML = renderTheme(theme.template, data)
 
   let elStyle = document.getElementById(cvStyleId)
   if (!elStyle) {

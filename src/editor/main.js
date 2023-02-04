@@ -1,10 +1,12 @@
 import 'iconify-icon'; // import only
 
+import $ from 'cash-dom';
 import objectPath from 'object-path';
 
 import { JSONEditor } from '@json-editor/json-editor/dist/jsoneditor';
 
 import * as exampleData from '../../sample.resume.json';
+import { saveCVJSON } from '../lib/store';
 import {
   createElement,
   traverseDownObject,
@@ -100,8 +102,29 @@ editor.on('ready',() => {
   })
 })
 
+const $outputJSON = $('.output-json')
+const $outputHTML = $('.output-html')
+
 // listen to change
-const elOutput = document.querySelector('.editor-output')
 editor.on('change', () => {
-  elOutput.textContent = JSON.stringify(editor.getValue(), null, 2)
+  console.log('on editor change')
+  const cvJSON = JSON.stringify(editor.getValue(), null, 2)
+  $outputJSON.text(cvJSON)
+
+  // save to localstorage
+  saveCVJSON(cvJSON)
+})
+
+// actions
+const $btnShowPreview = $('#fn-show-preview')
+const $btnShowJSON = $('#fn-show-json')
+
+$btnShowPreview.on('click', () => {
+  $outputJSON.hide()
+  $outputHTML.show()
+})
+
+$btnShowJSON.on('click', () => {
+  $outputHTML.hide()
+  $outputJSON.show()
 })
