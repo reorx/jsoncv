@@ -10,6 +10,7 @@ import { saveCVJSON } from '../lib/store';
 import {
   createElement,
   downloadContent,
+  downloadIframeHTML,
   propertiesToObject,
   traverseDownObject,
 } from '../lib/utils';
@@ -193,24 +194,36 @@ $inputUploadData.on('change', () => {
   reader.readAsText(files[0])
 })
 
-$btnDownloadJSON.on('click', () => {
+function downloadCV(contentType) {
   const data = editor.getValue()
-  let name = data.meta.name
+  const meta = data.meta || (data.meta = {})
+  let name = meta.name
   if (!name) {
     name = prompt(`Please enter a name for your CV's data`)
   }
-  if (!name) {
-    name = 'jsoncv'
-  }
+  if (!name) return
 
   // update data
-  data.meta.name = name
-  data.meta.lastModified = dayjs().format('YYYY-MM-DDTHH:mm:ssZ[Z]')
+  meta.name = name
+  meta.lastModified = dayjs().format('YYYY-MM-DDTHH:mm:ssZ[Z]')
 
   // download
-  let filename = `${name}.json`
-  downloadContent(filename, JSON.stringify(data, null, 2))
+  if (contentType === 'json') {
+    let filename = `${name}.json`
+    downloadContent(filename, JSON.stringify(data, null, 2))
+  } else if (contentType === 'html') {
+    let filename = `${name}.html`
+    downloadIframeHTML(filename, $outputHTML.get(0))
+  }
 
   // update editor value
-  editor.getEditor('root.meta').setValue(data.meta)
+  editor.getEditor('root.meta').setValue(meta)
+}
+
+$btnDownloadJSON.on('click', () => {
+  downloadCV('json')
+})
+
+$btnDownloadHTML.on('click', () => {
+  downloadCV('html')
 })

@@ -61,3 +61,13 @@ export function downloadContent(filename, text) {
 
   document.body.removeChild(element);
 }
+
+export function downloadIframeHTML(filename, iframe) {
+  const blob = new Blob([iframe.contentDocument.documentElement.outerHTML], { type: 'text/html' });
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(blob);
+  a.download = filename;
+  a.style.display = 'none';
+  a.click();
+  document.body.removeChild(a)
+}
