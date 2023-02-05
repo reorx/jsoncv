@@ -6,6 +6,7 @@ import objectPath from 'object-path';
 
 import { JSONEditor } from '@json-editor/json-editor/dist/jsoneditor';
 
+import * as sampleModule from '../../sample.resume.json';
 import { saveCVJSON } from '../lib/store';
 import {
   createElement,
@@ -150,6 +151,7 @@ const $btnUploadData = $('#fn-upload-data')
 const $inputUploadData = $('input[name=upload-data]')
 const $btnDownloadJSON = $('#fn-download-json')
 const $btnDownloadHTML = $('#fn-download-html')
+const $btnLoadSample = $('#fn-load-sample')
 
 $btnShowPreview.on('click', () => {
   $outputJSON.hide()
@@ -226,4 +228,10 @@ $btnDownloadJSON.on('click', () => {
 
 $btnDownloadHTML.on('click', () => {
   downloadCV('html')
+})
+
+$btnLoadSample.on('click', () => {
+  if (!confirm('Are you sure to load sample data? Your current data will be covered.')) return
+
+  editor.setValue(sampleModule.default)
 })

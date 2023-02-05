@@ -63,6 +63,7 @@ body {
   margin-bottom: var(--gap2);
   border-bottom: 1px solid var(--grey-2);
   font-weight: 700;
+  user-select: none;
 }
 
 .editor-toc {
