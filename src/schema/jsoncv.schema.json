@@ -497,6 +497,10 @@
       "description": "The schema version and any other tooling configuration lives here",
       "additionalProperties": true,
       "properties": {
+        "name": {
+          "type": "string",
+          "description": "The name of this JSONCV data, will be used as part of the filename when downloading."
+        },
         "canonical": {
           "type": "string",
           "description": "URL (as per RFC 3986) to latest version of this document",
