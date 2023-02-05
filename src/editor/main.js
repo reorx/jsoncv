@@ -1,6 +1,7 @@
 import 'iconify-icon'; // import only
 
 import $ from 'cash-dom';
+import dayjs from 'dayjs';
 import objectPath from 'object-path';
 
 import { JSONEditor } from '@json-editor/json-editor/dist/jsoneditor';
@@ -8,6 +9,7 @@ import { JSONEditor } from '@json-editor/json-editor/dist/jsoneditor';
 import { saveCVJSON } from '../lib/store';
 import {
   createElement,
+  downloadContent,
   propertiesToObject,
   traverseDownObject,
 } from '../lib/utils';
@@ -15,7 +17,7 @@ import * as jsoncvSchemaModule from '../schema/jsoncv.schema.json';
 import { registerIconLib } from './iconlib';
 import { registerTheme } from './theme';
 
-const propertiesInOrder = ['basics', 'education', 'work', 'skills', 'projects', 'sideProjects', 'languages', 'interests', 'references', 'awards', 'publications', 'volunteer']
+const propertiesInOrder = ['basics', 'education', 'work', 'skills', 'projects', 'sideProjects', 'languages', 'interests', 'references', 'awards', 'publications', 'volunteer', 'meta']
 const basicsPropertiesInOrder = ['name', 'label', 'email', 'phone', 'url', 'summary', 'image', 'location', 'profiles']
 
 // toc elements
@@ -93,6 +95,9 @@ for (const [key, format] of Object.entries(keyFormatMap)) {
 // change schema title
 jsoncvSchema.title = 'Resume'
 
+// change some descriptions
+jsoncvSchema.properties.meta.properties.lastModified.description += '. This will be automatically updated when downloading.'
+
 // initialize editor
 registerTheme(JSONEditor)
 registerIconLib(JSONEditor)
@@ -115,17 +120,25 @@ editor.on('ready',() => {
   })
 })
 
+function getCVData() {
+  const data = editor.getValue()
+  return {
+    data,
+    json: JSON.stringify(data, null, 2),
+  }
+}
+
 const $outputJSON = $('.output-json')
 const $outputHTML = $('.output-html')
 
 // listen to change
 editor.on('change', () => {
   console.log('on editor change')
-  const cvJSON = JSON.stringify(editor.getValue(), null, 2)
-  $outputJSON.text(cvJSON)
+  const {json} = getCVData()
+  $outputJSON.text(json)
 
   // save to localstorage
-  saveCVJSON(cvJSON)
+  saveCVJSON(json)
 })
 
 // actions
@@ -134,6 +147,8 @@ const $btnShowJSON = $('#fn-show-json')
 const $btnNewData = $('#fn-new-data')
 const $btnUploadData = $('#fn-upload-data')
 const $inputUploadData = $('input[name=upload-data]')
+const $btnDownloadJSON = $('#fn-download-json')
+const $btnDownloadHTML = $('#fn-download-html')
 
 $btnShowPreview.on('click', () => {
   $outputJSON.hide()
@@ -154,6 +169,7 @@ $btnNewData.on('click', () => {
 })
 
 $btnUploadData.on('click', () => {
+  if (!confirm('Are you sure to upload an existing CV data? Your current data will be covered.')) return
   $inputUploadData.trigger('click')
 })
 
@@ -175,4 +191,26 @@ $inputUploadData.on('change', () => {
   }
 
   reader.readAsText(files[0])
+})
+
+$btnDownloadJSON.on('click', () => {
+  const data = editor.getValue()
+  let name = data.meta.name
+  if (!name) {
+    name = prompt(`Please enter a name for your CV's data`)
+  }
+  if (!name) {
+    name = 'jsoncv'
+  }
+
+  // update data
+  data.meta.name = name
+  data.meta.lastModified = dayjs().format('YYYY-MM-DDTHH:mm:ssZ[Z]')
+
+  // download
+  let filename = `${name}.json`
+  downloadContent(filename, JSON.stringify(data, null, 2))
+
+  // update editor value
+  editor.getEditor('root.meta').setValue(data.meta)
 })
