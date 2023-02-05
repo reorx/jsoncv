@@ -5,9 +5,13 @@ $color-text-dim: #777;
   font-size: 14px;
   font-family: system-ui, sans-serif;
 
-  a, a:visited, a:hover, a:active {
+  a, a:visited, a:active {
     color: $color-signature;
     text-decoration: none;
+  }
+  a:hover {
+    color: $color-signature;
+    text-decoration: underline;
   }
 }
 

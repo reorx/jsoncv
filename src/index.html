@@ -5,7 +5,25 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <style>
+    /* Page setup works for all the themes */
+    @page {
+      size: 210cm 297cm; /* A4 */
+    }
 
+    body {
+      padding: 0;
+      margin: 10mm;
+      /* margin subtracted */
+      width: 190cm;
+      height: 277cm;
+
+      page-break-inside: auto;
+      print-color-adjust: exact;
+    }
+    .page-unit {
+      page-break-inside: avoid;
+      page-break-after: auto;
+    }
   </style>
   <title>CV</title>
 </head>

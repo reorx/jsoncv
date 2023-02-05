@@ -54,7 +54,7 @@ function dateRange(item, preserveDay) {
     <div class="line"></div>
   </div>
   <% for (const item of cv.education) { %>
-    <div class="education">
+    <div class="education page-unit">
       <h3><%= item.institution %></h3>
       <p><%= item.url %></p>
       <p><%= item.area %></p>
@@ -73,7 +73,7 @@ function dateRange(item, preserveDay) {
     <div class="line"></div>
   </div>
   <% for (const item of cv.work) { %>
-    <div class="work">
+    <div class="work page-unit">
       <h3><%= item.name %></h3>
       <p><%= item.url %></p>
       <%- dateRange(item) %>
@@ -97,7 +97,7 @@ function dateRange(item, preserveDay) {
     <div class="line"></div>
   </div>
   <% for (const item of cv.projects) { %>
-    <div class="project">
+    <div class="project page-unit">
       <h3><%= item.name %></h3>
       <p><%= item.url %></p>
       <p><%= item.description %></p>
@@ -125,7 +125,7 @@ function dateRange(item, preserveDay) {
     <div class="line"></div>
   </div>
   <% for (const item of cv.sideProjects) { %>
-    <div class="sideproject">
+    <div class="sideproject page-unit">
       <h3><%= item.name %></h3>
       <p><%= item.url %></p>
       <p><%= item.description %></p>
@@ -163,7 +163,7 @@ function dateRange(item, preserveDay) {
 
 <!-- Languages -->
 <% if (cv.languages) { %>
-<section>
+<section class="page-unit">
   <div class="section-title">
     <h2>Languages</h2>
     <div class="line"></div>

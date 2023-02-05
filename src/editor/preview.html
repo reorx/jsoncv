@@ -2,9 +2,45 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
+  <style>
+    /* Page setup works for all the themes */
+    @page {
+      /* A4 */
+      /* size: 210mm 297mm;  */
+      size: A4;
+      margin: 10mm; /* approximately 0.4in */
+    }
+
+    html {
+      margin: 0;
+      padding: 0;
+    }
+    body {
+      margin: 0;
+      page-break-inside: auto;
+      print-color-adjust: exact;
+      -webkit-print-color-adjust: exact;
+
+      /* simulate print page size */
+      padding: 10mm;
+      width: calc(210mm - 20mm);
+      border: 1px solid #ccc;
+      border-left: 0;
+    }
+    @media print {
+      /* remove simulate print page size, let @page decide the size and margin */
+      body {
+        padding: 0;
+        border: 0;
+      }
+    }
+
+    .page-unit {
+      page-break-inside: avoid;
+      page-break-after: auto;
+    }
+  </style>
+  <title>CV</title>
 </head>
 <body>
   <div class="cv-container"></div>

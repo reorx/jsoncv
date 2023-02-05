@@ -49,7 +49,7 @@ body {
     margin-left: var(--sidebar-width);
   }
   .right {
-    background-color: #eee;
+    border-left: 1px solid var(--grey-2);
   }
 }
 .editor-container {
