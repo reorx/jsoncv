@@ -18,7 +18,7 @@ const getIconsData = function(prefix) {
   throw new Error(`Icon set ${prefix} is not included.`);
 }
 
-export const getIconSVG = function(name, { dom }) {
+export const getIconSVG = function(name, { dom } = {}) {
   const iconName = stringToIcon(name)
   const icon = getIconData(getIconsData(iconName.prefix), iconName.name)
   if (!icon) {

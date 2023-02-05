@@ -1,5 +1,61 @@
+$color-signature: #2A3FFB;
+$color-text-dim: #777;
+
 .cv-container {
   font-size: 14px;
   font-family: system-ui, sans-serif;
 
+  a, a:visited, a:hover, a:active {
+    color: $color-signature;
+    text-decoration: none;
+  }
+}
+
+.basics-section {
+  h1 {
+    font-size: 36px;
+    font-weight: 600;
+    margin: .8em 0 .2em 0;
+  }
+  .label {
+    margin: .4em 0;
+  }
+  .url {
+    margin: .4em 0;
+  }
+  .summary {
+    margin: .4em 0;
+  }
+  .contact {
+    margin: .4em 0;
+    color: $color-text-dim;
+
+    display: flex;
+    .item {
+      margin-right: 1em;
+      a {
+        color: $color-text-dim;
+      }
+      svg {
+        vertical-align: bottom;
+      }
+    }
+  }
+}
+
+.section-title {
+  margin-top: 3em;
+  display: flex;
+  h2 {
+    font-size: 22px;
+    font-weight: 600;
+    color: $color-signature;
+    margin: 0;
+  }
+  .line {
+    flex-grow: 1;
+    margin: 14px 0 0 1em;
+    height: 2px;
+    background-color: $color-signature;
+  }
 }

@@ -1,6 +1,7 @@
 import ejs from 'ejs';
 
 import { reformatDate } from '../lib/date';
+import { getIconSVG } from '../lib/icons';
 
 const themes = {}
 
@@ -35,6 +36,8 @@ export function renderTheme(template, data, options) {
     cv: data,
     fn: {
       reformatDate,
+      getIconSVG,
+      urlNoSchema,
     }
   }, options)
 }
@@ -51,4 +54,10 @@ export function applyThemeTo(name, el, data) {
     document.head.appendChild(elStyle)
   }
   elStyle.innerHTML = theme.style
+}
+
+/* fn */
+
+function urlNoSchema(url) {
+  return url.replace(/https?:\/\//, '')
 }

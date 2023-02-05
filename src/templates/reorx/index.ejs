@@ -1,9 +1,37 @@
 <!-- Basics -->
-<h1><%= cv.basics.name %></h1>
-<p><%= cv.basics.summary %></p>
-<div class="contact">
-  <%= cv.basics.email %> | <%= cv.basics.phone %>
-</div>
+<section class="basics-section">
+  <h1><%= cv.basics.name %></h1>
+  <% if (cv.basics.label) { %>
+    <div class="label"><%= cv.basics.label %></div>
+  <% } %>
+  <% if (cv.basics.url) { %>
+    <div class="url">
+      <a href="<%= cv.basics.url %>"><%= fn.urlNoSchema(cv.basics.url) %></a></div>
+  <% } %>
+  <% if (cv.basics.summary) { %>
+    <div class="summary"><%= cv.basics.summary %></div>
+  <% } %>
+  <div class="contact">
+    <% if (cv.basics.email) { %>
+      <div class="item">
+        <%- fn.getIconSVG('mdi:email') %>
+        <span><a href="mailto:<%= cv.basics.email %>"><%= cv.basics.email %></a></span>
+      </div>
+    <% } %>
+    <% if (cv.basics.phone) { %>
+      <div class="item">
+        <%- fn.getIconSVG('mdi:phone') %>
+        <span><%= cv.basics.phone %></span>
+      </div>
+    <% } %>
+    <% if (cv.basics.location) { %>
+      <div class="item">
+        <%- fn.getIconSVG('mdi:location') %>
+        <span><%= cv.basics.location.city %>, <%= cv.basics.location.countryCode %></span>
+      </div>
+    <% } %>
+  </div>
+</section>
 
 <%
 function dateRange(item, preserveDay) {
@@ -21,7 +49,10 @@ function dateRange(item, preserveDay) {
 <!-- Educations -->
 <% if (cv.education) { %>
 <section>
-  <h2>Educations</h2>
+  <div class="section-title">
+    <h2>Educations</h2>
+    <div class="line"></div>
+  </div>
   <% for (const item of cv.education) { %>
     <div class="education">
       <h3><%= item.institution %></h3>
@@ -37,7 +68,10 @@ function dateRange(item, preserveDay) {
 <!-- Work -->
 <% if (cv.work) { %>
 <section>
-  <h2>Work</h2>
+  <div class="section-title">
+    <h2>Work</h2>
+    <div class="line"></div>
+  </div>
   <% for (const item of cv.work) { %>
     <div class="work">
       <h3><%= item.name %></h3>
@@ -58,7 +92,10 @@ function dateRange(item, preserveDay) {
 <!-- Projects -->
 <% if (cv.projects) { %>
 <section>
-  <h2>Projects</h2>
+  <div class="section-title">
+    <h2>Projects</h2>
+    <div class="line"></div>
+  </div>
   <% for (const item of cv.projects) { %>
     <div class="project">
       <h3><%= item.name %></h3>
@@ -83,7 +120,10 @@ function dateRange(item, preserveDay) {
 <!-- Side-projects -->
 <% if (cv.sideProjects) { %>
 <section>
-  <h2>Side-projects</h2>
+  <div class="section-title">
+    <h2>Side-projects</h2>
+    <div class="line"></div>
+  </div>
   <% for (const item of cv.sideProjects) { %>
     <div class="sideproject">
       <h3><%= item.name %></h3>
@@ -103,7 +143,10 @@ function dateRange(item, preserveDay) {
 <!-- Skills -->
 <% if (cv.skills) { %>
 <section>
-  <h2>Skills</h2>
+  <div class="section-title">
+    <h2>Skills</h2>
+    <div class="line"></div>
+  </div>
   <% for (const item of cv.skills) { %>
     <div class="skill">
       <h3><%= item.name %></h3>
@@ -121,7 +164,10 @@ function dateRange(item, preserveDay) {
 <!-- Languages -->
 <% if (cv.languages) { %>
 <section>
-  <h2>Languages</h2>
+  <div class="section-title">
+    <h2>Languages</h2>
+    <div class="line"></div>
+  </div>
   <% for (const item of cv.languages) { %>
     <div class="language">
       <h3><%= item.language %></h3>
