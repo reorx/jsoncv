@@ -24,3 +24,27 @@ export const traverseDownObject = function(obj, callback) {
     }
   }
 }
+
+export const propertiesToObject = function(properties) {
+  const o = {}
+  for (const [k, def] of Object.entries(properties)) {
+    let v
+    switch (def.type) {
+      case 'string':
+        v = ''
+        break
+      case 'number':
+        v = 0
+        break
+      case 'array':
+        v = []
+        break
+      case 'object':
+        v = propertiesToObject(def.properties)
+        break
+    }
+    if (v === undefined) continue
+    o[k] = v
+  }
+  return o
+}

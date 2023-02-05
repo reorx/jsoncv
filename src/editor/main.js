@@ -5,10 +5,10 @@ import objectPath from 'object-path';
 
 import { JSONEditor } from '@json-editor/json-editor/dist/jsoneditor';
 
-import * as exampleData from '../../sample.resume.json';
 import { saveCVJSON } from '../lib/store';
 import {
   createElement,
+  propertiesToObject,
   traverseDownObject,
 } from '../lib/utils';
 import * as jsoncvSchemaModule from '../schema/jsoncv.schema.json';
@@ -101,7 +101,7 @@ const editor = new JSONEditor(elEditorContainer, {
   iconlib: 'myiconlib',
   disable_array_delete_all_rows: true,
   no_additional_properties: true,
-  startval: exampleData,
+  // startval: exampleData,
 });
 editor.on('ready',() => {
   // editor.setValue(exampleData)
@@ -129,6 +129,9 @@ editor.on('change', () => {
 // actions
 const $btnShowPreview = $('#fn-show-preview')
 const $btnShowJSON = $('#fn-show-json')
+const $btnNewData = $('#fn-new-data')
+const $btnUploadData = $('#fn-upload-data')
+const $inputUploadData = $('input[name=upload-data]')
 
 $btnShowPreview.on('click', () => {
   $outputJSON.hide()
@@ -138,4 +141,36 @@ $btnShowPreview.on('click', () => {
 $btnShowJSON.on('click', () => {
   $outputHTML.hide()
   $outputJSON.show()
+})
+
+$btnNewData.on('click', () => {
+  if (!confirm('Are you sure to create an empty CV? Your current data will be lost.')) return
+
+  const v = propertiesToObject(jsoncvSchema.properties)
+  console.log('new value', v)
+  editor.setValue(v)
+})
+
+$btnUploadData.on('click', () => {
+  $inputUploadData.trigger('click')
+})
+
+$inputUploadData.on('change', () => {
+  const files = $inputUploadData.get(0).files
+  if (files.length === 0) return
+
+  const reader = new FileReader()
+  reader.onload = (e) => {
+    let data
+    try {
+      data = JSON.parse(e.target.result)
+    } catch (e) {
+      const error = 'Invalid JSON file: ' + new String(e).toString()
+      console.log(error)
+      throw e
+    }
+    editor.setValue(data)
+  }
+
+  reader.readAsText(files[0])
 })
