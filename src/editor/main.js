@@ -7,7 +7,10 @@ import objectPath from 'object-path';
 import { JSONEditor } from '@json-editor/json-editor/dist/jsoneditor';
 
 import * as sampleModule from '../../sample.resume.json';
-import { saveCVJSON } from '../lib/store';
+import {
+  getCVData,
+  saveCVJSON,
+} from '../lib/store';
 import {
   createElement,
   downloadContent,
@@ -100,6 +103,11 @@ jsoncvSchema.title = 'Resume'
 // change some descriptions
 jsoncvSchema.properties.meta.properties.lastModified.description += '. This will be automatically updated when downloading.'
 
+
+// init data
+let data = getCVData()
+if (!data) data = sampleModule.default
+
 // initialize editor
 registerTheme(JSONEditor)
 registerIconLib(JSONEditor)
@@ -110,11 +118,9 @@ const editor = new JSONEditor(elEditorContainer, {
   iconlib: 'myiconlib',
   disable_array_delete_all_rows: true,
   no_additional_properties: true,
-  // startval: exampleData,
+  startval: data,
 });
 editor.on('ready',() => {
-  // editor.setValue(exampleData)
-
   // add anchor to each schema element
   document.querySelectorAll('[data-schemapath]').forEach(el => {
     const schemapath = el.getAttribute('data-schemapath')
@@ -122,7 +128,7 @@ editor.on('ready',() => {
   })
 })
 
-function getCVData() {
+function getEditorData() {
   const data = editor.getValue()
   return {
     data,
@@ -136,7 +142,7 @@ const $outputHTML = $('.output-html')
 // listen to change
 editor.on('change', () => {
   console.log('on editor change')
-  const {json} = getCVData()
+  const {json} = getEditorData()
   $outputJSON.text(json)
 
   // save to localstorage
