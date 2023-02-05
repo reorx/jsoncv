@@ -11,14 +11,14 @@
 @mixin normal-button {
   @include button-base;
 
-  background-color: #eee;
+  background-color: var(--grey-0);
   border: 1px solid transparent;
   border-radius: 2px;
   padding: 0px 8px;
   line-height: 22px;
 
   &:hover {
-    background-color: #e1e1e1;
+    background-color: var(--grey-1);
   }
   &:active {
     border-color: #555;

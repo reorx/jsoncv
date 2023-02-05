@@ -25,7 +25,7 @@
     padding-left: calc(var(--gap) * 2);
     padding-bottom: var(--gap);
     margin-left: 0;
-    border-left: 1px solid #ddd;
+    border-left: 1px solid var(--grey-2);
     margin-bottom: var(--gap);
   }
 
@@ -63,7 +63,7 @@
   }
   .je-table {
     margin-bottom: 5px;
-    border-bottom: 1px solid #ccc;
+    border-bottom: 1px solid var(--grep-2);
   }
 
   /* buttons */

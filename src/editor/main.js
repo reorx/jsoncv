@@ -50,6 +50,8 @@ propertiesInOrder.forEach((name, index) => {
 })
 basicsPropertiesInOrder.forEach((name, index) => {
   jsoncvSchema.properties.basics.properties[name].propertyOrder = index
+  // only add location and profiles to basics toc
+  if (!['location', 'profiles'].includes(name)) return
   const li = createElement('li', {parent: basicsUl})
   createElement('a', {
     text: name,

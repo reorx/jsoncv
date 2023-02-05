@@ -12,13 +12,20 @@
   --yellow-1: #FFEC99;
   --green-0: #D3F9D8;
   --green-1: #B2F2BB;
+  --grey-0: #eee;
+  --grey-1: #e1e1e1;
+  --grey-2: #ddd;
   --font-default: system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue","Noto Sans","Liberation Sans",Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";
   --font-mono: "Lucida Sans Typewriter", "Lucida Console", monaco, "Bitstream Vera Sans Mono", monospace;
 }
 
 
-html {
+html,
+body * {
   font-family: var(--font-default);
+}
+button {
+  font-size: 13px;
 }
 
 body {
@@ -35,7 +42,7 @@ body {
   }
 
   .sidebar {
-    padding: var(--gap);
+    padding: 0 var(--gap2) 0 var(--gap);
   }
   .middle {
     padding-right: var(--gap2);
@@ -45,17 +52,37 @@ body {
     background-color: #eee;
   }
 }
-
 .editor-container {
   [data-schemapath]:target {
     animation: bgFade 1s forwards;
   }
 }
 
+.logo {
+  padding: var(--gap2) 0;
+  margin-bottom: var(--gap2);
+  border-bottom: 1px solid var(--grey-2);
+  font-weight: 700;
+}
+
 .editor-toc {
+  padding-left: 5px;
+  padding-bottom: var(--gap2);
+  margin-bottom: var(--gap2);
+  border-bottom: 1px solid var(--grey-2);
+  font-size: 15px;
+
   ul {
     margin: 0;
-    padding: 4px 0 4px 14px;
+    padding: 0 0 0 12px;
+
+    li {
+      margin: 5px 0;
+
+      ul {
+        margin-left: 5px;
+      }
+    }
 
     a {
       text-decoration: none;
@@ -64,6 +91,12 @@ body {
         text-decoration: underline;
       }
     }
+  }
+}
+
+.app-actions {
+  button {
+    margin-bottom: 8px;
   }
 }
 
