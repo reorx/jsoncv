@@ -19,8 +19,6 @@ body {
   /* simulate print page size */
   padding: 10mm;
   width: calc(210mm - 20mm);
-  border: 1px solid #ccc;
-  border-left: 0;
 }
 @media print {
   /* remove simulate print page size, let @page decide the size and margin */
