@@ -17,5 +17,12 @@
   <div class="cv-container">
     <%- include('src/themes/' + theme + '/index', locals) %>
   </div>
+
+  <% if (!isProduction) { %>
+  <!-- import theme ejs to enable HMR -->
+  <script type="module">
+    import './src/themes/<%= theme %>/index.ejs'
+  </script>
+  <% } %>
 </body>
 </html>

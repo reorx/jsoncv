@@ -11,6 +11,7 @@ const outDir = process.env.OUT_DIR || 'dist'
 const cvData = require(dataFilename)
 const data = getRenderData(cvData)
 data.theme = process.env.THEME || 'reorx'
+data.isProduction = process.env.NODE_ENV === 'production'
 
 
 export default defineConfig({
