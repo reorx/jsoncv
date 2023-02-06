@@ -1,7 +1,6 @@
 import ejs from 'ejs';
 
-import { reformatDate } from '../lib/date';
-import { getIconSVG } from '../lib/icons';
+import { getRenderData } from './data';
 
 const themes = {}
 
@@ -10,13 +9,13 @@ const themeNames = ['reorx']
 // https://vitejs.dev/guide/features.html#disabling-css-injection-into-the-page
 // note that `?raw` (https://vitejs.dev/guide/assets.html#importing-asset-as-string)
 // cannot be used because we need vite to transform scss into css
-const styleMoudules = import.meta.glob("../templates/*/index.scss", { "query": "?inline" })
+const styleMoudules = import.meta.glob("./*/index.scss", { "query": "?inline" })
 
 for (const name of themeNames) {
-  const templateModule = await import(`../templates/${name}/index.ejs`)
+  const templateModule = await import(`./${name}/index.ejs`)
 
   // https://vitejs.dev/guide/features.html#glob-import
-  const styleModule = await styleMoudules[`../templates/${name}/index.scss`]()
+  const styleModule = await styleMoudules[`./${name}/index.scss`]()
 
   themes[name] = {
     template: templateModule.default,
@@ -31,15 +30,8 @@ export function getTheme(name) {
   return themes[name]
 }
 
-export function renderTheme(template, data, options) {
-  return ejs.render(template, {
-    cv: data,
-    fn: {
-      reformatDate,
-      getIconSVG,
-      urlNoSchema,
-    }
-  }, options)
+export function renderTheme(template, cvData, options) {
+  return ejs.render(template, getRenderData(cvData), options)
 }
 
 const cvStyleId = 'cv-style'
@@ -54,10 +46,4 @@ export function applyThemeTo(name, el, data) {
     document.head.appendChild(elStyle)
   }
   elStyle.innerHTML = theme.style
-}
-
-/* fn */
-
-function urlNoSchema(url) {
-  return url.replace(/https?:\/\//, '')
 }

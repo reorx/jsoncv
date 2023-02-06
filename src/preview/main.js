@@ -1,10 +1,10 @@
-import '../print.css';
+import '../scss/print.css';
 
 import {
   getCVData,
   getCVSavedTime,
 } from '../lib/store';
-import { applyThemeTo } from '../themer';
+import { applyThemeTo } from '../themes';
 
 const themeName = 'default'
 const elCV = document.querySelector('.cv-container')

@@ -1,50 +1,21 @@
-import { resolve } from 'path';
 import { defineConfig } from 'vite';
+import { ViteEjsPlugin } from 'vite-plugin-ejs';
+import { viteSingleFile } from 'vite-plugin-singlefile';
 
-const sampleFilename = './sample.resume.json'
-let dataFilename = process.env.DATA_FILENAME || sampleFilename
+import { TransformEjs } from './src/lib/vite-plugins';
+import { getRenderData } from './src/themes/data';
 
-const data = require(dataFilename)
+const dataFilename = process.env.DATA_FILENAME || './sample.resume.json'
+const outDir = process.env.OUT_DIR || 'dist'
 
-const rootDir = resolve(__dirname, 'src')
-
-const fileRegex = /\.(my-file-ext)$/
-
-// ref 1: https://vitejs.dev/guide/api-plugin.html#transforming-custom-file-types
-// ref 2: https://github.com/vitejs/vite/issues/594#issuecomment-665915643
-function TransformEjs() {
-  return {
-    name: 'transform-ejs',
-
-    transform(src, id) {
-      if (id.endsWith('.ejs')) {
-        return {
-          code: `export default ${JSON.stringify(src)}`,
-          map: null, // provide source map if available
-        }
-      }
-    },
-  }
-}
+const cvData = require(dataFilename)
+const data = getRenderData(cvData)
+data.theme = process.env.THEME || 'reorx'
 
 
 export default defineConfig({
-  // use relative path for assets
-  // base: "",
-  root: 'src',
-  // assetsInclude: ['**/*.ejs'],
   build: {
-    // relative to root
-    outDir: "../dist",
-    // put assets in the same folder as index.html
-    // assetsDir: ".",
-    rollupOptions: {
-      input: {
-        main: resolve(rootDir, 'index.html'),
-        editor: resolve(rootDir, 'editor/index.html'),
-        editorPreview: resolve(rootDir, 'editor/preview.html'),
-      },
-    },
+    outDir: outDir,
   },
   resolve: {
     alias: {
@@ -54,5 +25,15 @@ export default defineConfig({
   },
   plugins: [
     TransformEjs(),
+    ViteEjsPlugin(
+      data,
+      {
+        ejs: (viteConfig) => ({
+          // ejs options goes here.
+          views: [__dirname],
+        })
+      }
+    ),
+    viteSingleFile(),
   ],
 })

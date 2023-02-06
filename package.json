@@ -5,7 +5,10 @@
   "scripts": {
     "dev": "vite --host",
     "build": "vite build",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "dev-site": "vite -c vite.config.site.js --host",
+    "build-site": "vite -c vite.config.site.js build",
+    "preview-site": "vite -c vite.config.site.js preview"
   },
   "devDependencies": {
     "@iconify-json/mdi": "^1.1.33",
@@ -14,8 +17,9 @@
     "rollup-plugin-node-polyfills": "^0.2.1",
     "sass": "^1.54.8",
     "vite": "^4.1.1",
+    "vite-plugin-ejs": "^1.6.4",
     "vite-plugin-handlebars": "^1.6.0",
-    "vite-plugin-node-polyfills": "^0.7.0"
+    "vite-plugin-singlefile": "^0.13.2"
   },
   "dependencies": {
     "@iconify/json": "^2.2.15",
