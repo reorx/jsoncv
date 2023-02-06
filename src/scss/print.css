@@ -28,7 +28,8 @@ body {
   }
 }
 
-.page-unit {
+.page-unit,
+.section-item {
   page-break-inside: avoid;
   page-break-after: auto;
 }

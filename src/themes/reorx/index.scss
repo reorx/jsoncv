@@ -1,5 +1,10 @@
 $color-signature: #2A3FFB;
 $color-text-dim: #777;
+$fz-1: 36px;
+$fz-2: 22px;
+$fz-3: 18px;
+$fz-4: 16px;
+$lh-para: 1.4;
 
 .cv-container {
   font-size: 14px;
@@ -15,23 +20,85 @@ $color-text-dim: #777;
   }
 }
 
+section {
+  .section-title {
+    margin-top: 3em;
+    display: flex;
+    h2 {
+      font-size: $fz-2;
+      font-weight: 600;
+      color: $color-signature;
+      margin: 0;
+    }
+    .line {
+      flex-grow: 1;
+      margin: 14px 0 0 1em;
+      height: 2px;
+      background-color: $color-signature;
+    }
+  }
+
+  .section-item {
+    margin-top: 1.5em;
+
+    h3 {
+      font-size: $fz-3;
+      margin: 0;
+    }
+
+    ul {
+      margin: .8em 0;
+      padding-left: 16px;
+      li {
+        margin-bottom: .4em;
+      }
+    }
+  }
+
+  .row {
+    margin: .4em 0;
+  }
+  .space-between {
+    display: flex;
+    justify-content: space-between;
+  }
+  .lh-para {
+    line-height: $lh-para;
+  }
+  .fz-4 {
+    font-size: $fz-4;
+  }
+
+  .keywords {
+    display: flex;
+    .item {
+      font-size: 13px;
+      color: $color-text-dim;
+      margin-right: .8em;
+      padding: 0 4px;
+      height: 22px;
+      line-height: 21px;
+      background: #f4f4f4;
+    }
+  }
+
+  .two-columns {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
 .basics-section {
   h1 {
-    font-size: 36px;
+    font-size: $fz-1;
     font-weight: 600;
     margin: .2em 0 .2em 0;
   }
-  .label {
-    margin: .4em 0;
-  }
-  .url {
-    margin: .4em 0;
-  }
   .summary {
-    margin: .4em 0;
+    margin: .8em 0;
+    line-height: $lh-para;
   }
   .contact {
-    margin: .4em 0;
     color: $color-text-dim;
 
     display: flex;
@@ -47,19 +114,14 @@ $color-text-dim: #777;
   }
 }
 
-.section-title {
-  margin-top: 3em;
-  display: flex;
-  h2 {
-    font-size: 22px;
-    font-weight: 600;
-    color: $color-signature;
-    margin: 0;
-  }
-  .line {
-    flex-grow: 1;
-    margin: 14px 0 0 1em;
-    height: 2px;
-    background-color: $color-signature;
+.education-section {
+}
+
+.work-section {
+}
+
+.skills-section {
+  .section-item {
+
   }
 }

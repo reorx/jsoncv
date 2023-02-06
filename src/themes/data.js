@@ -7,13 +7,17 @@ export function getRenderData(cvData) {
     fn: {
       reformatDate,
       getIconSVG,
-      urlNoSchema,
+      noSchemaURL,
     }
   }
 }
 
 /* fn */
 
-function urlNoSchema(url) {
-  return url.replace(/https?:\/\//, '')
+function noSchemaURL(url) {
+  url = url.replace(/https?:\/\//, '')
+  if (url.endsWith('/')) {
+    url = url.slice(0, -1)
+  }
+  return url
 }

@@ -1,17 +1,21 @@
+<%
+function linkInDiv(url) {
+  if (!url) return ''
+  return `<div class="url row"><a href="${url}">${fn.noSchemaURL(url)}</a></div>`
+}
+%>
+
 <!-- Basics -->
 <section class="basics-section">
   <h1><%= cv.basics.name %></h1>
   <% if (cv.basics.label) { %>
-    <div class="label"><%= cv.basics.label %></div>
+    <div class="label row"><%= cv.basics.label %></div>
   <% } %>
-  <% if (cv.basics.url) { %>
-    <div class="url">
-      <a href="<%= cv.basics.url %>"><%= fn.urlNoSchema(cv.basics.url) %></a></div>
-  <% } %>
+  <%- linkInDiv(cv.basics.url) %>
   <% if (cv.basics.summary) { %>
     <div class="summary"><%= cv.basics.summary %></div>
   <% } %>
-  <div class="contact">
+  <div class="contact row">
     <% if (cv.basics.email) { %>
       <div class="item">
         <%- fn.getIconSVG('mdi:email') %>
@@ -33,33 +37,43 @@
   </div>
 </section>
 
+
 <%
 function dateRange(item, preserveDay) {
   let {startDate, endDate} = item
   if (!startDate && !endDate) return ''
   if (!preserveDay) {
-    const format = 'YYYY-MM'
+    const format = 'MMM YYYY'
     startDate = fn.reformatDate(startDate, format)
     endDate = fn.reformatDate(endDate, format)
   }
-  return `<p>${startDate}~${endDate}</p>`
+  return `<div class="date-range">${startDate} – ${endDate}</div>`
 }
 %>
 
 <!-- Educations -->
 <% if (cv.education) { %>
-<section>
+<section class="education-section">
   <div class="section-title">
     <h2>Educations</h2>
     <div class="line"></div>
   </div>
   <% for (const item of cv.education) { %>
-    <div class="education page-unit">
-      <h3><%= item.institution %></h3>
-      <p><%= item.url %></p>
-      <p><%= item.area %></p>
-      <p><%= item.score %></p>
-      <%- dateRange(item) %>
+    <div class="education section-item">
+      <div class="row space-between">
+        <h3><%= item.institution %></h3>
+        <%- dateRange(item) %>
+      </div>
+      <div class="study row fz-4">
+        <%= item.studyType %>, <%= item.area %>
+      </div>
+      <div class="score row">Overall GPA: <%= item.score %></div>
+      <% if (item.courses && item.courses.length > 0) { %>
+        <div class="courses row">
+          Courses: <%= item.courses.join('; ') %>
+        </div>
+      <% } %>
+      <%- linkInDiv(item.url) %>
     </div>
   <% } %>
 </section>
@@ -67,23 +81,29 @@ function dateRange(item, preserveDay) {
 
 <!-- Work -->
 <% if (cv.work) { %>
-<section>
+<section class="work-section">
   <div class="section-title">
     <h2>Work</h2>
     <div class="line"></div>
   </div>
   <% for (const item of cv.work) { %>
-    <div class="work page-unit">
-      <h3><%= item.name %></h3>
-      <p><%= item.url %></p>
-      <%- dateRange(item) %>
-      <p><%= item.position %></p>
-      <div class="summary"><%= item.summary %></div>
-      <div class="highlights">
-        <% for (const hl of item.highlights) { %>
-          <div class="item"><%= hl %></div>
-        <% } %>
+    <div class="work section-item">
+      <div class="row space-between">
+        <h3><%= item.name %></h3>
+        <%- dateRange(item) %>
       </div>
+      <div class="position row fz-4"><%= item.position %></div>
+      <div class="summary row"><%= item.summary %></div>
+      <% if (item.highlights && item.highlights.length > 0) { %>
+        <div class="highlights row">
+          <ul>
+          <% for (const hl of item.highlights) { %>
+            <li><%= hl %></li>
+          <% } %>
+          </ul>
+        </div>
+      <% } %>
+      <%- linkInDiv(item.url) %>
     </div>
   <% } %>
 </section>
@@ -91,27 +111,33 @@ function dateRange(item, preserveDay) {
 
 <!-- Projects -->
 <% if (cv.projects) { %>
-<section>
+<section class="projects-section">
   <div class="section-title">
     <h2>Projects</h2>
     <div class="line"></div>
   </div>
   <% for (const item of cv.projects) { %>
-    <div class="project page-unit">
-      <h3><%= item.name %></h3>
-      <p><%= item.url %></p>
-      <p><%= item.description %></p>
-      <%- dateRange(item) %>
-      <div class="highlights">
-        <% for (const hl of item.highlights) { %>
-          <div class="item"><%= hl %></div>
-        <% } %>
+    <div class="project section-item">
+      <div class="row space-between">
+        <h3><%= item.name %></h3>
+        <%- dateRange(item) %>
       </div>
+      <div class="row lh-para"><%= item.description %></div>
+      <% if (item.highlights && item.highlights.length > 0) { %>
+        <div class="highlights row">
+          <ul>
+          <% for (const hl of item.highlights) { %>
+            <li><%= hl %></li>
+          <% } %>
+          </ul>
+        </div>
+      <% } %>
       <div class="keywords">
         <% for (const kw of item.keywords) { %>
           <span class="item"><%= kw %></span>
         <% } %>
       </div>
+      <%- linkInDiv(item.url) %>
     </div>
   <% } %>
 </section>
@@ -119,22 +145,26 @@ function dateRange(item, preserveDay) {
 
 <!-- Side-projects -->
 <% if (cv.sideProjects) { %>
-<section>
+<section class="sideprojects-section">
   <div class="section-title">
     <h2>Side-projects</h2>
     <div class="line"></div>
   </div>
   <% for (const item of cv.sideProjects) { %>
-    <div class="sideproject page-unit">
+    <div class="sideproject section-item">
       <h3><%= item.name %></h3>
       <p><%= item.url %></p>
       <p><%= item.description %></p>
       <%- dateRange(item) %>
-      <div class="keywords">
-        <% for (const kw of item.keywords) { %>
-          <span class="item"><%= kw %></span>
-        <% } %>
-      </div>
+      <% if (item.keywords && item.keywords.length > 0) { %>
+
+      <% } %>
+        <div class="keywords">
+          <% for (const kw of item.keywords) { %>
+            <span class="item"><%= kw %></span>
+          <% } %>
+        </div>
+    </div>
     </div>
   <% } %>
 </section>
@@ -142,36 +172,41 @@ function dateRange(item, preserveDay) {
 
 <!-- Skills -->
 <% if (cv.skills) { %>
-<section>
+<section class="skills-section">
   <div class="section-title">
     <h2>Skills</h2>
     <div class="line"></div>
   </div>
+  <div class="two-columns">
   <% for (const item of cv.skills) { %>
-    <div class="skill">
+    <div class="skill section-item">
       <h3><%= item.name %></h3>
-      <div class="level"><%= item.level %></div>
-      <div class="keywords">
-        <% for (const kw of item.keywords) { %>
-          <span class="item"><%= kw %></span>
-        <% } %>
-      </div>
+      <div class="level row"><%= item.level %></div>
+      <% if (item.keywords && item.keywords.length > 0) { %>
+
+      <% } %>
+        <div class="keywords">
+          <% for (const kw of item.keywords) { %>
+            <span class="item"><%= kw %></span>
+          <% } %>
+        </div>
     </div>
   <% } %>
+  </div>
 </section>
 <% } %>
 
 <!-- Languages -->
 <% if (cv.languages) { %>
-<section class="page-unit">
+<section class="languages-section page-unit">
   <div class="section-title">
     <h2>Languages</h2>
     <div class="line"></div>
   </div>
   <% for (const item of cv.languages) { %>
-    <div class="language">
+    <div class="language section-item">
       <h3><%= item.language %></h3>
-      <div class="fluency"><%= item.fluency %></div>
+      <div class="fluency row"><%= item.fluency %></div>
     </div>
   <% } %>
 </section>
