@@ -5,6 +5,7 @@ export function getRenderData(cvData) {
   return {
     cv: cvData,
     fn: {
+      getCVTitle,
       reformatDate,
       getIconSVG,
       noSchemaURL,
@@ -13,6 +14,12 @@ export function getRenderData(cvData) {
 }
 
 /* fn */
+
+export function getCVTitle(cv) {
+  let {name, version} = cv.meta
+  if (!name) name = cv.basics.name || 'JSONCV'
+  return `${name}${version ? ' ' + version : ''}`
+}
 
 function noSchemaURL(url) {
   url = url.replace(/https?:\/\//, '')

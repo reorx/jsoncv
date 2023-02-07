@@ -5,11 +5,17 @@ import {
   getCVSavedTime,
 } from '../lib/store';
 import { applyThemeTo } from '../themes';
+import { getCVTitle } from '../themes/data';
 
 const themeName = 'default'
 const elCV = document.querySelector('.cv-container')
 
-applyThemeTo(themeName, elCV, getCVData())
+const data = getCVData()
+if (data) {
+  applyThemeTo(themeName, elCV, data)
+  // change document title
+  document.title = getCVTitle(data)
+}
 
 const savedTime = getCVSavedTime()
 console.log('preview loaded', Date.now())
