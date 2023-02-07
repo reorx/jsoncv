@@ -118,6 +118,10 @@ body {
   overflow-x: auto;
 }
 
+dialog {
+  width: min(400px, 80%);
+}
+
 
 @keyframes bgFade {
   0% {

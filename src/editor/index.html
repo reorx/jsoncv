@@ -22,6 +22,7 @@
         <button id="fn-download-html">Download HTML</button>
         <button id="fn-new-data">New Data</button>
         <button id="fn-upload-data">Upload Data</button>
+        <button onclick="dialog.showModal()">PDF?</button>
         <input type="file" name="upload-data" style="display: none;">
         <button id="fn-load-sample">Load Sample</button>
       </div>
@@ -32,6 +33,15 @@
       <iframe class="output-html" src="/preview/" frameborder="0"></iframe>
     </div>
   </div>
+
+  <dialog id="dialog">
+    <form method="dialog">
+      <p>The HTML that JSONCV generates is optimized for printing in an A4 letter, so it can be used to create a well-formatted PDF document.</p>
+      <p>You can first click "Download HTML", then open the HTML in a browser and choose "Print" from the menu (or press ⌘+P), it will open a modal where you should find the option to save it as a PDF.</p>
+      <p>For best compatibility, I recommend using Firefox rather than Chrome to complete this process.</p>
+      <button>OK</button>
+    </form>
+  </dialog>
 
   <script src="main.js" type="module"></script>
 </body>
