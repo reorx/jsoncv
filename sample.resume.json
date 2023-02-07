@@ -153,6 +153,17 @@
       "type": "application"
     }
   ],
+  "sideProjects": [
+    {
+      "name": "Bebop",
+      "description": "A spaceship that flies",
+      "url": "https://bebop.example.com",
+      "startDate": "2022-01-01",
+      "keywords": [
+        "Aerodynamics", "Space travel", "Rocket science"
+      ]
+    }
+  ],
   "meta": {
     "canonical": "https://raw.githubusercontent.com/jsonresume/resume-schema/master/resume.json",
     "version": "v1.0.0",

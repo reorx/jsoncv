@@ -39,15 +39,32 @@ function linkInDiv(url) {
 
 
 <%
-function dateRange(item, preserveDay) {
+function dateRange(item, level) {
   let {startDate, endDate} = item
   if (!startDate && !endDate) return ''
-  if (!preserveDay) {
-    const format = 'MMM YYYY'
-    startDate = fn.reformatDate(startDate, format)
-    endDate = fn.reformatDate(endDate, format)
+  let format
+  // level: 1: year, 2: month, 3: day
+  switch (level) {
+    case 1:
+      format = 'YYYY'
+      break;
+    case 2:
+      format = 'MMM YYYY'
+      break;
   }
-  return `<div class="date-range">${startDate} – ${endDate}</div>`
+  if (format) {
+    startDate = startDate ? fn.reformatDate(startDate, format) : ''
+    endDate = endDate ? fn.reformatDate(endDate, format) : ''
+  }
+  let result = ''
+  if (startDate && endDate) {
+    result = `${startDate} – ${endDate}`
+  } else if (startDate) {
+    result = `Since ${startDate}`
+  } else if (endDate) {
+    result = `Until ${endDate}`
+  }
+  return `<div class="date-range">${result}</div>`
 }
 %>
 
@@ -62,7 +79,7 @@ function dateRange(item, preserveDay) {
     <div class="education section-item">
       <div class="row space-between">
         <h3><%= item.institution %></h3>
-        <%- dateRange(item) %>
+        <%- dateRange(item, 2) %>
       </div>
       <div class="study row fz-4">
         <%= item.studyType %>, <%= item.area %>
@@ -90,7 +107,7 @@ function dateRange(item, preserveDay) {
     <div class="work section-item">
       <div class="row space-between">
         <h3><%= item.name %></h3>
-        <%- dateRange(item) %>
+        <%- dateRange(item, 2) %>
       </div>
       <div class="position row fz-4"><%= item.position %></div>
       <div class="summary row"><%= item.summary %></div>
@@ -120,7 +137,7 @@ function dateRange(item, preserveDay) {
     <div class="project section-item">
       <div class="row space-between">
         <h3><%= item.name %></h3>
-        <%- dateRange(item) %>
+        <%- dateRange(item, 2) %>
       </div>
       <div class="row lh-para"><%= item.description %></div>
       <% if (item.highlights && item.highlights.length > 0) { %>
@@ -132,7 +149,7 @@ function dateRange(item, preserveDay) {
           </ul>
         </div>
       <% } %>
-      <div class="keywords">
+      <div class="keywords row">
         <% for (const kw of item.keywords) { %>
           <span class="item"><%= kw %></span>
         <% } %>
@@ -152,19 +169,19 @@ function dateRange(item, preserveDay) {
   </div>
   <% for (const item of cv.sideProjects) { %>
     <div class="sideproject section-item">
-      <h3><%= item.name %></h3>
-      <p><%= item.url %></p>
-      <p><%= item.description %></p>
-      <%- dateRange(item) %>
+      <div class="row space-between">
+        <h3><%= item.name %></h3>
+        <%- dateRange(item, 1) %>
+      </div>
+      <div class="description row lh-para"><%= item.description %></div>
       <% if (item.keywords && item.keywords.length > 0) { %>
-
-      <% } %>
-        <div class="keywords">
+        <div class="keywords row">
           <% for (const kw of item.keywords) { %>
             <span class="item"><%= kw %></span>
           <% } %>
         </div>
-    </div>
+      <% } %>
+      <%- linkInDiv(item.url) %>
     </div>
   <% } %>
 </section>
@@ -183,13 +200,12 @@ function dateRange(item, preserveDay) {
       <h3><%= item.name %></h3>
       <div class="level row"><%= item.level %></div>
       <% if (item.keywords && item.keywords.length > 0) { %>
-
-      <% } %>
         <div class="keywords">
           <% for (const kw of item.keywords) { %>
             <span class="item"><%= kw %></span>
           <% } %>
         </div>
+      <% } %>
     </div>
   <% } %>
   </div>
@@ -206,8 +222,26 @@ function dateRange(item, preserveDay) {
   <% for (const item of cv.languages) { %>
     <div class="language section-item">
       <h3><%= item.language %></h3>
-      <div class="fluency row"><%= item.fluency %></div>
+      <div class="fluency row lh-para"><%= item.fluency %></div>
     </div>
   <% } %>
 </section>
 <% } %>
+
+
+<!-- TODO: -->
+<!-- Awards -->
+<!-- Volunteer -->
+<!-- Publications -->
+<!-- References -->
+<!-- Interests -->
+
+<!-- meta -->
+<footer>
+  <% if (cv.meta.version) { %>
+    <div class="version">Version: <%= cv.meta.version %></div>
+  <% } %>
+  <% if (cv.meta.lastModified) { %>
+    <div class="version">Last modified: <%= cv.meta.lastModified %></div>
+  <% } %>
+</footer>

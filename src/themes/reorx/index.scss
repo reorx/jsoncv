@@ -1,5 +1,6 @@
 $color-signature: #2A3FFB;
 $color-text-dim: #777;
+$color-border-dim: #aaa;
 $fz-1: 36px;
 $fz-2: 22px;
 $fz-3: 18px;
@@ -121,7 +122,20 @@ section {
 }
 
 .skills-section {
-  .section-item {
+  .level {
+    margin: .8em 0;
+  }
+}
 
+footer {
+  opacity: .7;
+  margin-top: 3em;
+  border-top: 1px solid $color-border-dim;
+  padding: 4px 0 8px;
+  display: flex;
+  font-size: 13px;
+  color: $color-text-dim;
+  > div {
+    margin-right: 2em;
   }
 }
