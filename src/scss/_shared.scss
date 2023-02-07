@@ -1,0 +1,23 @@
+/* shared styles */
+@use 'vars';
+
+html,
+body * {
+  font-family: var(--font-default);
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+}
+
+.logo {
+  font-weight: 700;
+  user-select: none;
+  .t-jsoncv {
+    display: inline-block; border: 1px solid #aaa; padding: 2px 4px;
+  }
+  .t-json {
+    color: #aaa;
+  }
+}

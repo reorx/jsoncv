@@ -1,35 +1,9 @@
 @use 'basic';
 @use 'json-editor';
+@use '../shared';
 
-:root {
-  --gap: 8px;
-  --gap2: calc(var(--gap) * 2);
-  --blue-0: #D0EBFF;
-  --blue-1: #A5D8FF;
-  --red-0: #FFE3E3;
-  --red-1: #FFC9C9;
-  --yellow-0: #FFF3BF;
-  --yellow-1: #FFEC99;
-  --green-0: #D3F9D8;
-  --green-1: #B2F2BB;
-  --grey-0: #eee;
-  --grey-1: #e1e1e1;
-  --grey-2: #ddd;
-  --font-default: system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue","Noto Sans","Liberation Sans",Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";
-  --font-mono: "Lucida Sans Typewriter", "Lucida Console", monaco, "Bitstream Vera Sans Mono", monospace;
-}
-
-
-html,
-body * {
-  font-family: var(--font-default);
-}
 button {
   font-size: 13px;
-}
-
-body {
-  margin: 0;
 }
 
 #main {
@@ -62,8 +36,6 @@ body {
   padding: var(--gap2) 0;
   margin-bottom: var(--gap2);
   border-bottom: 1px solid var(--grey-2);
-  font-weight: 700;
-  user-select: none;
 }
 
 .editor-toc {

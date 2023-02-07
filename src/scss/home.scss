@@ -1,0 +1,42 @@
+@use 'vars';
+@use 'shared';
+
+html, body {
+  height: 100vh;
+}
+body {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+main {
+  width: min(400px, calc(100vw - 2 * var(--gap2)));
+  padding: var(--gap2);
+  border: 1px solid var(--grey-2);
+
+  .links {
+    display: flex;
+    a {
+      margin: var(--gap) var(--gap) var(--gap) 0;
+    }
+  }
+
+  footer {
+    margin-top: var(--gap2);
+    color: var(--color-text-dim);
+  }
+}
+
+a {
+  color: #333;
+  text-decoration: underline;
+}
+
+button {
+  @include vars.normal-button;
+}
+
+svg {
+  vertical-align: bottom;
+}
