@@ -19,6 +19,7 @@ import {
   propertiesToObject,
   traverseDownObject,
 } from '../lib/utils';
+import { getCVTitle } from '../themes/data';
 import { registerIconLib } from './je-iconlib';
 import { registerTheme } from './je-theme';
 
@@ -205,22 +206,17 @@ $inputUploadData.on('change', () => {
 function downloadCV(contentType) {
   const data = editor.getValue()
   const meta = data.meta || (data.meta = {})
-  let name = meta.name
-  if (!name) {
-    name = prompt(`Please enter a name for your CV's data`)
-  }
-  if (!name) return
+  const title = getCVTitle(data)
 
   // update data
-  meta.name = name
   meta.lastModified = dayjs().format('YYYY-MM-DDTHH:mm:ssZ[Z]')
 
   // download
   if (contentType === 'json') {
-    let filename = `${name}.json`
+    let filename = `${title}.json`
     downloadContent(filename, JSON.stringify(data, null, 2))
   } else if (contentType === 'html') {
-    let filename = `${name}.html`
+    let filename = `${title}.html`
     downloadIframeHTML(filename, $outputHTML.get(0))
   }
 
