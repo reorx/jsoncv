@@ -42,4 +42,26 @@ button {
     position: relative;
     bottom: 1px;
   }
+
+  &.-text {
+    @include vars.text-button;
+  }
+  &.-red {
+    background-color: var(--red-0);
+    &:hover {
+      background-color: var(--red-1);
+    }
+  }
+  &.-green {
+    background-color: var(--green-0);
+    &:hover {
+      background-color: var(--green-1);
+    }
+  }
+  &.-yellow {
+    background-color: var(--yellow-0);
+    &:hover {
+      background-color: var(--yellow-1);
+    }
+  }
 }
