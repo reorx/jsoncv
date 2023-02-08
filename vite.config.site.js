@@ -1,6 +1,9 @@
+import { resolve } from 'path';
 import { defineConfig } from 'vite';
 
 import { TransformEjs } from './src/lib/vite-plugins';
+
+const rootDir = resolve(__dirname, 'src')
 
 export default defineConfig({
   root: 'src',
@@ -9,12 +12,9 @@ export default defineConfig({
     target: 'esnext',
     rollupOptions: {
       input: {
-        main: 'index.html',
-        editor: 'editor/index.html',
-        preview: 'preview/index.html',
-        // main: resolve(rootDir, 'index.html'),
-        // editor: resolve(rootDir, 'editor/index.html'),
-        // editorPreview: resolve(rootDir, 'editor/preview.html'),
+        main: resolve(rootDir, 'index.html'),
+        editor: resolve(rootDir, 'editor/index.html'),
+        preview: resolve(rootDir, 'preview/index.html'),
       },
     },
   },

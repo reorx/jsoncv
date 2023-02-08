@@ -1,3 +1,4 @@
+import { resolve } from 'path';
 import { defineConfig } from 'vite';
 import { ViteEjsPlugin } from 'vite-plugin-ejs';
 import { viteSingleFile } from 'vite-plugin-singlefile';
@@ -31,7 +32,7 @@ export default defineConfig({
       {
         ejs: (viteConfig) => ({
           // ejs options goes here.
-          views: [__dirname],
+          views: [resolve(__dirname)],
         })
       }
     ),
