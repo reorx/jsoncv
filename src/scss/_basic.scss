@@ -1,5 +1,29 @@
-/* basic elements */
-@use '../vars';
+/* basic elements and shared styles */
+@use 'vars';
+
+html,
+body * {
+  font-family: var(--font-default);
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+}
+
+.logo {
+  font-weight: 700;
+  user-select: none;
+  a {
+    color: inherit;
+  }
+  .t-jsoncv {
+    display: inline-block; border: 1px solid #aaa; padding: 2px 4px;
+  }
+  .t-json {
+    color: #aaa;
+  }
+}
 
 input[type=text],
 input[type=email] {

@@ -1,5 +1,5 @@
 @use 'vars';
-@use 'shared';
+@use 'basic';
 
 html, body {
   height: 100vh;
@@ -25,18 +25,14 @@ main {
   footer {
     margin-top: var(--gap2);
     color: var(--color-text-dim);
+
+    svg {
+      vertical-align: bottom;
+    }
   }
 }
 
 a {
   color: #333;
   text-decoration: underline;
-}
-
-button {
-  @include vars.normal-button;
-}
-
-svg {
-  vertical-align: bottom;
 }
