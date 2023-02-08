@@ -6,6 +6,7 @@ on:
       - master
     paths-ignore:
       - "README.md"
+  workflow_dispatch: {}
 
 jobs:
   deploy:
@@ -31,4 +32,4 @@ jobs:
           accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
           projectName: jsoncv
           directory: src/dist
-          gitHubToken: ${{ secrets.GITHUB_TOKEN }}
+          branch: master
