@@ -1,11 +1,12 @@
 # jsoncv
 
-A toolkit to construct your CV/Resume using JSON and produce stylish HTML/PDF documents.
+A toolkit to construct your Curriculum Vitae/Résumé using JSON and produce stylish HTML/PDF documents.
 
 jsoncv comprises the following components:
 1. Schema
-2. CV
-3. Editor
+2. Editor
+3. CV HTML
+4. Converters
 
 For in-depth explanations and usage guidelines, please refer to the documentation below.
 
@@ -33,11 +34,37 @@ These differences do not impact the compatibility between jsoncv and JSON Resume
 
 The complete diff between the JSON Resume schema and the jsoncv schema can be viewed [here](https://github.com/reorx/jsoncv/compare/eabd65fd5a9a126e2de9e2955485c0dca4483c79...master#diff-3b8e847cb1664e291a7635b037a2f2bf831e1e9ce2d915fbfbba9ca77e2a1d1b)
 
-### CV
-
-
-
 ### Editor
+
+jsoncv comes with an online editor that provides a graphical user interface for creating and editing your jsoncv data.
+Visit it at https://jsoncv.reorx.com/editor/.
+
+The Editor consists of three columns, from left to right:
+
+1. Sidebar
+
+    Allows navigation to different sections in the schema form and provides operations such as "Download HTML" and "Upload Data"
+2. Schema Form
+
+    Lets you edit the properties of your CV data. You can also select which properties to display or hide.
+3. Preview
+
+    Displays the rendered CV HTML as changes are made in the Schema Form.
+
+
+### CV HTML
+
+The core product of jsoncv is CV HTML, which is the HTML representation of your jsoncv data.
+It is a compact, single-file HTML document that can be converted to PDF or hosted online to create a static CV website.
+
+CV HTML is designed with a specific layout to display a CV on an A4 sheet of paper.
+The CSS has been tailored to optimize printing, ensuring the best output whether printed on paper or saved as a PDF.
+Therefore, CV HTML is best suited for creating professional or academic CVs/resumes,
+rather than creative or interactive portfolio websites.
+
+CV HTMl supports themes, which can be found in the `src/themes` directory.
+
+### Converters
 
 ## Usage
 
@@ -48,10 +75,17 @@ The complete diff between the JSON Resume schema and the jsoncv schema can be vi
 
 ### Convert HTML to PDF
 
-### Build static CV site
+### Build a static CV site
 
 ### Create your own theme
 
+## Tech stack
+
+- vite
+- ejs
+- scss
+- iconify
+- ajv
 
 ## FAQ
 
