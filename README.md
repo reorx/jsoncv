@@ -116,7 +116,9 @@ Note that the PDF exported from Chrome may have some issues with text copying, s
 jsoncv use [Vite](https://vitejs.dev/) as the static-site building tool,
 you can easily create you own CV site by the following steps.
 
-*TBC*
+```
+git submodule add https://github.com/reorx/jsoncv.git
+```
 
 ### Create your own theme
 
