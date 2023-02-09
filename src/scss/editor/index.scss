@@ -10,9 +10,9 @@ button {
   grid-template-columns: 150px minmax(500px, 1fr) 1fr;
   grid-template-rows: 100vh;
 
-  // 800px is approximately the width of A4, when the screen is larger that 150 + 800px + A4, the middle column should keep 800px wide
-  @media screen and (min-width: 1750px) {
-    grid-template-columns: 150px 800px 1fr;
+  // keep the middle column 750px wide when the screen is larger that 150 + 2 * 750px
+  @media screen and (min-width: 1650px) {
+    grid-template-columns: 150px 750px 1fr;
   }
 
   > .column {
