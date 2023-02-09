@@ -237,6 +237,7 @@ function dateRange(item, level) {
 <!-- Interests -->
 
 <!-- meta -->
+<% if (cv.meta) { %>
 <footer>
   <% if (cv.meta.version) { %>
     <div class="version">Version: <%= cv.meta.version %></div>
@@ -245,3 +246,4 @@ function dateRange(item, level) {
     <div class="version">Last modified: <%= cv.meta.lastModified %></div>
   <% } %>
 </footer>
+<% } %>

@@ -16,7 +16,7 @@ export function getRenderData(cvData) {
 /* fn */
 
 export function getCVTitle(cv) {
-  let {name, version} = cv.meta
+  let {name, version} = cv.meta || {}
   if (!name) name = cv.basics.name || 'JSONCV'
   return `${name}${version ? ' ' + version : ''}`
 }
