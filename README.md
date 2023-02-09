@@ -28,13 +28,15 @@ with the following differences:
     jsoncv includes an additional section, called "sideProjects", that allows for the distinction between side projects and career projects
 - Additional "name" property in "meta" section
 
-    jsoncv includes a "name" property in the "meta" section, which allows the user to specify the desired name for exported HTML/PDF files. If the "name" property is not specified, a combination of "basics.name" and "meta.version" will be used instead.
+    jsoncv includes a "name" property in the "meta" section, which allows the user to specify the desired name for exported HTML/PDF files.
 
 These differences do not impact the compatibility between jsoncv and JSON Resume. This means that you can easily import JSON Resume data into jsoncv and vice versa, as jsoncv data will pass the validation of JSON Resume Schema .
 
 The complete diff between the JSON Resume schema and the jsoncv schema can be viewed [here](https://github.com/reorx/jsoncv/compare/eabd65fd5a9a126e2de9e2955485c0dca4483c79...master#diff-3b8e847cb1664e291a7635b037a2f2bf831e1e9ce2d915fbfbba9ca77e2a1d1b)
 
 ### Editor
+
+![](images/editor.png)
 
 jsoncv comes with an online editor that provides a graphical user interface for creating and editing your jsoncv data.
 Visit it at https://jsoncv.reorx.com/editor/.
@@ -51,7 +53,6 @@ The Editor consists of three columns, from left to right:
 
     Displays the rendered CV HTML as changes are made in the Schema Form.
 
-
 ### CV HTML
 
 The core product of jsoncv is CV HTML, which is the HTML representation of your jsoncv data.
@@ -66,18 +67,94 @@ CV HTMl supports themes, which can be found in the `src/themes` directory.
 
 ### Converters
 
-## Usage
+Converters are scripts to help user converting jsoncv data from/to other sources.
 
+Currently, there is only one converter available: `rxresume-to-jsoncv.js`, which converts data exported from [RxResume](https://rxresu.me/) into the jsoncv format.
+
+If you have any additional requirements, please feel free to submit an issue. Pull requests are also greatly appreciated.
+
+## Usage
 
 ### Write your CV
 
+It is recommended to write your CV throught the online [Editor]().
+However, if you are familiar with JSON, you can also maintain the data file in a text editor locally.
+
+When you first open the Editor, a sample data is loaded, you can just edit it or click "New Data" button
+to start with an empty form. The CV data will be saved in browser any time you made a change,
+so you don't need to worry about losing your work.
+
+If you have a local copy of the CV data, you can click "Upload Data" button to load it into the Editor.
+
 ### Export CV data and HTML
+
+After you completed editing, you can click "Download JSON" button to export the CV data in JSON format.
+
+To export the rendered HTML in Preview pane, click the "Download HTML" button.
+
+Note that you can name the exported files by adding the `meta.name` property,
+if it's not specified, a combination of "basics.name" and "meta.version" will be used to construct the filename instead.
 
 ### Convert HTML to PDF
 
+To maintain simplicity, jsoncv neither implement nor include any external tools to provide PDFs.
+Instead, you should use the generated HTML file to convert it to a PDF document.
+The only dependency is a modern browser, the steps below takes Chrome as an example:
+
+1. Open the generated HTML file in Chrome.
+2. Press <kbd>⌘ P</kbd> (or <kbd>⌃ P</kbd> in Windows), the Print dialog should be opened.
+3. In the dialog, select "Destination" as "Save as PDF", and make sure all the Options are unchecked.
+
+    ![](images/chrome-print.png)
+4. Click "Save" to save the PDF file in your file system.
+
+Note that the PDF exported from Chrome may have some issues with text copying, see more details in the [FAQ](#text-copied-from-the-pdf-is-reversed) section.
+
 ### Build a static CV site
 
+jsoncv use [Vite](https://vitejs.dev/) as the static-site building tool,
+you can easily create you own CV site by the following steps.
+
+*TBC*
+
 ### Create your own theme
+
+jsoncv includes some built in themes that you can use directly in the Editor or when building the static CV site.
+
+The file system hierarchy is as below:
+```
+src/themes
+└── reorx
+    ├── index.ejs
+    └── index.scss
+```
+
+You can add your own theme by creating a new folder under `src/themes`
+with the `index.ejs` and `index.scss` files.
+
+`index.ejs` is the [ejs](https://ejs.co/) template used for structuring the CV content.
+The structure of the data it receives is as below:
+- `cv`: the whole jsoncv data conforms to the jsoncv schema
+- `fn`: a set of utility functions
+  - `getCVTitle`: get the CV title from `cv` data
+  - `reformatDate`: transform a date string to a specified format
+  - `getIconSVG`: get the iconify svg string or DOM element from the icon name
+  - `noSchemaURL`: remove the schema (`https://`) prefix of the url
+
+Check the complete definition in [src/themes/data.js]().
+
+After a new theme is created (take `yourtheme` as the example), run the following code to start developing with preview:
+
+```
+THEME=yourtheme npm run dev-site
+```
+
+Pull requests for adding new themes are always welcomed.
+
+> You can just name the theme by your own name, this is what I did for the theme I use (`reorx`).
+> Because I think that theme is tightly bound to the developers asetic and personal taste,
+> common words is not accurate to represent.
+
 
 ## Tech stack
 
@@ -87,12 +164,17 @@ CV HTMl supports themes, which can be found in the `src/themes` directory.
 - iconify
 - ajv
 
+
 ## FAQ
 
 ### Text copied from the PDF is reversed
 
 Chrome "Save as PDF" produces documents with backwards text when copying
+in Preview.app on MacOS.
 
+![](images/chrome-reversed-text-problem.png)
+
+This is a problem of Chrome, As seen in:
 ["Save as PDF" produces documents with backwards text. - Google Chrome Community](https://support.google.com/chrome/thread/29061484/save-as-pdf-produces-documents-with-backwards-text?hl=en&dark=0)
 
 Solutions:
@@ -100,11 +182,19 @@ Solutions:
 1. Use Firefox
 2. Use CLI tools like [WeasyPrint](https://github.com/Kozea/WeasyPrint)
 
+
 ## TODO
+
+- [ ] Allows switching themes in Editor
+- [ ] Allows customizing primary color for the current theme
+- [ ] Export PDF directly
+- [ ] Supports responsive style for themes, so that the CV site is friendly to view on mobile devices.
+- [ ] Add more themes.
+
 
 ## Credits
 
-I would like to extend our sincere thanks to all of the projects listed below, as this project would not have been possible without their invaluable contributions.
+jsoncv could not be made possible without these awesome projects below:
 
 - [JSON Resume](https://jsonresume.org/)
 - [json-editor](https://github.com/json-editor/json-editor)
