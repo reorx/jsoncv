@@ -73,6 +73,7 @@ Currently, there is only one converter available: `rxresume-to-jsoncv.js`, which
 
 If you have any additional requirements, please feel free to submit an issue. Pull requests are also greatly appreciated.
 
+
 ## Usage
 
 ### Write your CV
@@ -199,3 +200,12 @@ jsoncv could not be made possible without these awesome projects below:
 - [JSON Resume](https://jsonresume.org/)
 - [json-editor](https://github.com/json-editor/json-editor)
 - [iconify](https://iconify.design/)
+
+
+## Donation
+
+If you think this project is enjoyable to use, or saves some time,
+consider giving me a cup of coffee :)
+
+- [GitHub Sponsors - reorx](https://github.com/sponsors/reorx/)
+- [Ko-Fi - reorx](https://ko-fi.com/reorx)
