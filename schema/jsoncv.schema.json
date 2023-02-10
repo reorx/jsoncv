@@ -327,6 +327,10 @@
             "type": "string",
             "description": "e.g. Master"
           },
+          "summary": {
+            "type": "string",
+            "description": "e.g. Expert level proficiency in web development with extensive knowledge and experience in multiple programming languages, frameworks and web technologies."
+          },
           "keywords": {
             "type": "array",
             "description": "List some keywords pertaining to this skill",
@@ -352,6 +356,10 @@
           "fluency": {
             "type": "string",
             "description": "e.g. Fluent, Beginner"
+          },
+          "summary": {
+            "type": "string",
+            "description": "e.g. Proficient in English with a pretty good level of speaking, writing and comprehension abilities."
           }
         }
       }
