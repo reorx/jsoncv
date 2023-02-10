@@ -1,5 +1,5 @@
 {
-  "$schema": "https://raw.githubusercontent.com/reorx/jsoncv/schema/jsoncv.schema.json",
+  "$schema": "https://raw.githubusercontent.com/reorx/jsoncv/master/schema/jsoncv.schema.json",
   "basics": {
     "name": "Richard Hendriks",
     "label": "Programmer",
@@ -7,7 +7,7 @@
     "email": "richard.hendriks@mail.com",
     "phone": "(912) 555-4321",
     "url": "http://richardhendricks.example.com",
-    "summary": "Richard hails from Tulsa. He has earned degrees from the University of Oklahoma and Stanford. (Go Sooners and Cardinal!) Before starting Pied Piper, he worked for Hooli as a part time software developer. While his work focuses on applied information theory, mostly optimizing lossless compression schema of both the length-limited and adaptive variants, his non-work interests range widely, everything from quantum computing to chaos theory. He could tell you about it, but THAT would NOT be a “length-limited” conversation!",
+    "summary": "**Richard** hails from Tulsa. He has earned degrees from the University of Oklahoma and Stanford. (Go Sooners and Cardinal!) Before starting Pied Piper, he worked for Hooli as a part time software developer.\n\nWhile his work focuses on applied information theory, mostly optimizing lossless compression schema of both the length-limited and adaptive variants, his non-work interests range widely, everything from quantum computing to chaos theory. He could tell you about it, but THAT would NOT be a “length-limited” conversation!",
     "location": {
       "address": "2712 Broadway St",
       "postalCode": "CA 94115",
@@ -18,8 +18,7 @@
     "profiles": [
       {
         "network": "Twitter",
-        "username": "neutralthoughts",
-        "url": ""
+        "username": "neutralthoughts"
       },
       {
         "network": "SoundCloud",
@@ -37,13 +36,24 @@
       "url": "http://piedpiper.example.com",
       "startDate": "2013-12-01",
       "endDate": "2014-12-01",
-      "summary": "Pied Piper is a multi-platform technology based on a proprietary universal compression algorithm that has consistently fielded high Weisman Scores™ that are not merely competitive, but approach the theoretical limit of lossless compression.",
+      "summary": "[Pied Piper](http://piedpiper.example.com) is a multi-platform technology based on a proprietary universal compression algorithm that has consistently fielded high Weisman Scores™ that are not merely competitive, but approach the theoretical limit of lossless compression.",
       "highlights": [
         "Build an algorithm for artist to detect if their music was violating copy right infringement laws",
         "Successfully won Techcrunch Disrupt",
         "Optimized an algorithm that holds the current world record for Weisman Scores"
       ]
+    },
+    {
+      "name": "Fantasy Inc.",
+      "location": "Fairyland, UT",
+      "description": "Imaginary technology company",
+      "position": "King/Queen",
+      "url": "http://fantasy.example.com",
+      "startDate": "2011-01-01",
+      "endDate": "2017-01-01",
+      "summary": "Fantasy Inc. is a magical technology company that specializes in creating illusions and bringing dreams to life. Their proprietary technology has consistently amazed people and earned high praise.\n\n- Created a spell that turns pumpkins into carriages\n- Won the Wizard's Choice Award at the annual Magic Convention\n- Developed a potion that grants eternal youth"
     }
+
   ],
   "volunteer": [
     {
@@ -55,6 +65,18 @@
       "summary": "Global movement of free coding clubs for young people.",
       "highlights": [
         "Awarded 'Teacher of the Month'"
+      ]
+    },
+    {
+      "organization": "Code for Kids",
+      "position": "Mentor",
+      "url": "http://codeforkids.example.com/",
+      "startDate": "2021-01-01",
+      "endDate": "2022-01-01",
+      "summary": "Non-profit organization dedicated to teaching children how to code.",
+      "highlights": [
+        "Developed curriculum for beginners to advanced students",
+        "Mentored a team of students who won a national coding competition"
       ]
     }
   ],
@@ -71,6 +93,19 @@
         "DB1101 - Basic SQL",
         "CS2011 - Java Introduction"
       ]
+    },
+    {
+      "institution": "MIT",
+      "url": "https://www.mit.edu/",
+      "area": "Computer Science",
+      "studyType": "Master",
+      "startDate": "2015-09-01",
+      "endDate": "2017-06-01",
+      "score": "3.8",
+      "courses": [
+        "CS6240 - Big Data Analytics",
+        "CS5412 - Distributed Systems"
+      ]
     }
   ],
   "awards": [
@@ -79,6 +114,12 @@
       "date": "2014-11-01",
       "awarder": "Techcrunch",
       "summary": "There is no spoon."
+    },
+    {
+      "title": "Virtual Reality Innovation Award",
+      "date": "2021-06-01",
+      "awarder": "VR Awards",
+      "summary": "The Matrix has you."
     }
   ],
   "publications": [
@@ -88,6 +129,13 @@
       "releaseDate": "2014-10-01",
       "url": "http://en.wikipedia.org/wiki/Silicon_Valley_(TV_series)",
       "summary": "Innovative middle-out compression algorithm that changes the way we store data."
+    },
+    {
+      "name": "Audio compression for Virtual Reality",
+      "publisher": "VirtuTech",
+      "releaseDate": "2022-01-01",
+      "url": "http://virtutech.example.com",
+      "summary": "Revolutionary compression technology that enhances the audio experience in virtual reality."
     }
   ],
   "skills": [
@@ -108,13 +156,27 @@
         "MP4",
         "GIF"
       ]
+    },
+    {
+      "name": "Blockchain Development",
+      "level": "Expert",
+      "keywords": [
+        "Smart Contracts",
+        "Ethereum",
+        "Solidity"
+      ]
     }
   ],
   "languages": [
     {
       "language": "English",
       "fluency": "Native speaker"
+    },
+    {
+      "language": "Elvish",
+      "fluency": "Fluent speaker"
     }
+
   ],
   "interests": [
     {
@@ -123,13 +185,26 @@
         "Ferrets",
         "Unicorns"
       ]
+    },
+    {
+      "name": "Mythical Creatures",
+      "keywords": [
+        "Dragons",
+        "Mermaids"
+      ]
     }
+
   ],
   "references": [
     {
       "name": "Erlich Bachman",
       "reference": "It is my pleasure to recommend Richard, his performance working as a consultant for Main St. Company proved that he will be a valuable addition to any company."
+    },
+    {
+      "name": "Laurie Bream",
+      "reference": "It is my pleasure to recommend Monica, her exceptional skills and talent were evident during her time at High-Tech Inc. I am confident that she will make a valuable impact at any organization she joins."
     }
+
   ],
   "projects": [
     {
@@ -145,12 +220,32 @@
       ],
       "startDate": "2016-08-24",
       "endDate": "2016-08-24",
-      "url": "missdirection.example.com",
+      "url": "https://missdirection.example.com",
       "roles": [
         "Team lead", "Designer"
       ],
       "entity": "Smoogle",
       "type": "application"
+    },
+    {
+      "name": "Lost in Space",
+      "description": "A cutting-edge navigation app that sends you on wild adventures",
+      "highlights": [
+        "Won the Future Tech Award at the Space Symposium",
+        "Built by a team of skilled astronauts and engineers",
+        "Utilizes advanced technology such as Augmented Reality and AI"
+      ],
+      "keywords": [
+        "Augmented Reality", "AI", "Space navigation"
+      ],
+      "startDate": "2021-07-01",
+      "endDate": "2021-07-01",
+      "url": "https://lostinspace.example.com",
+      "roles": [
+        "Mission Commander", "Navigation Officer"
+      ],
+      "entity": "Cosmic Corp",
+      "type": "Software"
     }
   ],
   "sideProjects": [
@@ -161,6 +256,15 @@
       "startDate": "2022-01-01",
       "keywords": [
         "Aerodynamics", "Space travel", "Rocket science"
+      ]
+    },
+    {
+      "name": "Warp Drive",
+      "description": "A futuristic spaceship that travels faster than light",
+      "url": "https://warpdrive.example.com",
+      "startDate": "2025-01-01",
+      "keywords": [
+        "Quantum physics", "Interstellar travel", "Wormholes"
       ]
     }
   ],
