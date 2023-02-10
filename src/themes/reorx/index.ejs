@@ -13,7 +13,7 @@ function linkInDiv(url) {
   <% } %>
   <%- linkInDiv(cv.basics.url) %>
   <% if (cv.basics.summary) { %>
-    <div class="summary"><%- fn.renderMarkdown(cv.basics.summary) %></div>
+    <div class="summary p"><%- fn.renderMarkdown(cv.basics.summary) %></div>
   <% } %>
   <div class="contact row">
     <% if (cv.basics.email) { %>
@@ -79,10 +79,13 @@ function dateRange(item, level) {
     <div class="education section-item">
       <div class="row space-between">
         <h3><%= item.institution %></h3>
-        <%- dateRange(item, 2) %>
+        <%- linkInDiv(item.url) %>
       </div>
-      <div class="study row fz-4">
-        <%= item.studyType %>, <%= item.area %>
+      <div class="row space-between">
+        <div class="study _ul _fz-4">
+          <%= item.studyType %>, <%= item.area %>
+        </div>
+        <%- dateRange(item, 2) %>
       </div>
       <div class="score row">Overall GPA: <%= item.score %></div>
       <% if (item.courses && item.courses.length > 0) { %>
@@ -90,7 +93,6 @@ function dateRange(item, level) {
           Courses: <%= item.courses.join('; ') %>
         </div>
       <% } %>
-      <%- linkInDiv(item.url) %>
     </div>
   <% } %>
 </section>
@@ -107,9 +109,12 @@ function dateRange(item, level) {
     <div class="work section-item">
       <div class="row space-between">
         <h3><%= item.name %></h3>
+        <%- linkInDiv(item.url) %>
+      </div>
+      <div class="row space-between">
+        <div class="position _ul _fz-4"><%= item.position %></div>
         <%- dateRange(item, 2) %>
       </div>
-      <div class="position row fz-4"><%= item.position %></div>
       <div class="summary row"><%- fn.renderMarkdown(item.summary) %></div>
       <% if (item.highlights && item.highlights.length > 0) { %>
         <div class="highlights row">
@@ -120,7 +125,6 @@ function dateRange(item, level) {
           </ul>
         </div>
       <% } %>
-      <%- linkInDiv(item.url) %>
     </div>
   <% } %>
 </section>
@@ -137,9 +141,13 @@ function dateRange(item, level) {
     <div class="project section-item">
       <div class="row space-between">
         <h3><%= item.name %></h3>
+        <%- linkInDiv(item.url) %>
+      </div>
+      <div class="row space-between">
+        <div class="roles _fz-4"><%= item.roles.join(', ') %></div>
         <%- dateRange(item, 2) %>
       </div>
-      <div class="row lh-para"><%- fn.renderMarkdown(item.description) %></div>
+      <div class="p"><%- fn.renderMarkdown(item.description) %></div>
       <% if (item.highlights && item.highlights.length > 0) { %>
         <div class="highlights row">
           <ul>
@@ -154,7 +162,6 @@ function dateRange(item, level) {
           <span class="item"><%= kw %></span>
         <% } %>
       </div>
-      <%- linkInDiv(item.url) %>
     </div>
   <% } %>
 </section>
@@ -173,7 +180,13 @@ function dateRange(item, level) {
         <h3><%= item.name %></h3>
         <%- dateRange(item, 1) %>
       </div>
-      <div class="description row lh-para"><%- fn.renderMarkdown(item.description) %></div>
+      <% if (item.url) { %>
+        <div class="url row">
+          <%- fn.getIconSVG('mdi:link-variant') %>
+          <a href="<%= item.url %>"><%= fn.noSchemaURL(item.url) %></a>
+        </div>
+      <% } %>
+      <div class="description p"><%- fn.renderMarkdown(item.description) %></div>
       <% if (item.keywords && item.keywords.length > 0) { %>
         <div class="keywords row">
           <% for (const kw of item.keywords) { %>
@@ -181,7 +194,6 @@ function dateRange(item, level) {
           <% } %>
         </div>
       <% } %>
-      <%- linkInDiv(item.url) %>
     </div>
   <% } %>
 </section>
@@ -198,7 +210,10 @@ function dateRange(item, level) {
   <% for (const item of cv.skills) { %>
     <div class="skill section-item">
       <h3><%= item.name %></h3>
-      <div class="level row"><%= item.level %></div>
+      <div class="level row _fz-4"><%= item.level %></div>
+      <% if (item.summary) { %>
+        <div class="summary p"><%- fn.renderMarkdown(item.summary) %></div>
+      <% } %>
       <% if (item.keywords && item.keywords.length > 0) { %>
         <div class="keywords">
           <% for (const kw of item.keywords) { %>
@@ -222,7 +237,10 @@ function dateRange(item, level) {
   <% for (const item of cv.languages) { %>
     <div class="language section-item">
       <h3><%= item.language %></h3>
-      <div class="fluency row lh-para"><%= item.fluency %></div>
+      <div class="fluency row _fz-4"><%= item.fluency %></div>
+      <% if (item.summary) { %>
+        <div class="summary p"><%- fn.renderMarkdown(item.summary) %></div>
+      <% } %>
     </div>
   <% } %>
 </section>

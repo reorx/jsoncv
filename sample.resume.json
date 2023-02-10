@@ -142,10 +142,15 @@
     {
       "name": "Web Development",
       "level": "Master",
+      "summary": "Experience with Matlab, Blender, Solidworks, Unity, Python, Java, C, C++, CSS, Javascript, HTML, Adobe Premiere for VR film, Adobe Photoshop; with eagerness to keep improving and learning new technologies",
       "keywords": [
         "HTML",
         "CSS",
-        "Javascript"
+        "Javascript",
+        "Python",
+        "PHP",
+        "MySQL",
+        "PostgreSQL"
       ]
     },
     {
@@ -170,11 +175,12 @@
   "languages": [
     {
       "language": "English",
-      "fluency": "Native speaker"
+      "fluency": "Advanced",
+      "summary": "Proficient in English with a pretty good level of speaking, writing and comprehension abilities. Able to effectively communicate ideas and understand complex information in both personal and professional settings. Demonstrates strong grammar skills and a broad vocabulary."
     },
     {
-      "language": "Elvish",
-      "fluency": "Fluent speaker"
+      "language": "French",
+      "fluency": "Elementary"
     }
 
   ],
