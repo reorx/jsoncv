@@ -13,7 +13,7 @@ function linkInDiv(url) {
   <% } %>
   <%- linkInDiv(cv.basics.url) %>
   <% if (cv.basics.summary) { %>
-    <div class="summary"><%= cv.basics.summary %></div>
+    <div class="summary"><%- fn.renderMarkdown(cv.basics.summary) %></div>
   <% } %>
   <div class="contact row">
     <% if (cv.basics.email) { %>
@@ -110,12 +110,12 @@ function dateRange(item, level) {
         <%- dateRange(item, 2) %>
       </div>
       <div class="position row fz-4"><%= item.position %></div>
-      <div class="summary row"><%= item.summary %></div>
+      <div class="summary row"><%- fn.renderMarkdown(item.summary) %></div>
       <% if (item.highlights && item.highlights.length > 0) { %>
         <div class="highlights row">
           <ul>
           <% for (const hl of item.highlights) { %>
-            <li><%= hl %></li>
+            <li><%- fn.renderMarkdown(hl, true) %></li>
           <% } %>
           </ul>
         </div>
@@ -139,12 +139,12 @@ function dateRange(item, level) {
         <h3><%= item.name %></h3>
         <%- dateRange(item, 2) %>
       </div>
-      <div class="row lh-para"><%= item.description %></div>
+      <div class="row lh-para"><%- fn.renderMarkdown(item.description) %></div>
       <% if (item.highlights && item.highlights.length > 0) { %>
         <div class="highlights row">
           <ul>
           <% for (const hl of item.highlights) { %>
-            <li><%= hl %></li>
+            <li><%- fn.renderMarkdown(hl, true) %></li>
           <% } %>
           </ul>
         </div>
@@ -173,7 +173,7 @@ function dateRange(item, level) {
         <h3><%= item.name %></h3>
         <%- dateRange(item, 1) %>
       </div>
-      <div class="description row lh-para"><%= item.description %></div>
+      <div class="description row lh-para"><%- fn.renderMarkdown(item.description) %></div>
       <% if (item.keywords && item.keywords.length > 0) { %>
         <div class="keywords row">
           <% for (const kw of item.keywords) { %>

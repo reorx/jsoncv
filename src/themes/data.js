@@ -1,5 +1,6 @@
 import { reformatDate } from '../lib/date';
 import { getIconSVG } from '../lib/icons';
+import { renderMarkdown } from '../lib/markdown';
 
 export function getRenderData(cvData) {
   return {
@@ -9,6 +10,7 @@ export function getRenderData(cvData) {
       reformatDate,
       getIconSVG,
       noSchemaURL,
+      renderMarkdown,
     }
   }
 }

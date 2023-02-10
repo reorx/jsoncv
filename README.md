@@ -188,6 +188,7 @@ Solutions:
 
 ## TODO
 
+- [x] Supports Markdown in `summary` and `description` properties
 - [ ] Allows switching themes in Editor
 - [ ] Allows customizing primary color for the current theme
 - [ ] Export PDF directly
