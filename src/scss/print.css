@@ -28,8 +28,14 @@ body {
   }
 }
 
+.section-title,
+h3 {
+  break-after: avoid;
+  page-break-after: avoid;
+}
+
 .page-unit,
 .section-item {
+  break-inside: avoid;
   page-break-inside: avoid;
-  page-break-after: auto;
 }
