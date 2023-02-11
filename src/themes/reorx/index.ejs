@@ -144,7 +144,9 @@ function dateRange(item, level) {
         <%- linkInDiv(item.url) %>
       </div>
       <div class="row space-between">
-        <div class="roles _ul _fz-4"><%= item.roles.join(', ') %></div>
+        <% if (item.roles && item.roles.length > 0) { %>
+          <div class="roles _ul _fz-4"><%= item.roles.join(', ') %></div>
+        <% } %>
         <%- dateRange(item, 2) %>
       </div>
       <div class="p"><%- fn.renderMarkdown(item.description) %></div>
