@@ -152,8 +152,7 @@ editor.on('change', () => {
 })
 
 // actions
-const $btnShowPreview = $('#fn-show-preview')
-const $btnShowJSON = $('#fn-show-json')
+const $btnTogglePreview = $('#fn-toggle-preview')
 const $btnNewData = $('#fn-new-data')
 const $btnUploadData = $('#fn-upload-data')
 const $inputUploadData = $('input[name=upload-data]')
@@ -162,14 +161,16 @@ const $btnDownloadHTML = $('#fn-download-html')
 const $btnLoadSample = $('#fn-load-sample')
 const $btnPrintPreview = $('#fn-print-preview')
 
-$btnShowPreview.on('click', () => {
-  $outputJSON.hide()
-  $outputHTML.show()
-})
-
-$btnShowJSON.on('click', () => {
-  $outputHTML.hide()
-  $outputJSON.show()
+const isElementHidden = elt =>
+	! (elt.offsetWidth || elt.offsetHeight || elt.getClientRects().length);
+$btnTogglePreview.on('click', () => {
+  if (isElementHidden($outputHTML.get(0))) {
+    $outputJSON.hide()
+    $outputHTML.show()
+  } else {
+    $outputHTML.hide()
+    $outputJSON.show()
+  }
 })
 
 $btnNewData.on('click', () => {
