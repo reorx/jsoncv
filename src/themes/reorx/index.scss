@@ -85,6 +85,10 @@ section {
     line-height: $lh-p;
     margin: .8em 0;
   }
+  .subtitle {
+    font-size: $fz-4;
+    // font-weight: 300;
+  }
 
   .space-between {
     display: flex;

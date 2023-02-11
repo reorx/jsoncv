@@ -9,7 +9,7 @@ function linkInDiv(url) {
 <section class="basics-section">
   <h1><%= cv.basics.name %></h1>
   <% if (cv.basics.label) { %>
-    <div class="label row"><%= cv.basics.label %></div>
+    <div class="label row subtitle"><%= cv.basics.label %></div>
   <% } %>
   <% if (cv.basics.url) { %>
     <div class="url row">
@@ -87,7 +87,7 @@ function dateRange(item, level) {
         <%- linkInDiv(item.url) %>
       </div>
       <div class="row space-between">
-        <div class="study _ul _fz-4">
+        <div class="study subtitle">
           <%= item.studyType %>, <%= item.area %>
         </div>
         <%- dateRange(item, 2) %>
@@ -117,7 +117,7 @@ function dateRange(item, level) {
         <%- linkInDiv(item.url) %>
       </div>
       <div class="row space-between">
-        <div class="position _ul _fz-4"><%= item.position %></div>
+        <div class="position subtitle"><%= item.position %></div>
         <%- dateRange(item, 2) %>
       </div>
       <div class="summary p"><%- fn.renderMarkdown(item.summary) %></div>
@@ -150,11 +150,11 @@ function dateRange(item, level) {
       </div>
       <div class="row space-between">
         <% if (item.roles && item.roles.length > 0) { %>
-          <div class="roles _ul _fz-4"><%= item.roles.join(', ') %></div>
+          <div class="roles subtitle"><%= item.roles.join(', ') %></div>
         <% } %>
         <%- dateRange(item, 2) %>
       </div>
-      <div class="p _text-dim"><%- fn.renderMarkdown(item.description) %></div>
+      <div class="row _text-dim"><%- fn.renderMarkdown(item.description, true) %></div>
       <% if (item.highlights && item.highlights.length > 0) { %>
         <% if (item.highlights.length === 1) { %>
           <div class="highlights p"><%- fn.renderMarkdown(item.highlights[0], true) %></div>
@@ -223,7 +223,7 @@ function dateRange(item, level) {
   <% for (const item of cv.skills) { %>
     <div class="skill section-item">
       <h3><%= item.name %></h3>
-      <div class="level row _ul _fz-4"><%= item.level %></div>
+      <div class="level row subtitle"><%= item.level %></div>
       <% if (item.summary) { %>
         <div class="summary p"><%- fn.renderMarkdown(item.summary) %></div>
       <% } %>
@@ -250,7 +250,7 @@ function dateRange(item, level) {
   <% for (const item of cv.languages) { %>
     <div class="language section-item">
       <h3><%= item.language %></h3>
-      <div class="fluency row _ul _fz-4"><%= item.fluency %></div>
+      <div class="fluency row subtitle"><%= item.fluency %></div>
       <% if (item.summary) { %>
         <div class="summary p"><%- fn.renderMarkdown(item.summary) %></div>
       <% } %>
