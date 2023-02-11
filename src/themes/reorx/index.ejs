@@ -1,7 +1,7 @@
 <%
 function linkInDiv(url) {
   if (!url) return ''
-  return `<div class="url row"><a href="${url}">${fn.noSchemaURL(url)}</a></div>`
+  return `<div class="url row"><a href="${url}" target="_blank">${fn.noSchemaURL(url)}</a></div>`
 }
 %>
 
@@ -14,7 +14,7 @@ function linkInDiv(url) {
   <% if (cv.basics.url) { %>
     <div class="url row">
       <%- fn.getIconSVG('mdi:link-variant') %>
-      <a href="<%= cv.basics.url %>"><%= fn.noSchemaURL(cv.basics.url) %></a>
+      <a href="<%= cv.basics.url %>" target="_blank"><%= fn.noSchemaURL(cv.basics.url) %></a>
     </div>
   <% } %>
   <% if (cv.basics.summary) { %>
@@ -195,7 +195,7 @@ function dateRange(item, level) {
       <% if (item.url) { %>
         <div class="url row">
           <%- fn.getIconSVG('mdi:link-variant') %>
-          <a href="<%= item.url %>"><%= fn.noSchemaURL(item.url) %></a>
+          <a href="<%= item.url %>" target="_blank"><%= fn.noSchemaURL(item.url) %></a>
         </div>
       <% } %>
       <div class="description"><%- fn.renderMarkdown(item.description) %></div>
