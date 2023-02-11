@@ -1,5 +1,5 @@
 import dayjs from 'dayjs';
 
-export function reformatDate(dateStr, format) {
-  return dayjs(dateStr).format(format)
+export function reformatDate(dateStr, toFormat, fromFormat = 'YYYY-MM-DD') {
+  return dayjs(dateStr).format(toFormat)
 }

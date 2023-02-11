@@ -274,7 +274,7 @@ function dateRange(item, level) {
     <div class="version">Version: <%= cv.meta.version %></div>
   <% } %>
   <% if (cv.meta.lastModified) { %>
-    <div class="version">Last modified: <%= cv.meta.lastModified %></div>
+    <div class="version">Last modified: <%= cv.meta.lastModified.slice(0, 10) %></div>
   <% } %>
 </footer>
 <% } %>
