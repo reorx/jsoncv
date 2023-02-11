@@ -33,8 +33,12 @@ body {
   -webkit-print-color-adjust: exact;
 }
 
-.section-title,
-h3 {
+li, p {
+  break-inside: avoid;
+  page-break-inside: avoid;
+}
+
+.section-title {
   break-after: avoid;
   page-break-after: avoid;
 }

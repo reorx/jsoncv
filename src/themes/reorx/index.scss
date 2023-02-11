@@ -16,6 +16,8 @@ $lh-p: 1.4;
   font-family: system-ui, sans-serif;
 
   footer {
+    break-inside: avoid;
+    page-break-inside: avoid;
     margin-top: 3em;
     border-top: 1px solid $color-border-dimmer;
     padding: 4px 0 8px;
@@ -149,6 +151,13 @@ section {
         color: $color-text-dim;
       }
     }
+  }
+}
+
+.work-section {
+  .section-item {
+    break-inside: auto;
+    page-break-inside: auto;
   }
 }
 
