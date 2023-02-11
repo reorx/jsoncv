@@ -43,6 +43,7 @@ section {
   .section-title {
     margin-top: 3em;
     display: flex;
+
     h2 {
       font-size: $fz-2;
       font-weight: 600;
@@ -132,6 +133,17 @@ section {
   }
   ._text-dim {
     color: $color-text-dim;
+  }
+}
+
+@media print {
+  section {
+    .section-title {
+      margin-top: 2.7em;
+    }
+    .section-item {
+      margin-top: 1.8em;
+    }
   }
 }
 
