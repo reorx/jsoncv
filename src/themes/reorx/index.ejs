@@ -188,9 +188,8 @@ function dateRange(item, level) {
   <div class="two-columns">
   <% for (const item of cv.sideProjects) { %>
     <div class="sideproject section-item">
-      <div class="row space-between">
+      <div class="space-between">
         <h3><%= item.name %></h3>
-        <%- dateRange(item, 1) %>
       </div>
       <% if (item.url) { %>
         <div class="url row">
