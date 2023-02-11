@@ -11,7 +11,12 @@ function linkInDiv(url) {
   <% if (cv.basics.label) { %>
     <div class="label row"><%= cv.basics.label %></div>
   <% } %>
-  <%- linkInDiv(cv.basics.url) %>
+  <% if (cv.basics.url) { %>
+    <div class="url row">
+      <%- fn.getIconSVG('mdi:link-variant') %>
+      <a href="<%= cv.basics.url %>"><%= fn.noSchemaURL(cv.basics.url) %></a>
+    </div>
+  <% } %>
   <% if (cv.basics.summary) { %>
     <div class="summary p"><%- fn.renderMarkdown(cv.basics.summary) %></div>
   <% } %>
@@ -115,7 +120,7 @@ function dateRange(item, level) {
         <div class="position _ul _fz-4"><%= item.position %></div>
         <%- dateRange(item, 2) %>
       </div>
-      <div class="summary row"><%- fn.renderMarkdown(item.summary) %></div>
+      <div class="summary p"><%- fn.renderMarkdown(item.summary) %></div>
       <% if (item.highlights && item.highlights.length > 0) { %>
         <div class="highlights row">
           <ul>
@@ -149,15 +154,19 @@ function dateRange(item, level) {
         <% } %>
         <%- dateRange(item, 2) %>
       </div>
-      <div class="p"><%- fn.renderMarkdown(item.description) %></div>
+      <div class="p _text-dim"><%- fn.renderMarkdown(item.description) %></div>
       <% if (item.highlights && item.highlights.length > 0) { %>
-        <div class="highlights row">
-          <ul>
-          <% for (const hl of item.highlights) { %>
-            <li><%- fn.renderMarkdown(hl, true) %></li>
-          <% } %>
-          </ul>
-        </div>
+        <% if (item.highlights.length === 1) { %>
+          <div class="highlights p"><%- fn.renderMarkdown(item.highlights[0], true) %></div>
+        <% } else { %>
+          <div class="highlights row">
+            <ul>
+            <% for (const hl of item.highlights) { %>
+              <li><%- fn.renderMarkdown(hl, true) %></li>
+            <% } %>
+            </ul>
+          </div>
+        <% } %>
       <% } %>
       <div class="keywords row">
         <% for (const kw of item.keywords) { %>
@@ -176,6 +185,7 @@ function dateRange(item, level) {
     <h2>Side-projects</h2>
     <div class="line"></div>
   </div>
+  <div class="two-columns">
   <% for (const item of cv.sideProjects) { %>
     <div class="sideproject section-item">
       <div class="row space-between">
@@ -188,7 +198,7 @@ function dateRange(item, level) {
           <a href="<%= item.url %>"><%= fn.noSchemaURL(item.url) %></a>
         </div>
       <% } %>
-      <div class="description p"><%- fn.renderMarkdown(item.description) %></div>
+      <div class="description"><%- fn.renderMarkdown(item.description) %></div>
       <% if (item.keywords && item.keywords.length > 0) { %>
         <div class="keywords row">
           <% for (const kw of item.keywords) { %>
@@ -198,6 +208,7 @@ function dateRange(item, level) {
       <% } %>
     </div>
   <% } %>
+  </div>
 </section>
 <% } %>
 

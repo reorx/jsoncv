@@ -12,15 +12,15 @@ $lh-p: 1.4;
 .cv-container {
   font-size: 14px;
   font-family: system-ui, sans-serif;
+}
 
-  a, a:visited, a:active {
-    color: $color-signature;
-    text-decoration: none;
-  }
-  a:hover {
-    color: $color-signature;
-    text-decoration: underline;
-  }
+a, a:visited, a:active {
+  color: $color-signature;
+  text-decoration: none;
+}
+a:hover {
+  color: $color-signature;
+  text-decoration: underline;
 }
 
 section {
@@ -110,6 +110,9 @@ section {
   ._ul {
     text-decoration: underline;
   }
+  ._text-dim {
+    color: $color-text-dim;
+  }
 }
 
 .basics-section {
@@ -117,10 +120,6 @@ section {
     font-size: $fz-1;
     font-weight: 600;
     margin: .2em 0 .2em 0;
-  }
-  .summary {
-    margin: .8em 0;
-    line-height: $lh-p;
   }
   .contact {
     color: $color-text-dim;
@@ -135,13 +134,10 @@ section {
   }
 }
 
-.education-section {
-}
-
-.work-section {
-}
-
-.skills-section {
+.sideprojects-section {
+  .description p:last-of-type {
+    margin-bottom: 0;
+  }
 }
 
 footer {
