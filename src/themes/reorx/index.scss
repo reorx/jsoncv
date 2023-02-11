@@ -2,7 +2,9 @@
 
 $color-signature: #2A3FFB;
 $color-text-dim: #777;
+$color-text-dimmer: #999;
 $color-border-dim: #aaa;
+$color-border-dimmer: #ccc;
 $fz-1: 36px;
 $fz-2: 22px;
 $fz-3: 18px;
@@ -14,13 +16,12 @@ $lh-p: 1.4;
   font-family: system-ui, sans-serif;
 
   footer {
-    opacity: .7;
     margin-top: 3em;
-    border-top: 1px solid $color-border-dim;
+    border-top: 1px solid $color-border-dimmer;
     padding: 4px 0 8px;
     display: flex;
     font-size: 13px;
-    color: $color-text-dim;
+    color: $color-text-dimmer;
     > div {
       margin-right: 2em;
     }
