@@ -20,7 +20,7 @@ export function getRenderData(cvData) {
 export function getCVTitle(cv) {
   let {name, version} = cv.meta || {}
   if (!name) name = cv.basics.name || 'JSONCV'
-  return `${name}${version ? ' ' + version : ''}`
+  return `${name}${version ? '-' + version : ''}`
 }
 
 function noSchemaURL(url) {
