@@ -23,7 +23,7 @@ import { getCVTitle } from '../themes/data';
 import { registerIconLib } from './je-iconlib';
 import { registerTheme } from './je-theme';
 
-const propertiesInOrder = ['basics', 'education', 'work', 'skills', 'projects', 'sideProjects', 'languages', 'interests', 'references', 'awards', 'publications', 'volunteer', 'meta']
+const propertiesInOrder = ['basics', 'education', 'work', 'projects', 'sideProjects', 'skills', 'languages', 'interests', 'references', 'awards', 'publications', 'volunteer', 'meta']
 const basicsPropertiesInOrder = ['name', 'label', 'email', 'phone', 'url', 'summary', 'image', 'location', 'profiles']
 
 // toc elements
@@ -88,6 +88,7 @@ const keyFormatMap = {
   'projects.items.properties.description': 'textarea',
   'projects.items.properties.highlights.items': 'textarea',
   'sideProjects.items.properties.description': 'textarea',
+  'languages.items.properties.summary': 'textarea',
   'references.items.properties.reference': 'textarea',
   'awards.items.properties.summary': 'textarea',
   'publications.items.properties.summary': 'textarea',
