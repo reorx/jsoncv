@@ -12,6 +12,19 @@ $lh-p: 1.4;
 .cv-container {
   font-size: 14px;
   font-family: system-ui, sans-serif;
+
+  footer {
+    opacity: .7;
+    margin-top: 3em;
+    border-top: 1px solid $color-border-dim;
+    padding: 4px 0 8px;
+    display: flex;
+    font-size: 13px;
+    color: $color-text-dim;
+    > div {
+      margin-right: 2em;
+    }
+  }
 }
 
 a, a:visited, a:active {
@@ -137,18 +150,5 @@ section {
 .sideprojects-section {
   .description p:last-of-type {
     margin-bottom: 0;
-  }
-}
-
-footer {
-  opacity: .7;
-  margin-top: 3em;
-  border-top: 1px solid $color-border-dim;
-  padding: 4px 0 8px;
-  display: flex;
-  font-size: 13px;
-  color: $color-text-dim;
-  > div {
-    margin-right: 2em;
   }
 }
