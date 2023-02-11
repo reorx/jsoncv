@@ -4,10 +4,10 @@
   <meta charset="UTF-8">
   <title><%= fn.getCVTitle(cv) %></title>
   <style>
-    /* styles here should be removed in @media print */
-    body {
+    /* Note: if you add additional styles to this class, you should remove them in `@media print` to ensure .cv-container remains styleless when printing */
+    .cv-container {
       border: 1px solid #ccc;
-      border-left: 0;
+      margin: 10mm auto;
     }
   </style>
   <link rel="stylesheet" href="/src/scss/print.css">

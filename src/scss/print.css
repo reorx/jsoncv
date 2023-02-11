@@ -1,9 +1,24 @@
-/* Page setup works for all themes */
+/* Mandatory page setup for all themes */
 @page {
   /* A4 */
   /* size: 210mm 297mm;  */
   size: A4;
   margin: 10mm; /* approximately 0.4in */
+}
+
+/* simulate print page size */
+.cv-container {
+  width: calc(210mm - 20mm);
+  padding: 10mm;
+}
+@media print {
+  /* remove the printing simulations and common decorations , let @page decide the size and margin */
+  .cv-container {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    width: auto;
+  }
 }
 
 html {
@@ -12,20 +27,10 @@ html {
 }
 body {
   margin: 0;
-  page-break-inside: auto;
+  padding: 0;
+  border: 0;
   print-color-adjust: exact;
   -webkit-print-color-adjust: exact;
-
-  /* simulate print page size */
-  padding: 10mm;
-  width: calc(210mm - 20mm);
-}
-@media print {
-  /* remove simulate print page size, let @page decide the size and margin */
-  body {
-    padding: 0;
-    border: 0;
-  }
 }
 
 .section-title,

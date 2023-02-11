@@ -1,5 +1,3 @@
-import '../scss/print.css';
-
 import {
   getCVData,
   getCVSavedTime,
