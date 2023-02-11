@@ -59,7 +59,7 @@ The core product of jsoncv is CV HTML, which is the HTML representation of your 
 It is a compact, single-file HTML document that can be converted to PDF or hosted online to create a static CV website.
 
 CV HTML is designed with a specific layout to display a CV on an A4 sheet of paper.
-The CSS has been tailored to optimize printing, ensuring the best output whether printed on paper or saved as a PDF.
+The CSS has been tailored to optimize printing, ensuring the best typography whether printed on paper or saved as a PDF.
 Therefore, CV HTML is best suited for creating professional or academic CVs/resumes,
 rather than creative or interactive portfolio websites.
 

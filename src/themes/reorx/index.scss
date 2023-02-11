@@ -46,6 +46,7 @@ section {
 
     h3 {
       font-size: $fz-3;
+      line-height: 1.4;
       margin: 0;
     }
 
@@ -84,6 +85,8 @@ section {
     display: flex;
     flex-wrap: wrap;
     gap: 6px 8px;
+    margin-top: .8em;
+
     .item {
       font-size: 13px;
       color: #555;
@@ -139,9 +142,6 @@ section {
 }
 
 .skills-section {
-  .level {
-    margin: .8em 0;
-  }
 }
 
 footer {

@@ -144,7 +144,7 @@ function dateRange(item, level) {
         <%- linkInDiv(item.url) %>
       </div>
       <div class="row space-between">
-        <div class="roles _fz-4"><%= item.roles.join(', ') %></div>
+        <div class="roles _ul _fz-4"><%= item.roles.join(', ') %></div>
         <%- dateRange(item, 2) %>
       </div>
       <div class="p"><%- fn.renderMarkdown(item.description) %></div>
@@ -210,7 +210,7 @@ function dateRange(item, level) {
   <% for (const item of cv.skills) { %>
     <div class="skill section-item">
       <h3><%= item.name %></h3>
-      <div class="level row _fz-4"><%= item.level %></div>
+      <div class="level row _ul _fz-4"><%= item.level %></div>
       <% if (item.summary) { %>
         <div class="summary p"><%- fn.renderMarkdown(item.summary) %></div>
       <% } %>
@@ -237,7 +237,7 @@ function dateRange(item, level) {
   <% for (const item of cv.languages) { %>
     <div class="language section-item">
       <h3><%= item.language %></h3>
-      <div class="fluency row _fz-4"><%= item.fluency %></div>
+      <div class="fluency row _ul _fz-4"><%= item.fluency %></div>
       <% if (item.summary) { %>
         <div class="summary p"><%- fn.renderMarkdown(item.summary) %></div>
       <% } %>
