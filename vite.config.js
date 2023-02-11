@@ -9,10 +9,10 @@ import { getRenderData } from './src/themes/data';
 const dataFilename = process.env.DATA_FILENAME || './sample.resume.json'
 const outDir = process.env.OUT_DIR || 'dist'
 
-const cvData = require(dataFilename)
-const data = getRenderData(cvData)
-data.theme = process.env.THEME || 'reorx'
-data.isProduction = process.env.NODE_ENV === 'production'
+const data = require(dataFilename)
+const renderData = getRenderData(data)
+renderData.theme = process.env.THEME || 'reorx'
+renderData.isProduction = process.env.NODE_ENV === 'production'
 
 
 export default defineConfig({
@@ -28,7 +28,7 @@ export default defineConfig({
   plugins: [
     TransformEjs(),
     ViteEjsPlugin(
-      data,
+      renderData,
       {
         ejs: (viteConfig) => ({
           // ejs options goes here.
