@@ -192,7 +192,7 @@ Solutions:
 - [ ] Allows switching themes in Editor
 - [ ] Allows customizing primary color for the current theme
 - [ ] Export PDF directly
-- [ ] Supports responsive style for themes, so that the CV site is friendly to view on mobile devices.
+- [x] Supports responsive style for themes, so that the CV site is friendly to view on mobile devices.
 - [ ] Add more themes.
 
 

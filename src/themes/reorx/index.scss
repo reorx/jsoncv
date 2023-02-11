@@ -91,6 +91,11 @@ section {
   .subtitle {
     font-size: $fz-4;
     // font-weight: 300;
+
+    @media screen and (max-width: 500px) {
+      display: flex;
+      align-items: center;
+    }
   }
 
   .space-between {
@@ -122,6 +127,10 @@ section {
     display: grid;
     grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: 0 1.5em;
+
+    @media screen and (max-width: 500px) {
+      grid-template-columns: 1fr;
+    }
   }
 
   /* helpers */
@@ -155,8 +164,13 @@ section {
   }
   .contact {
     color: $color-text-dim;
-
     display: flex;
+
+    @media screen and (max-width: 500px) {
+      flex-direction: column;
+      gap: .4em;
+    }
+
     .item {
       margin-right: 1em;
       a {
@@ -166,10 +180,30 @@ section {
   }
 }
 
+.education-section {
+  @media screen and (max-width: 800px) {
+    .space-between:nth-of-type(2) {
+      flex-wrap: wrap;
+      gap: 0.4em;
+    }
+    .study {
+      width: 100%;
+    }
+  }
+}
+
 .work-section {
   .section-item {
     break-inside: auto;
     page-break-inside: auto;
+  }
+}
+
+.projects-section {
+  .space-between {
+    @media screen and (max-width: 500px) {
+      flex-wrap: wrap;
+    }
   }
 }
 
