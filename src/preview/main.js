@@ -4,17 +4,42 @@ import {
   getCVData,
   getCVSavedTime,
 } from '../lib/store';
-import { applyThemeTo } from '../themes';
+import { renderThemeOn } from '../themes';
 import { getCVTitle } from '../themes/data';
 
 const themeName = 'default'
 const elCV = document.querySelector('.cv-container')
 
+// Save scroll position on page unload
+const storeKeyScroll = 'scroll-position'
+const onScroll = () => {
+  localStorage.setItem(storeKeyScroll, JSON.stringify({
+    scrollX: window.scrollX,
+    scrollY: window.scrollY,
+  }));
+}
+let onScrollTimer
+window.addEventListener("scroll", () => {
+  if (onScrollTimer) clearTimeout(onScrollTimer)
+
+  onScrollTimer = setTimeout(onScroll, 50);
+}, false)
+
+const restoreScrollPosition = () => {
+  const scrollPosition = JSON.parse(localStorage.getItem(storeKeyScroll));
+  if (scrollPosition) {
+    window.scrollTo(scrollPosition.scrollX, scrollPosition.scrollY);
+  }
+}
+
+// Render CV
 const data = getCVData()
 if (data) {
-  applyThemeTo(themeName, elCV, data)
+  renderThemeOn(themeName, elCV, data)
   // change document title
   document.title = getCVTitle(data)
+  // restore scroll position
+  restoreScrollPosition()
 }
 
 const savedTime = getCVSavedTime()

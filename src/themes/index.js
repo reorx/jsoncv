@@ -36,7 +36,7 @@ export function renderTheme(template, cvData, options) {
 
 const cvStyleId = 'cv-style'
 
-export function applyThemeTo(name, el, data) {
+export function renderThemeOn(name, el, data) {
   const theme = getTheme(name)
   el.innerHTML = renderTheme(theme.template, data)
 

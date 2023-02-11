@@ -179,7 +179,7 @@ $btnNewData.on('click', () => {
 })
 
 $btnUploadData.on('click', () => {
-  if (!confirm('Are you sure to upload an existing CV data? Your current data will be covered.')) return
+  if (!confirm('Are you sure to upload an existing CV data? Your current data will be replaced.')) return
   $inputUploadData.trigger('click')
 })
 
@@ -233,7 +233,7 @@ $btnDownloadHTML.on('click', () => {
 })
 
 $btnLoadSample.on('click', () => {
-  if (!confirm('Are you sure to load sample data? Your current data will be covered.')) return
+  if (!confirm('Are you sure to load sample data? Your current data will be replaced.')) return
 
   editor.setValue(sampleModule.default)
 })
