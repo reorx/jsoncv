@@ -23,7 +23,7 @@ import { getCVTitle } from '../themes/data';
 import { registerIconLib } from './je-iconlib';
 import { registerTheme } from './je-theme';
 
-const propertiesInOrder = ['basics', 'education', 'work', 'projects', 'sideProjects', 'skills', 'languages', 'interests', 'references', 'awards', 'publications', 'volunteer', 'meta']
+const propertiesInOrder = ['basics', 'education', 'work', 'projects', 'sideProjects', 'skills', 'languages', 'interests', 'references', 'awards', 'publications', 'volunteer', 'certificates', 'meta']
 const basicsPropertiesInOrder = ['name', 'label', 'email', 'phone', 'url', 'summary', 'image', 'location', 'profiles']
 
 // toc elements
@@ -160,6 +160,7 @@ const $inputUploadData = $('input[name=upload-data]')
 const $btnDownloadJSON = $('#fn-download-json')
 const $btnDownloadHTML = $('#fn-download-html')
 const $btnLoadSample = $('#fn-load-sample')
+const $btnPrintPreview = $('#fn-print-preview')
 
 $btnShowPreview.on('click', () => {
   $outputJSON.hide()
@@ -237,4 +238,8 @@ $btnLoadSample.on('click', () => {
   if (!confirm('Are you sure to load sample data? Your current data will be replaced.')) return
 
   editor.setValue(sampleModule.default)
+})
+
+$btnPrintPreview.on('click', () => {
+  $outputHTML.get(0).contentWindow.print()
 })
