@@ -41,7 +41,7 @@ The complete diff between the JSON Resume schema and the jsoncv schema can be vi
 jsoncv comes with an online editor that provides a graphical user interface for creating and editing your jsoncv data.
 Visit it at https://jsoncv.reorx.com/editor/.
 
-The Editor consists of three columns, from left to right:
+The Editor consists of three panes, from left to right:
 
 1. Sidebar
 
@@ -65,6 +65,8 @@ rather than creative or interactive portfolio websites.
 
 CV HTMl supports themes, which can be found in the `src/themes` directory.
 
+To get CV HTML, please refer to [Export CV data and HTML](#export-cv-data-and-html) and [Build HTML locally](#build-html-locally)
+
 ### Converters
 
 Converters are scripts to help user converting jsoncv data from/to other sources.
@@ -78,87 +80,95 @@ If you have any additional requirements, please feel free to submit an issue. Pu
 
 ### Write your CV
 
-It is recommended to write your CV throught the online [Editor](https://jsoncv.reorx.com/editor/).
-However, if you are familiar with JSON, you can also maintain the data file in a text editor locally.
+It is recommended to write your CV using the online [Editor](https://jsoncv.reorx.com/editor/).
+However, if you are comfortable with JSON, you can maintain the data file using a text editor on your local machine.
 
-When you first open the Editor, a sample data is loaded, you can just edit it or click "New Data" button
-to start with an empty form. The CV data will be saved in browser any time you made a change,
-so you don't need to worry about losing your work.
+When you open the Editor for the first time, a sample data is loaded.
+You can either edit it or click the "New Data" button to start with an empty form.
+Your CV data is saved in your browser every time you make a change,
+so you don't have to worry about losing your work.
 
-If you have a local copy of the CV data, you can click "Upload Data" button to load it into the Editor.
+If you already have a local copy of your CV data, you can click the "Upload Data" button to load it into the Editor.
 
 ### Export CV data and HTML
 
-After you completed editing, you can click "Download JSON" button to export the CV data in JSON format.
+Once you have finished editing, you can click the "Download JSON" button to export your CV data in JSON format.
 
-To export the rendered HTML in Preview pane, click the "Download HTML" button.
+If you want to export the rendered HTML in the Preview pane, simply click the "Download HTML" button.
 
-Note that you can name the exported files by adding the `meta.name` property,
-if it's not specified, a combination of "basics.name" and "meta.version" will be used to construct the filename instead.
+Please note that you can name the exported files by adding the `meta.name` property.
+If it is not specified, the filename will be constructed using a combination of `basics.name` and `meta.version`.
 
 ### Convert HTML to PDF
 
-To maintain simplicity, jsoncv neither implement nor include any external tools to generate PDFs.
+To keep things simple, jsoncv does not include or use any external tools to generate PDFs.
 Instead, you should use the generated HTML file to convert it to a PDF document.
-The only dependency is a modern browser, the steps below takes Chrome as an example:
+The only requirement is a modern browser; the steps below use Google Chrome as an example:
 
 1. Open the generated HTML file in Chrome.
-2. Press <kbd>⌘ P</kbd> (or <kbd>⌃ P</kbd> in Windows), the Print dialog should be opened.
-3. In the dialog, select "Destination" as "Save as PDF", and make sure all the Options are unchecked.
+2. Press <kbd>⌘ P</kbd> (or <kbd>⌃ P</kbd> in Windows), and the Print dialog will open.
+3. In the dialog, select "Destination" as "Save as PDF" and make sure all items in "Options" are unchecked.
 
     ![](images/chrome-print.png)
 4. Click "Save" to save the PDF file in your file system.
 
-Note that the PDF exported from Chrome may have some issues with text copying, see more details in the [FAQ](#text-copied-from-the-pdf-is-reversed) section.
+Please note that the PDF exported from Chrome may have some issues with text copying. For more information, see the [FAQ](#text-copied-from-the-pdf-is-reversed) section.
 
 ### Build HTML locally
 
-jsoncv use [Vite](https://vitejs.dev/) as the static-site building tool,
-the `index.html` file in the root of the project is the entry for builing a single-file CV
+jsoncv uses [Vite](https://vitejs.dev/) as its static-site building tool.
+The `index.html` file in the root of the project is the entry point for builing a single-file CV HTML.
 
-1. Ensure that you use NodeJS version 18 or higher
-2. Install the dependencies: `npm run install`
-3. Build CV HTMl using your own data: `DATA_FILENAME="$HOME/Downloads/mycv/cv.json" OUT_DIR="$HOME/Downloads/mycv" npm run build`
+Here are the steps to build a CV HTML using your own data:
 
-    You'll find the generated CV HTML at "$HOME/Downloads/mycv/index.html"
+1. Make sure that you are using NodeJS version 18 or higher.
+2. Install the dependencies by running: `npm run install`
+3. Build your CV HTML by specifying `DATA_FILENAME` and `OUT_DIR` environment variables:
+
+    ```
+    DATA_FILENAME="$HOME/Downloads/mycv/cv.json" OUT_DIR="$HOME/Downloads/mycv" npm run build
+    ```
+
+    This will build your CV HTML using the data file located at `$HOME/Downloads/mycv/cv.json`,
+    and the generated HTML will be located in the `$HOME/Downloads/mycv` directory.
 
 ### Build a static CV site
 
-> See my cv site as a demo here:
+The generated `index.html` file can be used anywhere and on any hosting platform.
+Simply upload it to a web server, and you will have your own online CV site.
+The built-in theme "reorx" also includes responsive support for mobile devices.
 
-The generated "index.html" file works at anywhere on any hosting platform,
-just uploaded it to a web server, you can get your own online CV site.
-The builtin theme "reorx" also comes with responsive support on mobile devices.
+However, if you want extra customization, like the CV site at https://cv.reorx.com/
+which has a footer with links to the PDF file and the author's home page,
+you can follow these steps:
 
-However, you may want to have some extra customizations, take my cv site as an example:
-https://cv.reorx.com/, which adds a footer with links to the PDF file and my home page.
-The steps below will show you how to achieve this:
-
-1. First create an empty repository, let's say `mycv`.
-2. Then add jsoncv as the submodule
+1. Create an empty repository
+2. Add jsoncv as the submodule
 
     ```
     git submodule add https://github.com/reorx/jsoncv.git
     ```
-3. Put your CV data in the project, e.g. `cv.json`
-4. Initialize `package.json`: `npm init`
-5. Install `jsoncv` as a dependency: `npm i ./jsoncv`
-6. Copy `scripts` and `devDependencies` from `./jsoncv/package.json` to `package.json`, and run `npm i` to install them
-7. Copy `./jsoncv/vite.json.js` to `vite.json.js`, and make the following changes:
-    - Change all the `./src` path to `./jsoncv/src`
-    - Change the value of `dataFilename` to your CV data file, e.g. `cv.json`
-    - Change `renderData.theme` to the theme you want
-8. Copy `./jsoncv/index.html` to `index.html`, and change all the `./src` path to `./jsoncv/src`
-9. Run `npm run build` to test if it works
+3. Put your CV data file, for example `cv.json`, in the project.
+4. Initialize `package.json` by running `npm init`.
+5. Install jsoncv as a dependency by running `npm i ./jsoncv`.
+6. Copy the `scripts` and `devDependencies` from `./jsoncv/package.json` to `package.json`, and then run `npm i` to install them.
+7. Copy `./jsoncv/vite.json.js` to `vite.json.js` and make the following changes:
+   - Change all instances of `./src` to `./jsoncv/src`.
+   - Change the value of `dataFilename` to your CV data file, for example `cv.json`.
+   - Change `renderData.theme` to the theme you want to use.
+8. Copy `./jsoncv/index.html` to `index.html` and change all instances of `./src` to `./jsoncv/src`.
+9. Run `npm run build` to test if everything works.
 
-After complete these steps, you can now add your own elements and styles in `index.html`.
-
+After completing these steps, you can now add your own elements and styles to `index.html`
+to further customize your CV website. You can use HTML, CSS, and JavaScript to add
+your own branding, layout, and functionality to the site.
 
 ### Create your own theme
 
-jsoncv includes some built in themes that you can use directly in the Editor or when building the static CV site.
+jsoncv includes several built-in themes that you can use either directly in the Editor or when building the static CV site.
+ If you want to create your own custom theme, here is how:
 
-The file system hierarchy is as below:
+The file system hierarchy for themes is as follows:
 ```
 src/themes
 └── reorx
@@ -167,20 +177,21 @@ src/themes
 ```
 
 You can add your own theme by creating a new folder under `src/themes`
-with the `index.ejs` and `index.scss` files.
+with `index.ejs` and `index.scss` files.
 
-`index.ejs` is the [ejs](https://ejs.co/) template used for structuring the CV content.
-The structure of the data it receives is as below:
-- `cv`: the whole jsoncv data conforms to the jsoncv schema
+`index.ejs` is an [ejs](https://ejs.co/) template used for constructing the CV content.
+The data that is passed to the template is structured as follows:
+- `cv`: the entire jsoncv data that conforms to the jsoncv schema
 - `fn`: a set of utility functions
-  - `getCVTitle`: get the CV title from `cv` data
-  - `reformatDate`: transform a date string to a specified format
-  - `getIconSVG`: get the iconify svg string or DOM element from the icon name
+  - `getCVTitle`: gets the CV title from `cv` data
+  - `reformatDate`: transforms a date string to a specified format
+  - `getIconSVG`: gets the iconify SVG string or DOM element from the icon name
   - `noSchemaURL`: remove the schema (`https://`) prefix of the url
 
-Check the complete definition in [src/themes/data.js](https://github.com/reorx/jsoncv/blob/master/src/themes/data.js).
+For more information, see the complete definition in [src/themes/data.js](https://github.com/reorx/jsoncv/blob/master/src/themes/data.js).
 
-After a new theme is created (take `yourtheme` as the example), run the following code to start developing with preview:
+Once you have created a new theme (let's use `yourtheme` as an example),
+you can start developing and previewing it by running the following code:
 
 ```
 THEME=yourtheme npm run dev-site
@@ -188,9 +199,9 @@ THEME=yourtheme npm run dev-site
 
 Pull requests for adding new themes are always welcomed.
 
-> You can just name the theme by your own name, this is what I did for the theme I use (`reorx`).
-> Because I think that theme is tightly bound to the developers asetic and personal taste,
-> common words is not accurate to represent.
+> You can just name the theme after your own name, this is what I did for the theme "reorx".
+> Because I think that theme is tightly bound to the developer's aesthetic and personal taste,
+> and common words may not accurately represent the theme.
 
 
 ## Tech stack
@@ -206,25 +217,22 @@ Pull requests for adding new themes are always welcomed.
 
 ### Text copied from the PDF is reversed
 
-Chrome "Save as PDF" produces documents with backwards text when copying
-in Preview.app on MacOS.
+Yes, this is a known issue with Chrome's "Save as PDF" feature.
+The resulting PDFs can have text that is backwards when copied in Preview.app on MacOS.
 
 ![](images/chrome-reversed-text-problem.png)
 
-This is a problem of Chrome, As seen in:
+This issue has been reported by several users and is not specific to jsoncv. As seen in:
 ["Save as PDF" produces documents with backwards text. - Google Chrome Community](https://support.google.com/chrome/thread/29061484/save-as-pdf-produces-documents-with-backwards-text?hl=en&dark=0)
 
-Solutions:
-
-1. Use Firefox
-2. Use CLI tools like [WeasyPrint](https://github.com/Kozea/WeasyPrint)
+Solution: Use Firefox or Safari to get the PDF
 
 
 ## TODO
 
 - [x] Supports Markdown in `summary` and `description` properties
-- [ ] Allows switching themes in Editor
 - [ ] Allows customizing primary color for the current theme
+- [ ] Allows switching themes in Editor
 - [ ] Export PDF directly
 - [x] Supports responsive style for themes, so that the CV site is friendly to view on mobile devices.
 - [ ] Add more themes.
