@@ -78,7 +78,7 @@ If you have any additional requirements, please feel free to submit an issue. Pu
 
 ### Write your CV
 
-It is recommended to write your CV throught the online [Editor]().
+It is recommended to write your CV throught the online [Editor](https://jsoncv.reorx.com/editor/).
 However, if you are familiar with JSON, you can also maintain the data file in a text editor locally.
 
 When you first open the Editor, a sample data is loaded, you can just edit it or click "New Data" button
@@ -98,7 +98,7 @@ if it's not specified, a combination of "basics.name" and "meta.version" will be
 
 ### Convert HTML to PDF
 
-To maintain simplicity, jsoncv neither implement nor include any external tools to provide PDFs.
+To maintain simplicity, jsoncv neither implement nor include any external tools to generate PDFs.
 Instead, you should use the generated HTML file to convert it to a PDF document.
 The only dependency is a modern browser, the steps below takes Chrome as an example:
 
@@ -111,14 +111,48 @@ The only dependency is a modern browser, the steps below takes Chrome as an exam
 
 Note that the PDF exported from Chrome may have some issues with text copying, see more details in the [FAQ](#text-copied-from-the-pdf-is-reversed) section.
 
-### Build a static CV site
+### Build HTML locally
 
 jsoncv use [Vite](https://vitejs.dev/) as the static-site building tool,
-you can easily create you own CV site by the following steps.
+the `index.html` file in the root of the project is the entry for builing a single-file CV
 
-```
-git submodule add https://github.com/reorx/jsoncv.git
-```
+1. Ensure that you use NodeJS version 18 or higher
+2. Install the dependencies: `npm run install`
+3. Build CV HTMl using your own data: `DATA_FILENAME="$HOME/Downloads/mycv/cv.json" OUT_DIR="$HOME/Downloads/mycv" npm run build`
+
+    You'll find the generated CV HTML at "$HOME/Downloads/mycv/index.html"
+
+### Build a static CV site
+
+> See my cv site as a demo here:
+
+The generated "index.html" file works at anywhere on any hosting platform,
+just uploaded it to a web server, you can get your own online CV site.
+The builtin theme "reorx" also comes with responsive support on mobile devices.
+
+However, you may want to have some extra customizations, take my cv site as an example:
+https://cv.reorx.com/, which adds a footer with links to the PDF file and my home page.
+The steps below will show you how to achieve this:
+
+1. First create an empty repository, let's say `mycv`.
+2. Then add jsoncv as the submodule
+
+    ```
+    git submodule add https://github.com/reorx/jsoncv.git
+    ```
+3. Put your CV data in the project, e.g. `cv.json`
+4. Initialize `package.json`: `npm init`
+5. Install `jsoncv` as a dependency: `npm i ./jsoncv`
+6. Copy `scripts` and `devDependencies` from `./jsoncv/package.json` to `package.json`, and run `npm i` to install them
+7. Copy `./jsoncv/vite.json.js` to `vite.json.js`, and make the following changes:
+    - Change all the `./src` path to `./jsoncv/src`
+    - Change the value of `dataFilename` to your CV data file, e.g. `cv.json`
+    - Change `renderData.theme` to the theme you want
+8. Copy `./jsoncv/index.html` to `index.html`, and change all the `./src` path to `./jsoncv/src`
+9. Run `npm run build` to test if it works
+
+After complete these steps, you can now add your own elements and styles in `index.html`.
+
 
 ### Create your own theme
 
@@ -144,7 +178,7 @@ The structure of the data it receives is as below:
   - `getIconSVG`: get the iconify svg string or DOM element from the icon name
   - `noSchemaURL`: remove the schema (`https://`) prefix of the url
 
-Check the complete definition in [src/themes/data.js]().
+Check the complete definition in [src/themes/data.js](https://github.com/reorx/jsoncv/blob/master/src/themes/data.js).
 
 After a new theme is created (take `yourtheme` as the example), run the following code to start developing with preview:
 
