@@ -1,6 +1,6 @@
 # jsoncv
 
-A toolkit to construct your Curriculum Vitae/Résumé using JSON and produce stylish HTML/PDF documents.
+A toolkit for building your CV with JSON and creating stylish HTML/PDF files.
 
 jsoncv comprises the following components:
 1. Schema
@@ -23,12 +23,12 @@ with the following differences:
 - JSON Schema version
 
     JSON Resume utilizes the outdated draft-04 version, while jsoncv uses the current draft-07. To ensure compatibility with draft-07, all instances of `additionalItems` have been removed.
-- Additional "sideProjects" section
+- Additional `sideProjects` section
 
-    jsoncv includes an additional section, called "sideProjects", that allows for the distinction between side projects and career projects
-- Additional "name" property in "meta" section
+    jsoncv includes an additional section, called `sideProjects`, that allows for the distinction between side projects and career projects
+- Additional `name` property in `meta` section
 
-    jsoncv includes a "name" property in the "meta" section, which allows the user to specify the desired name for exported HTML/PDF files.
+    jsoncv includes a `name` property in the `meta` section, which allows the user to specify the desired name for exported HTML/PDF files.
 
 These differences do not impact the compatibility between jsoncv and JSON Resume. This means that you can easily import JSON Resume data into jsoncv and vice versa, as jsoncv data will pass the validation of JSON Resume Schema .
 
@@ -92,9 +92,9 @@ If you already have a local copy of your CV data, you can click the "Upload Data
 
 ### Export CV data and HTML
 
-Once you have finished editing, you can click the "Download JSON" button to export your CV data in JSON format.
+Once you have finished editing, you can click the **Download JSON** button to export your CV data in JSON format.
 
-If you want to export the rendered HTML in the Preview pane, simply click the "Download HTML" button.
+If you want to export the rendered HTML in the Preview pane, simply click the **Download HTML** button.
 
 Please note that you can name the exported files by adding the `meta.name` property.
 If it is not specified, the filename will be constructed using a combination of `basics.name` and `meta.version`.
