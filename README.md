@@ -232,11 +232,11 @@ Solution: Use Firefox or Safari to get the PDF
 
 - [x] Supports Markdown in `summary` and `description` properties
 - [ ] Allows customizing primary color for the current theme
-- [ ] Allows switching themes in Editor
-- [ ] Export PDF directly
+- [x] Export PDF directly (using browser's print feature)
 - [x] Supports responsive style for themes, so that the CV site is friendly to view on mobile devices.
 - [ ] Add more themes.
-
+- [ ] Allows switching themes in Editor
+- [ ] Add more sample data. By clicking the "Load Sample" button, a dialog will open, allowing the user to select from various languages
 
 ## Credits
 
