@@ -1,0 +1,14 @@
+<meta name="description" content="<%= description %>">
+<meta property="og:title" content="<%= title %>">
+<meta property="og:description" content="<%= description %>">
+<meta property="og:type" content="website">
+<% if (locals.url) { %>
+  <meta property="og:url" content="<%= url %>">
+  <link rel="canonical" href="<%= url %>" />
+<% } %>
+<% if (locals.twitter) { %>
+  <meta name="twitter:card" property="twitter:card" content="<%= twitter.card %>">
+  <meta name="twitter:creator" property="twitter:creator" content="@<%= twitter.username %>">
+  <meta name="twitter:title" property="twitter:title" content="<%= title %>">
+  <meta name="twitter:description" property="twitter:description" content="<%= description %>">
+<% } %>

@@ -2,6 +2,10 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="theme-color" content="#fff" />
+  <%- include('src/templates/meta', meta) %>
+
   <title><%= fn.getCVTitle(cv) %></title>
   <style>
     /* Note: if you add additional styles to this class, you should remove them in `@media print` to ensure .cv-container remains styleless when printing */
