@@ -6,7 +6,7 @@ import { viteSingleFile } from 'vite-plugin-singlefile';
 import { TransformEjs } from './src/lib/vite-plugins';
 import { getRenderData } from './src/themes/data';
 
-const dataFilename = process.env.DATA_FILENAME || './sample.resume.json'
+const dataFilename = process.env.DATA_FILENAME || './sample.cv.json'
 const outDir = process.env.OUT_DIR || 'dist'
 
 const data = require(dataFilename)

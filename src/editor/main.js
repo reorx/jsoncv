@@ -6,7 +6,7 @@ import objectPath from 'object-path';
 
 import { JSONEditor } from '@json-editor/json-editor/dist/jsoneditor';
 
-import * as sampleModule from '../../sample.resume.json';
+import * as sampleModule from '../../sample.cv.json';
 import * as jsoncvSchemaModule from '../../schema/jsoncv.schema.json';
 import {
   getCVData,
@@ -100,7 +100,7 @@ for (const [key, format] of Object.entries(keyFormatMap)) {
 }
 
 // change schema title
-jsoncvSchema.title = 'Resume'
+jsoncvSchema.title = 'CV Schema'
 
 // change some descriptions
 jsoncvSchema.properties.meta.properties.lastModified.description += '. This will be automatically updated when downloading.'
