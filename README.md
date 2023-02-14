@@ -136,7 +136,12 @@ The following environment variables are supported in the build process:
 - `DATA_FILENAME`: The CV data to use, can be a relative or absolute path.
 - `OUT_DIR`: The output directory for the generated HTML file.
 - `THEME`: The theme to use, must be one of the directory name in `src/themes/`.
-- `PRIMARY_COLOR`: The primary color to use, if not passed, it will be determined by the theme.The value of this environment variable should be a CSS color value, such as `#ff0000` for red.
+
+To customize the primary color of the theme, modify the --primary-color CSS variable in index.scss.
+Note that making this change will result in unstaged changes in Git. If you want to build the HTML yourself,
+it is recommended that you create a new project instead of editing the source code in jsoncv.
+For instructions on how to do this,
+please refer to the [Build a static CV site](#build-a-static-cv-site) section.
 
 ### Build a static CV site
 
@@ -162,11 +167,11 @@ you can follow these steps:
    - Change all instances of `./src` to `./jsoncv/src`.
    - Change the value of `dataFilename` to your CV data file, for example `cv.json`.
    - Change `renderData.theme` to the theme you want to use.
-   - Change `renderData.primaryColor` to the primary color you want to use.
 8. Copy `./jsoncv/index.html` to `index.html` and change all instances of `./src` to `./jsoncv/src`.
+   Then Copy `./jsoncv/index.scss` to `index.scss`.
 9. Run `npm run build` to test if everything works.
 
-After completing these steps, you can now add your own elements and styles to `index.html`
+After completing these steps, you can now add your own elements and styles to `index.html` and `index.scss`
 to further customize your CV website. You can use HTML, CSS, and JavaScript to add
 your own branding, layout, and functionality to the site.
 
