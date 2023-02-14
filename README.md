@@ -132,6 +132,12 @@ Here are the steps to build a CV HTML using your own data:
     This will build your CV HTML using the data file located at `$HOME/Downloads/mycv/cv.json`,
     and the generated HTML will be located in the `$HOME/Downloads/mycv` directory.
 
+The following environment variables are supported in the build process:
+- `DATA_FILENAME`: The CV data to use, can be a relative or absolute path.
+- `OUT_DIR`: The output directory for the generated HTML file.
+- `THEME`: The theme to use, must be one of the directory name in `src/themes/`.
+- `PRIMARY_COLOR`: The primary color to use, if not passed, it will be determined by the theme.The value of this environment variable should be a CSS color value, such as `#ff0000` for red.
+
 ### Build a static CV site
 
 The generated `index.html` file can be used anywhere and on any hosting platform.
@@ -156,6 +162,7 @@ you can follow these steps:
    - Change all instances of `./src` to `./jsoncv/src`.
    - Change the value of `dataFilename` to your CV data file, for example `cv.json`.
    - Change `renderData.theme` to the theme you want to use.
+   - Change `renderData.primaryColor` to the primary color you want to use.
 8. Copy `./jsoncv/index.html` to `index.html` and change all instances of `./src` to `./jsoncv/src`.
 9. Run `npm run build` to test if everything works.
 
