@@ -2,7 +2,7 @@ import ejs from 'ejs';
 
 import {
   getRenderData,
-  primaryColorVarName,
+  varNamePrimaryColor,
 } from './data';
 
 const themes = {}
@@ -50,5 +50,5 @@ export function renderThemeOn(name, el, data, primaryColor) {
   }
   elStyle.innerHTML = theme.style
 
-  document.documentElement.style.setProperty(primaryColorVarName, primaryColor)
+  document.documentElement.style.setProperty(varNamePrimaryColor, primaryColor)
 }

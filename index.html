@@ -18,8 +18,10 @@
   <link rel="stylesheet" href="/src/themes/<%= theme %>/index.scss">
   <style>
     :root {
-      /* override primary color */
-      <%= primaryColor.var %>: <%= primaryColor.value %>;
+      <% if (primaryColor) { %>
+        /* override primary color */
+        <%= varNamePrimaryColor %>: <%= primaryColor %>;
+      <% } %>
     }
   </style>
 </head>

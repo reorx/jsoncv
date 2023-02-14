@@ -4,10 +4,7 @@ import { ViteEjsPlugin } from 'vite-plugin-ejs';
 import { viteSingleFile } from 'vite-plugin-singlefile';
 
 import { TransformEjs } from './src/lib/vite-plugins';
-import {
-  getRenderData,
-  primaryColorVarName,
-} from './src/themes/data';
+import { getRenderData } from './src/themes/data';
 
 const dataFilename = process.env.DATA_FILENAME || './sample.cv.json'
 const outDir = process.env.OUT_DIR || 'dist'
@@ -15,10 +12,7 @@ const outDir = process.env.OUT_DIR || 'dist'
 const data = require(dataFilename)
 const renderData = getRenderData(data)
 renderData.theme = process.env.THEME || 'reorx'
-renderData.primaryColor = {
-  var: primaryColorVarName,
-  value: process.env.PRIMARY_COLOR || '#2A3FFB'
-}
+renderData.primaryColor = process.env.PRIMARY_COLOR
 renderData.isProduction = process.env.NODE_ENV === 'production'
 renderData.meta = {
   title: data.basics.name,
