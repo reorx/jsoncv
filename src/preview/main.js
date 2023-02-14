@@ -3,6 +3,8 @@ import {
   getCVSavedTime,
   getPrimaryColor,
 } from '../lib/store';
+import { upsertStyleTag } from '../lib/utils';
+import cvBaseStyle from '../scss/cv-base.css?inline';
 import { renderThemeOn } from '../themes';
 import { getCVTitle } from '../themes/data';
 
@@ -34,7 +36,10 @@ const restoreScrollPosition = () => {
 // Render CV
 const data = getCVData()
 if (data) {
+
+  upsertStyleTag('base-style', cvBaseStyle)
   renderThemeOn(themeName, elCV, data, getPrimaryColor())
+
   // change document title
   document.title = getCVTitle(data)
   // restore scroll position

@@ -71,3 +71,13 @@ export function downloadIframeHTML(filename, iframe) {
   a.click();
   document.body.removeChild(a)
 }
+
+export function upsertStyleTag(styleId, content) {
+  let elStyle = document.getElementById(styleId)
+  if (!elStyle) {
+    elStyle = document.createElement('style')
+    elStyle.id = styleId
+    document.head.appendChild(elStyle)
+  }
+  elStyle.innerHTML = content
+}

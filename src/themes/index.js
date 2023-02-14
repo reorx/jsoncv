@@ -1,5 +1,6 @@
 import ejs from 'ejs';
 
+import { upsertStyleTag } from '../lib/utils';
 import {
   getRenderData,
   varNamePrimaryColor,
@@ -43,12 +44,7 @@ export function renderThemeOn(name, el, data, primaryColor) {
   const theme = getTheme(name)
   el.innerHTML = renderTheme(theme.template, data)
 
-  let elStyle = document.getElementById(cvStyleId)
-  if (!elStyle) {
-    elStyle = document.createElement('style')
-    document.head.appendChild(elStyle)
-  }
-  elStyle.innerHTML = theme.style
+  upsertStyleTag(cvStyleId, theme.style)
 
   document.documentElement.style.setProperty(varNamePrimaryColor, primaryColor)
 }
