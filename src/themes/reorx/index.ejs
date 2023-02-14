@@ -4,6 +4,13 @@ function linkInDiv(url) {
   return `<div class="url row"><a href="${url}" target="_blank">${fn.noSchemaURL(url)}</a></div>`
 }
 %>
+<%
+function formatLocation(loc) {
+  const cityToCountry = ['city', 'postalCode', 'region', 'countryCode'].map(key => loc[key]).filter(v => v).join(', ')
+  if (!loc.address) return cityToCountry
+  return `${loc.address}. ${cityToCountry}`
+}
+%>
 
 <!-- Basics -->
 <section class="basics-section">
@@ -36,7 +43,7 @@ function linkInDiv(url) {
     <% if (cv.basics.location) { %>
       <div class="item">
         <%- fn.getIconSVG('mdi:location') %>
-        <span><%= cv.basics.location.city %>, <%= cv.basics.location.countryCode %></span>
+        <span><%= formatLocation(cv.basics.location) %></span>
       </div>
     <% } %>
   </div>

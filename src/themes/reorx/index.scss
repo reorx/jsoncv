@@ -165,14 +165,14 @@ section {
   .contact {
     color: $color-text-dim;
     display: flex;
+    flex-wrap: wrap;
+    gap: .4em 1em;
 
     @media screen and (max-width: 500px) {
       flex-direction: column;
-      gap: .4em;
     }
 
     .item {
-      margin-right: 1em;
       a {
         color: $color-text-dim;
       }
