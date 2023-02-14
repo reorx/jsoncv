@@ -243,7 +243,7 @@ Solution: Use Firefox or Safari to get the PDF
 ## TODO
 
 - [x] Supports Markdown in `summary` and `description` properties
-- [ ] Allows customizing primary color for the current theme
+- [x] Allows customizing primary color for the current theme
 - [x] Export PDF directly (using browser's print feature)
 - [x] Supports responsive style for themes, so that the CV site is friendly to view on mobile devices.
 - [ ] Add more themes.
