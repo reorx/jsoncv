@@ -1,6 +1,7 @@
 import {
   getCVData,
   getCVSavedTime,
+  getPrimaryColor,
 } from '../lib/store';
 import { renderThemeOn } from '../themes';
 import { getCVTitle } from '../themes/data';
@@ -33,7 +34,7 @@ const restoreScrollPosition = () => {
 // Render CV
 const data = getCVData()
 if (data) {
-  renderThemeOn(themeName, elCV, data)
+  renderThemeOn(themeName, elCV, data, getPrimaryColor())
   // change document title
   document.title = getCVTitle(data)
   // restore scroll position

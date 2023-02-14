@@ -16,6 +16,12 @@
   </style>
   <link rel="stylesheet" href="/src/scss/cv-base.css">
   <link rel="stylesheet" href="/src/themes/<%= theme %>/index.scss">
+  <style>
+    :root {
+      /* override primary color */
+      <%= primaryColor.var %>: <%= primaryColor.value %>;
+    }
+  </style>
 </head>
 <body>
   <div class="cv-container">

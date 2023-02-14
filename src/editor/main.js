@@ -10,7 +10,9 @@ import * as sampleModule from '../../sample.cv.json';
 import * as jsoncvSchemaModule from '../../schema/jsoncv.schema.json';
 import {
   getCVData,
+  getPrimaryColor,
   saveCVJSON,
+  savePrimaryColor,
 } from '../lib/store';
 import {
   createElement,
@@ -140,6 +142,7 @@ function getEditorData() {
 
 const $outputJSON = $('.output-json')
 const $outputHTML = $('.output-html')
+const outputHTMLIframe = $outputHTML.get(0)
 
 // listen to change
 editor.on('change', () => {
@@ -160,11 +163,13 @@ const $btnDownloadJSON = $('#fn-download-json')
 const $btnDownloadHTML = $('#fn-download-html')
 const $btnLoadSample = $('#fn-load-sample')
 const $btnPrintPreview = $('#fn-print-preview')
+const $inputColorPicker = $('#fn-color-picker')
+const $colorValue = $('.color-picker .value')
 
 const isElementHidden = elt =>
 	! (elt.offsetWidth || elt.offsetHeight || elt.getClientRects().length);
 $btnTogglePreview.on('click', () => {
-  if (isElementHidden($outputHTML.get(0))) {
+  if (isElementHidden(outputHTMLIframe)) {
     $outputJSON.hide()
     $outputHTML.show()
   } else {
@@ -220,7 +225,7 @@ function downloadCV(contentType) {
     downloadContent(filename, JSON.stringify(data, null, 2))
   } else if (contentType === 'html') {
     let filename = `${title}.html`
-    downloadIframeHTML(filename, $outputHTML.get(0))
+    downloadIframeHTML(filename, outputHTMLIframe)
   }
 
   // update editor value
@@ -242,5 +247,19 @@ $btnLoadSample.on('click', () => {
 })
 
 $btnPrintPreview.on('click', () => {
-  $outputHTML.get(0).contentWindow.print()
+  outputHTMLIframe.contentWindow.print()
 })
+
+
+// primary color
+
+$inputColorPicker.on('change', (e) => {
+  const color = e.target.value
+  console.log('color', color)
+  $colorValue.text(color)
+  savePrimaryColor(color)
+})
+
+const primaryColor = getPrimaryColor()
+$colorValue.text(primaryColor)
+$inputColorPicker.val(primaryColor)

@@ -1,6 +1,9 @@
 import ejs from 'ejs';
 
-import { getRenderData } from './data';
+import {
+  getRenderData,
+  primaryColorVarName,
+} from './data';
 
 const themes = {}
 
@@ -36,7 +39,7 @@ export function renderTheme(template, cvData, options) {
 
 const cvStyleId = 'cv-style'
 
-export function renderThemeOn(name, el, data) {
+export function renderThemeOn(name, el, data, primaryColor) {
   const theme = getTheme(name)
   el.innerHTML = renderTheme(theme.template, data)
 
@@ -46,4 +49,6 @@ export function renderThemeOn(name, el, data) {
     document.head.appendChild(elStyle)
   }
   elStyle.innerHTML = theme.style
+
+  document.documentElement.style.setProperty(primaryColorVarName, primaryColor)
 }

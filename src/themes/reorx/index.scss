@@ -1,6 +1,5 @@
 /* Naming convention: https://ricostacruz.com/rscss/ */
 
-$color-signature: #2A3FFB;
 $color-text-dim: #777;
 $color-text-dimmer: #999;
 $color-border-dim: #aaa;
@@ -10,6 +9,11 @@ $fz-2: 22px;
 $fz-3: 18px;
 $fz-4: 16px;
 $lh-p: 1.4;
+
+:root {
+  // overide `--color-primary` in your own css
+  --color-primary: #aaa;
+}
 
 .cv-container {
   font-size: 14px;
@@ -31,11 +35,11 @@ $lh-p: 1.4;
 }
 
 a, a:visited, a:active {
-  color: $color-signature;
+  color: var(--color-primary);
   text-decoration: none;
 }
 a:hover {
-  color: $color-signature;
+  color: var(--color-primary);
   text-decoration: underline;
 }
 
@@ -47,14 +51,14 @@ section {
     h2 {
       font-size: $fz-2;
       font-weight: 600;
-      color: $color-signature;
+      color: var(--color-primary);
       margin: 0;
     }
     .line {
       flex-grow: 1;
       margin: 14px 0 0 1em;
       height: 2px;
-      background-color: $color-signature;
+      background-color: var(--color-primary);
     }
   }
 
