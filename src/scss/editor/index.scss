@@ -95,6 +95,9 @@ button {
       align-items: center;
       gap: 4px;
     }
+    .value {
+      user-select: all;
+    }
 
     input[type=color] {
       background: transparent;
