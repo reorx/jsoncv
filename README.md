@@ -240,6 +240,10 @@ This issue has been reported by several users and is not specific to jsoncv. As 
 Solution: Use Firefox or Safari to get the PDF
 
 
+### The order of properties in the exported JSON changes sometimes
+
+See [Does JavaScript guarantee object property order? - Stack Overflow](https://stackoverflow.com/questions/5525795/does-javascript-guarantee-object-property-order)
+
 ## TODO
 
 - [x] Supports Markdown in `summary` and `description` properties
