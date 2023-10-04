@@ -99,7 +99,7 @@ function dateRange(item, level) {
         </div>
         <%- dateRange(item, 2) %>
       </div>
-      <div class="score row">Overall GPA: <%= item.score %></div>
+      <% if (item.score) { %><div class="score row">Overall GPA: <%= item.score %></div><% } %>
       <% if (item.courses && item.courses.length > 0) { %>
         <div class="courses row">
           Courses: <%= item.courses.join('; ') %>
