@@ -1,5 +1,9 @@
 export default {
-  'title_education': '教育经历',
-  'format_year': 'YYYY',
-  'format_year_month': 'YYYY年MMM',
+  'title': {
+    'education': '教育经历',
+  },
+  'format': {
+    'year': 'YYYY',
+    'year_month': 'YYYY年MMM',
+  },
 }

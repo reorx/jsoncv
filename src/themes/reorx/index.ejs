@@ -64,10 +64,10 @@ function dateRange(item, level) {
   // level: 1: year, 2: month, 3: day
   switch (level) {
     case 1:
-      format = t('format_year')
+      format = t('format.year')
       break;
     case 2:
-      format = t('format_year_month')
+      format = t('format.year_month')
       break;
   }
   if (format) {
@@ -90,7 +90,7 @@ function dateRange(item, level) {
 <% if (hasItems(cv.education)) { %>
 <section class="education-section">
   <div class="section-title">
-    <h2><%= t('title_education') %></h2>
+    <h2><%= t('title.education') %></h2>
     <div class="line"></div>
   </div>
   <% for (const item of cv.education) { %>
@@ -105,10 +105,10 @@ function dateRange(item, level) {
         </div>
         <%- dateRange(item, 2) %>
       </div>
-      <% if (item.score) { %><div class="score row">Overall GPA: <%= item.score %></div><% } %>
+      <% if (item.score) { %><div class="score row"><%= t('overall_gpa') %>: <%= item.score %></div><% } %>
       <% if (item.courses && item.courses.length > 0) { %>
         <div class="courses row">
-          Courses: <%= item.courses.join('; ') %>
+          <%= t('courses') %>: <%= item.courses.join('; ') %>
         </div>
       <% } %>
     </div>
@@ -120,7 +120,7 @@ function dateRange(item, level) {
 <% if (hasItems(cv.work)) { %>
 <section class="work-section">
   <div class="section-title">
-    <h2>Work</h2>
+    <h2><%= t('title.work') %></h2>
     <div class="line"></div>
   </div>
   <% for (const item of cv.work) { %>
@@ -152,7 +152,7 @@ function dateRange(item, level) {
 <% if (hasItems(cv.projects)) { %>
 <section class="projects-section">
   <div class="section-title">
-    <h2>Projects</h2>
+    <h2><%= t('title.projects') %></h2>
     <div class="line"></div>
   </div>
   <% for (const item of cv.projects) { %>
@@ -195,7 +195,7 @@ function dateRange(item, level) {
 <% if (hasItems(cv.sideProjects)) { %>
 <section class="sideprojects-section">
   <div class="section-title">
-    <h2>Side-projects</h2>
+    <h2><%= t('title.side_projects') %></h2>
     <div class="line"></div>
   </div>
   <div class="two-columns">
@@ -228,7 +228,7 @@ function dateRange(item, level) {
 <% if (hasItems(cv.skills)) { %>
 <section class="skills-section">
   <div class="section-title">
-    <h2>Skills</h2>
+    <h2><%= t('title.skills') %></h2>
     <div class="line"></div>
   </div>
   <div class="two-columns">
@@ -256,7 +256,7 @@ function dateRange(item, level) {
 <% if (hasItems(cv.languages)) { %>
 <section class="languages-section page-unit">
   <div class="section-title">
-    <h2>Languages</h2>
+    <h2><%= t('title.languages') %></h2>
     <div class="line"></div>
   </div>
   <% for (const item of cv.languages) { %>
@@ -283,10 +283,10 @@ function dateRange(item, level) {
 <% if (cv.meta) { %>
 <footer>
   <% if (cv.meta.version) { %>
-    <div class="version">Version: <%= cv.meta.version %></div>
+    <div class="version"><%= t('version') %>: <%= cv.meta.version %></div>
   <% } %>
   <% if (cv.meta.lastModified) { %>
-    <div class="version">Last modified: <%= cv.meta.lastModified.slice(0, 10) %></div>
+    <div class="version"><%= t('last_modified') %>: <%= cv.meta.lastModified.slice(0, 10) %></div>
   <% } %>
 </footer>
 <% } %>
