@@ -64,10 +64,10 @@ function dateRange(item, level) {
   // level: 1: year, 2: month, 3: day
   switch (level) {
     case 1:
-      format = 'YYYY'
+      format = t('format_year')
       break;
     case 2:
-      format = 'MMM YYYY'
+      format = t('format_year_month')
       break;
   }
   if (format) {
@@ -90,7 +90,7 @@ function dateRange(item, level) {
 <% if (hasItems(cv.education)) { %>
 <section class="education-section">
   <div class="section-title">
-    <h2>Educations</h2>
+    <h2><%= t('title_education') %></h2>
     <div class="line"></div>
   </div>
   <% for (const item of cv.education) { %>

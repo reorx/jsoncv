@@ -4,9 +4,11 @@ import { renderMarkdown } from '../lib/markdown';
 
 export const varNamePrimaryColor = '--color-primary'
 
-export function getRenderData(cvData) {
+export function getRenderData(cvData, locale, polyglot) {
   return {
     cv: cvData,
+    locale,
+    t: polyglot.t.bind(polyglot),
     fn: {
       getCVTitle,
       reformatDate,
