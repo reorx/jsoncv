@@ -11,6 +11,12 @@ function formatLocation(loc) {
   return `${loc.address}. ${cityToCountry}`
 }
 %>
+<%
+function hasItems(arr) {
+  if (arr && arr.length) return true
+  return false
+}
+%>
 
 <!-- Basics -->
 <section class="basics-section">
@@ -81,7 +87,7 @@ function dateRange(item, level) {
 %>
 
 <!-- Educations -->
-<% if (cv.education) { %>
+<% if (hasItems(cv.education)) { %>
 <section class="education-section">
   <div class="section-title">
     <h2>Educations</h2>
@@ -111,7 +117,7 @@ function dateRange(item, level) {
 <% } %>
 
 <!-- Work -->
-<% if (cv.work) { %>
+<% if (hasItems(cv.work)) { %>
 <section class="work-section">
   <div class="section-title">
     <h2>Work</h2>
@@ -143,7 +149,7 @@ function dateRange(item, level) {
 <% } %>
 
 <!-- Projects -->
-<% if (cv.projects) { %>
+<% if (hasItems(cv.projects)) { %>
 <section class="projects-section">
   <div class="section-title">
     <h2>Projects</h2>
@@ -186,7 +192,7 @@ function dateRange(item, level) {
 <% } %>
 
 <!-- Side-projects -->
-<% if (cv.sideProjects) { %>
+<% if (hasItems(cv.sideProjects)) { %>
 <section class="sideprojects-section">
   <div class="section-title">
     <h2>Side-projects</h2>
@@ -219,7 +225,7 @@ function dateRange(item, level) {
 <% } %>
 
 <!-- Skills -->
-<% if (cv.skills) { %>
+<% if (hasItems(cv.skills)) { %>
 <section class="skills-section">
   <div class="section-title">
     <h2>Skills</h2>
@@ -247,7 +253,7 @@ function dateRange(item, level) {
 <% } %>
 
 <!-- Languages -->
-<% if (cv.languages) { %>
+<% if (hasItems(cv.languages)) { %>
 <section class="languages-section page-unit">
   <div class="section-title">
     <h2>Languages</h2>
