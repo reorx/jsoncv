@@ -40,9 +40,15 @@ export function getTheme(name) {
   return themes[name]
 }
 
-export function renderTheme(theme, cvData, locale, options) {
+export function renderTheme(theme, cvData, options) {
+  const locale = cvData.meta.locale || 'en'
+  const messages = theme.index.localeMessages[locale]
+  if (!messages) {
+    return `Error: locale '${locale}' is not supported, please use one of: ${theme.index.locales}`
+  }
   const polyglot = new Polyglot({
-    phrases: theme.index.localeMessages[locale],
+    phrases: messages,
+    locale,
   })
   dayjs.locale(locale)
   return ejs.render(theme.template, getRenderData(cvData, locale, polyglot), options)
@@ -52,7 +58,7 @@ const cvStyleId = 'cv-style'
 
 export function renderThemeOn(name, el, data, primaryColor) {
   const theme = getTheme(name)
-  el.innerHTML = renderTheme(theme, data, 'zh-cn')
+  el.innerHTML = renderTheme(theme, data)
 
   upsertStyleTag(cvStyleId, theme.style)
 

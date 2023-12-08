@@ -280,6 +280,8 @@
     }
   ],
   "meta": {
+    "name": "JSONCV Sample Resume",
+    "locale": "en",
     "canonical": "https://raw.githubusercontent.com/reorx/jsoncv/master/schema/jsoncv.schema.json",
     "version": "v2.0.0",
     "lastModified": "2023-02-12T22:26:00"
