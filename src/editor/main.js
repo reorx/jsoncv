@@ -90,6 +90,7 @@ const keyFormatMap = {
   'projects.items.properties.description': 'textarea',
   'projects.items.properties.highlights.items': 'textarea',
   'sideProjects.items.properties.description': 'textarea',
+  'skills.items.properties.summary': 'textarea',
   'languages.items.properties.summary': 'textarea',
   'references.items.properties.reference': 'textarea',
   'awards.items.properties.summary': 'textarea',
