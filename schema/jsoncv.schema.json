@@ -509,6 +509,10 @@
           "type": "string",
           "description": "The name of this JSONCV data, will be used as part of the filename when downloading."
         },
+        "locale": {
+          "type": "string",
+          "description": "Locale of the CV, used by the theme to localize the CV. The value must be a valid IETF language tag. Default to 'en' if not specified. A full list of locale tag can be found at: https://cdn.jsdelivr.net/npm/dayjs@1/locale.json"
+        },
         "canonical": {
           "type": "string",
           "description": "URL (as per RFC 3986) to latest version of this document",
