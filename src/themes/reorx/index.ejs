@@ -18,6 +18,57 @@ function hasItems(arr) {
 }
 %>
 
+<%
+function dateRange(item, level) {
+  let {startDate, endDate} = item
+  if (!startDate && !endDate) return ''
+  let format
+  // level: 1: year, 2: month, 3: day
+  switch (level) {
+    case 1:
+      format = 'YYYY'
+      break;
+    case 2:
+      format = 'MMM YYYY'
+      break;
+  }
+  if (format) {
+    startDate = startDate ? fn.reformatDate(startDate, format) : ''
+    endDate = endDate ? fn.reformatDate(endDate, format) : ''
+  }
+  let result = ''
+  if (startDate && endDate) {
+    result = `${startDate} – ${endDate}`
+  } else if (startDate) {
+    result = `${startDate} – Present`
+  } else if (endDate) {
+    result = `Until ${endDate}`
+  }
+  return `<div class="date-range">${result}</div>`
+}
+%>
+
+<%
+function date(item, level) {
+  let {date} = item
+  if (!date) return ''
+  let format
+  // level: 1: year, 2: month, 3: day
+  switch (level) {
+    case 1:
+      format = 'YYYY'
+      break;
+    case 2:
+      format = 'MMM YYYY'
+      break;
+  }
+  if (format) {
+    date = date ? fn.reformatDate(date, format) : ''
+  }
+  return `<div class="date-range">${date}</div>`
+}
+%>
+
 <!-- Basics -->
 <section class="basics-section">
   <h1><%= cv.basics.name %></h1>
@@ -56,41 +107,12 @@ function hasItems(arr) {
 </section>
 
 
-<%
-function dateRange(item, level) {
-  let {startDate, endDate} = item
-  if (!startDate && !endDate) return ''
-  let format
-  // level: 1: year, 2: month, 3: day
-  switch (level) {
-    case 1:
-      format = 'YYYY'
-      break;
-    case 2:
-      format = 'MMM YYYY'
-      break;
-  }
-  if (format) {
-    startDate = startDate ? fn.reformatDate(startDate, format) : ''
-    endDate = endDate ? fn.reformatDate(endDate, format) : ''
-  }
-  let result = ''
-  if (startDate && endDate) {
-    result = `${startDate} – ${endDate}`
-  } else if (startDate) {
-    result = `${startDate} – Present`
-  } else if (endDate) {
-    result = `Until ${endDate}`
-  }
-  return `<div class="date-range">${result}</div>`
-}
-%>
 
 <!-- Educations -->
 <% if (hasItems(cv.education)) { %>
 <section class="education-section">
   <div class="section-title">
-    <h2>Educations</h2>
+    <h2>Education</h2>
     <div class="line"></div>
   </div>
   <% for (const item of cv.education) { %>
@@ -125,10 +147,12 @@ function dateRange(item, level) {
   </div>
   <% for (const item of cv.work) { %>
     <div class="work section-item">
+      <% if (item.name !== (cv.work[cv.work.indexOf(item) - 1] || {}).name) { %>
       <div class="row space-between">
         <h3><%= item.name %></h3>
         <%- linkInDiv(item.url) %>
       </div>
+      <% } %>
       <div class="row space-between">
         <div class="position subtitle"><%= item.position %></div>
         <%- dateRange(item, 2) %>
@@ -272,12 +296,146 @@ function dateRange(item, level) {
 <% } %>
 
 
-<!-- TODO: -->
 <!-- Awards -->
+<% if (hasItems(cv.awards)) { %>
+<section class="awards-section">
+  <div class="section-title">
+    <h2>Awards</h2>
+    <div class="line"></div>
+  </div>
+  <% for (const item of cv.awards) { %>
+    <div class="award section-item">
+      <div class="row space-between">
+        <h3><%= item.title %></h3>
+        <%- date(item, 2) %>
+      </div>
+      <div class="awarder row subtitle"><%= item.awarder %></div>
+      <% if (item.summary) { %>
+        <div class="summary p"><%- fn.renderMarkdown(item.summary) %></div>
+      <% } %>
+    </div>
+  <% } %>
+</section>
+<% } %>
+
+<!-- Certificates -->
+<% if (hasItems(cv.certificates)) { %>
+<section class="certificates-section">
+  <div class="section-title">
+    <h2>Certificates</h2>
+    <div class="line"></div>
+  </div>
+  <% for (const item of cv.certificates) { %>
+    <div class="certificate section-item">
+      <div class="row space-between">
+        <h3><%= item.name %></h3>
+        <%- date(item, 2) %>
+      </div>
+      <div class="fluency row subtitle"><%= item.issuer %></div>
+      <%- linkInDiv(item.url) %>
+    </div>
+  <% } %>
+</section>
+<% } %>
+
 <!-- Volunteer -->
+<% if (hasItems(cv.volunteer)) { %>
+<section class="volunteer-section">
+  <div class="section-title">
+    <h2>Volunteer</h2>
+    <div class="line"></div>
+  </div>
+  <% for (const item of cv.volunteer) { %>
+    <div class="volunteer section-item">
+      <div class="row space-between">
+        <h3><%= item.organization %></h3>
+        <%- linkInDiv(item.url) %>
+      </div>
+      <div class="row space-between">
+        <div class="position subtitle"><%= item.position %></div>
+        <%- dateRange(item, 2) %>
+      </div>
+      <div class="summary p"><%- fn.renderMarkdown(item.summary) %></div>
+      <% if (item.highlights && item.highlights.length > 0) { %>
+        <div class="highlights row">
+          <ul>
+          <% for (const hl of item.highlights) { %>
+            <li><%- fn.renderMarkdown(hl, true) %></li>
+          <% } %>
+          </ul>
+        </div>
+      <% } %>
+    </div>
+  <% } %>
+</section>
+<% } %>
+
+
 <!-- Publications -->
+<% if (hasItems(cv.publications)) { %>
+<section class="publications-section">
+  <div class="section-title">
+    <h2>Publications</h2>
+    <div class="line"></div>
+  </div>
+  <% for (const item of cv.publications) { %>
+    <div class="publication section-item">
+      <div class="row space-between">
+        <h3><%= item.name %></h3>
+        <%- date(item, 2) %>
+      </div>
+      <div class="publisher row subtitle"><%= item.publisher %></div>
+      <%- linkInDiv(item.url) %>
+      <% if (item.summary) { %>
+        <div class="summary p"><%- fn.renderMarkdown(item.summary) %></div>
+      <% } %>
+    </div>
+  <% } %>
+</section>
+<% } %>
+
 <!-- References -->
+<% if (hasItems(cv.references)) { %>
+<section class="references-section">
+  <div class="section-title">
+    <h2>References</h2>
+    <div class="line"></div>
+  </div>
+  <% for (const item of cv.references) { %>
+    <div class="reference section-item">
+      <div class="row space-between">
+        <h3><%= item.name %></h3>
+        <div class="relationship subtitle"><%= item.relationship %></div>
+      </div>
+      <div class="row _text-dim"><%- fn.renderMarkdown(item.reference, true) %></div>
+    </div>
+  <% } %>
+</section>
+<% } %>
+
 <!-- Interests -->
+<% if (hasItems(cv.interests)) { %>
+<section class="interests-section">
+  <div class="section-title">
+    <h2>Interests</h2>
+    <div class="line"></div>
+  </div>
+  <div class="two-columns">
+  <% for (const item of cv.interests) { %>
+    <div class="interest section-item">
+      <h3><%= item.name %></h3>
+      <% if (item.keywords && item.keywords.length > 0) { %>
+        <div class="keywords">
+          <% for (const kw of item.keywords) { %>
+            <span class="item"><%= kw %></span>
+          <% } %>
+        </div>
+      <% } %>
+    </div>
+    <% } %>
+  </div>
+</section>
+<% } %>
 
 <!-- meta -->
 <% if (cv.meta) { %>
