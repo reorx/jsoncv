@@ -31,6 +31,21 @@
     {
       "name": "Pied Piper",
       "location": "Palo Alto, CA",
+      "description": "Awesome compression company (second position)",
+      "position": "Chief Technology Officer",
+      "url": "http://piedpiper.example.com",
+      "startDate": "2018-01-01",
+      "endDate": "2020-01-01",
+      "summary": "Led the development of advanced middle-out algorithms and helped scale the engineering team.",
+      "highlights": [
+        "Developed the next-gen middle-out compression approach",
+        "Expanded the engineering team from 5 to 15",
+        "Oversaw strategic growth and technology roadmap"
+      ]
+    },
+    {
+      "name": "Pied Piper",
+      "location": "Palo Alto, CA",
       "description": "Awesome compression company",
       "position": "CEO/President",
       "url": "http://piedpiper.example.com",
@@ -53,7 +68,6 @@
       "endDate": "2017-01-01",
       "summary": "Fantasy Inc. is a magical technology company that specializes in creating illusions and bringing dreams to life. Their proprietary technology has consistently amazed people and earned high praise.\n\n- Created a spell that turns pumpkins into carriages\n- Won the Wizard's Choice Award at the annual Magic Convention\n- Developed a potion that grants eternal youth"
     }
-
   ],
   "volunteer": [
     {
@@ -187,7 +201,6 @@
       "language": "French",
       "fluency": "Elementary"
     }
-
   ],
   "interests": [
     {
@@ -204,7 +217,6 @@
         "Mermaids"
       ]
     }
-
   ],
   "references": [
     {
@@ -215,7 +227,6 @@
       "name": "Laurie Bream",
       "reference": "It is my pleasure to recommend Monica, her exceptional skills and talent were evident during her time at High-Tech Inc. I am confident that she will make a valuable impact at any organization she joins."
     }
-
   ],
   "projects": [
     {
@@ -227,13 +238,16 @@
         "Using modern technologies such as GoogleMaps, Chrome Extension and Javascript"
       ],
       "keywords": [
-        "GoogleMaps", "Chrome Extension", "Javascript"
+        "GoogleMaps",
+        "Chrome Extension",
+        "Javascript"
       ],
       "startDate": "2016-08-24",
       "endDate": "2016-08-24",
       "url": "https://missdirection.example.com",
       "roles": [
-        "Team lead", "Designer"
+        "Team lead",
+        "Designer"
       ],
       "entity": "Smoogle",
       "type": "application"
@@ -247,13 +261,16 @@
         "Utilizes advanced technology such as Augmented Reality and AI"
       ],
       "keywords": [
-        "Augmented Reality", "AI", "Space navigation"
+        "Augmented Reality",
+        "AI",
+        "Space navigation"
       ],
       "startDate": "2021-07-01",
       "endDate": "2021-07-01",
       "url": "https://lostinspace.example.com",
       "roles": [
-        "Mission Commander", "Navigation Officer"
+        "Mission Commander",
+        "Navigation Officer"
       ],
       "entity": "Cosmic Corp",
       "type": "Software"
@@ -266,7 +283,9 @@
       "url": "https://bebop.example.com",
       "startDate": "2022-01-01",
       "keywords": [
-        "Aerodynamics", "Space travel", "Rocket science"
+        "Aerodynamics",
+        "Space travel",
+        "Rocket science"
       ]
     },
     {
@@ -275,7 +294,9 @@
       "url": "https://warpdrive.example.com",
       "startDate": "2025-01-01",
       "keywords": [
-        "Quantum physics", "Interstellar travel", "Wormholes"
+        "Quantum physics",
+        "Interstellar travel",
+        "Wormholes"
       ]
     }
   ],

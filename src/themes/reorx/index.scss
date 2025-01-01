@@ -34,9 +34,17 @@ $lh-p: 1.4;
   }
 }
 
-a, a:visited, a:active {
-  color: var(--color-primary);
+.date-range {
+  font-style: italic;
+}
+
+a {
+  color: $color-text-dim;
   text-decoration: none;
+}
+
+a:visited, a:active {
+  color: var(--color-primary);
 }
 a:hover {
   color: var(--color-primary);
