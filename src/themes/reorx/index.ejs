@@ -372,25 +372,32 @@ function date(item, level) {
 
 
 <!-- Publications -->
-<% if (hasItems(cv.publications)) { %>
-<section class="publications-section">
-  <div class="section-title">
-    <h2>Publications</h2>
-    <div class="line"></div>
-  </div>
-  <% for (const item of cv.publications) { %>
-    <div class="publication section-item">
-      <div class="row space-between">
-        <h3><%= item.name %></h3>
-        <%- date(item, 2) %>
+<% if (cv.publications?.length) { %>
+<section class="publications">
+  <h2>Publications</h2>
+  <% cv.publications.forEach(function(pub) { %>
+    <% console.log('[Debug] Template rendering publication:', pub) %>
+    <div class="item">
+      <div class="title"><%= pub.name %></div>
+      <% if (pub.authors?.length) { %>
+        <% console.log('[Debug] Template rendering authors:', pub.authors) %>
+        <div class="authors">
+          <%= pub.authors.join('; ') %>
+        </div>
+      <% } %>
+      <div class="publisher">
+        <% if (pub.venue || pub.releaseDate) { %>
+          <%= pub.venue %><%= pub.releaseDate ? (pub.venue ? ', ' : '') + fn.reformatDate(pub.releaseDate, 'YYYY') : '' %>
+        <% } %>
       </div>
-      <div class="publisher row subtitle"><%= item.publisher %></div>
-      <%- linkInDiv(item.url) %>
-      <% if (item.summary) { %>
-        <div class="summary p"><%- fn.renderMarkdown(item.summary) %></div>
+      <% if (pub.summary) { %>
+        <div class="summary"><%- fn.renderMarkdown(pub.summary) %></div>
+      <% } %>
+      <% if (pub.url) { %>
+        <div class="url"><a href="<%= pub.url %>" target="_blank"><%= fn.noSchemaURL(pub.url) %></a></div>
       <% } %>
     </div>
-  <% } %>
+  <% }) %>
 </section>
 <% } %>
 

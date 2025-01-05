@@ -6,45 +6,32 @@ import {
   varNamePrimaryColor,
 } from './data';
 
-const themes = {}
+import { renderTheme as renderReorxTheme, defaultColor as reorxColor } from './reorx/index.js'
+import { renderTheme as renderCuivTheme, defaultColor as cuivColor } from './cuiv/index.js'
 
-const themeNames = ['reorx']
+const themes = {
+  reorx: renderReorxTheme,
+  cuiv: renderCuivTheme,
+}
 
-// https://vitejs.dev/guide/features.html#disabling-css-injection-into-the-page
-// note that `?raw` (https://vitejs.dev/guide/assets.html#importing-asset-as-string)
-// cannot be used because we need vite to transform scss into css
-const styleMoudules = import.meta.glob("./*/index.scss", { "query": "?inline" })
+const themeColors = {
+  reorx: reorxColor,
+  cuiv: cuivColor,
+}
 
-for (const name of themeNames) {
-  const templateModule = await import(`./${name}/index.ejs`)
+export function getAvailableThemes() {
+  return Object.keys(themes)
+}
 
-  // https://vitejs.dev/guide/features.html#glob-import
-  const styleModule = await styleMoudules[`./${name}/index.scss`]()
+export function getThemeDefaultColor(themeName) {
+  return themeColors[themeName]
+}
 
-  themes[name] = {
-    template: templateModule.default,
-    style: styleModule.default,
+export function renderThemeOn(themeName, el, data, primaryColor) {
+  const renderFn = themes[themeName]
+  if (!renderFn) {
+    console.error(`Theme ${themeName} not found`)
+    return
   }
-}
-
-// set default
-themes.default = themes.reorx
-
-export function getTheme(name) {
-  return themes[name]
-}
-
-export function renderTheme(template, cvData, options) {
-  return ejs.render(template, getRenderData(cvData), options)
-}
-
-const cvStyleId = 'cv-style'
-
-export function renderThemeOn(name, el, data, primaryColor) {
-  const theme = getTheme(name)
-  el.innerHTML = renderTheme(theme.template, data)
-
-  upsertStyleTag(cvStyleId, theme.style)
-
-  document.documentElement.style.setProperty(varNamePrimaryColor, primaryColor)
+  renderFn(el, data, primaryColor)
 }

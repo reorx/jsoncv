@@ -1,0 +1,1046 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema",
+  "additionalProperties": false,
+  "definitions": {
+    "iso8601": {
+      "type": "string",
+      "description": "e.g. 2014-06-29",
+      "format": "date",
+      "pattern": "^([1-2][0-9]{3}-[0-1][0-9]-[0-3][0-9]|[1-2][0-9]{3}-[0-1][0-9]|[1-2][0-9]{3})$"
+    }
+  },
+  "properties": {
+    "$schema": {
+      "type": "string",
+      "description": "link to the version of the schema that can validate the CV",
+      "format": "uri"
+    },
+    "basics": {
+      "type": "object",
+      "additionalProperties": true,
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "label": {
+          "type": "string",
+          "description": "e.g. Web Developer"
+        },
+        "image": {
+          "type": "string",
+          "description": "URL (as per RFC 3986) to a image in JPEG or PNG format"
+        },
+        "email": {
+          "type": "string",
+          "description": "e.g. thomas@gmail.com",
+          "format": "email"
+        },
+        "phone": {
+          "type": "string",
+          "description": "Phone numbers are stored as strings so use any format you like, e.g. 712-117-2923"
+        },
+        "url": {
+          "type": "string",
+          "description": "URL (as per RFC 3986) to your website, e.g. personal homepage",
+          "format": "uri"
+        },
+        "summary": {
+          "type": "string",
+          "description": "Write a short 2-3 sentence biography about yourself"
+        },
+        "location": {
+          "type": "object",
+          "additionalProperties": true,
+          "properties": {
+            "address": {
+              "type": "string",
+              "description": "To add multiple address lines, use \n. For example, 1234 Glücklichkeit Straße\nHinterhaus 5. Etage li."
+            },
+            "postalCode": {
+              "type": "string"
+            },
+            "city": {
+              "type": "string"
+            },
+            "countryCode": {
+              "type": "string",
+              "description": "code as per ISO-3166-1 ALPHA-2, e.g. US, AU, IN"
+            },
+            "region": {
+              "type": "string",
+              "description": "The general region where you live. Can be a US state, or a province, for instance."
+            }
+          }
+        },
+        "profiles": {
+          "type": "array",
+          "description": "Specify any number of social networks that you participate in",
+          "items": {
+            "type": "object",
+            "properties": {
+              "network": {
+                "type": "string",
+                "description": "The name of the social network (e.g. LinkedIn, Google Scholar, Scopus)",
+                "enum": ["LinkedIn", "Google Scholar", "Scopus"]
+              },
+              "username": {
+                "type": "string",
+                "description": "e.g. your-profile-name"
+              },
+              "url": {
+                "type": "string",
+                "description": "Your profile URL on this network",
+                "format": "uri"
+              }
+            },
+            "required": ["network", "url"]
+          }
+        }
+      }
+    },
+    "work": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": true,
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "e.g. Facebook"
+          },
+          "location": {
+            "type": "string",
+            "description": "e.g. Menlo Park, CA"
+          },
+          "description": {
+            "type": "string",
+            "description": "e.g. Social Media Company"
+          },
+          "position": {
+            "type": "string",
+            "description": "e.g. Software Engineer"
+          },
+          "url": {
+            "type": "string",
+            "description": "e.g. http://facebook.example.com",
+            "format": "uri"
+          },
+          "startDate": {
+            "$ref": "#/definitions/iso8601"
+          },
+          "endDate": {
+            "$ref": "#/definitions/iso8601"
+          },
+          "summary": {
+            "type": "string",
+            "description": "Give an overview of your responsibilities at the company"
+          },
+          "highlights": {
+            "type": "array",
+            "description": "Specify multiple accomplishments",
+            "items": {
+              "type": "string",
+              "description": "e.g. Increased profits by 20% from 2011-2012 through viral advertising"
+            }
+          }
+        }
+      }
+    },
+    "volunteer": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": true,
+        "properties": {
+          "organization": {
+            "type": "string",
+            "description": "e.g. Facebook"
+          },
+          "position": {
+            "type": "string",
+            "description": "e.g. Software Engineer"
+          },
+          "url": {
+            "type": "string",
+            "description": "e.g. http://facebook.example.com",
+            "format": "uri"
+          },
+          "startDate": {
+            "$ref": "#/definitions/iso8601"
+          },
+          "endDate": {
+            "$ref": "#/definitions/iso8601"
+          },
+          "summary": {
+            "type": "string",
+            "description": "Give an overview of your responsibilities at the company"
+          },
+          "highlights": {
+            "type": "array",
+            "description": "Specify accomplishments and achievements",
+            "items": {
+              "type": "string",
+              "description": "e.g. Increased profits by 20% from 2011-2012 through viral advertising"
+            }
+          }
+        }
+      }
+    },
+    "education": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": true,
+        "properties": {
+          "institution": {
+            "type": "string",
+            "description": "e.g. Massachusetts Institute of Technology"
+          },
+          "url": {
+            "type": "string",
+            "description": "e.g. http://facebook.example.com",
+            "format": "uri"
+          },
+          "area": {
+            "type": "string",
+            "description": "e.g. Arts"
+          },
+          "studyType": {
+            "type": "string",
+            "description": "e.g. Bachelor"
+          },
+          "startDate": {
+            "$ref": "#/definitions/iso8601"
+          },
+          "endDate": {
+            "$ref": "#/definitions/iso8601"
+          },
+          "score": {
+            "type": "string",
+            "description": "grade point average, e.g. 3.67/4.0"
+          },
+          "thesis": {
+            "type": "string",
+            "description": "Title of the thesis for Master's degree"
+          },
+          "dissertation": {
+            "type": "string",
+            "description": "Title of the dissertation for Doctoral degree"
+          },
+          "courses": {
+            "type": "array",
+            "description": "List notable courses/subjects",
+            "items": {
+              "type": "string",
+              "description": "e.g. H1302 - Introduction to American history"
+            }
+          }
+        }
+      }
+    },
+    "awards": {
+      "type": "array",
+      "description": "Specify any awards you have received throughout your professional career",
+      "items": {
+        "type": "object",
+        "additionalProperties": true,
+        "properties": {
+          "title": {
+            "type": "string",
+            "description": "e.g. One of the 100 greatest minds of the century"
+          },
+          "date": {
+            "$ref": "#/definitions/iso8601"
+          },
+          "awarder": {
+            "type": "string",
+            "description": "e.g. Time Magazine"
+          },
+          "summary": {
+            "type": "string",
+            "description": "e.g. Received for my work with Quantum Physics"
+          }
+        }
+      }
+    },
+    "certificates": {
+      "type": "array",
+      "description": "Specify any certificates you have received throughout your professional career",
+      "items": {
+        "type": "object",
+        "additionalProperties": true,
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "e.g. Certified Kubernetes Administrator"
+          },
+          "date": {
+            "type": "string",
+            "description": "e.g. 1989-06-12",
+            "format": "date"
+          },
+          "url": {
+            "type": "string",
+            "description": "e.g. http://example.com",
+            "format": "uri"
+          },
+          "issuer": {
+            "type": "string",
+            "description": "e.g. CNCF"
+          }
+        }
+      }
+    },
+    "publications": {
+      "type": "array",
+      "description": "Publications from both BibTeX and manual entry",
+      "items": {
+        "type": "object",
+        "additionalProperties": true,
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "Title of the publication"
+          },
+          "type": {
+            "type": "string",
+            "enum": ["journal", "conference", "other"],
+            "description": "Type of publication"
+          },
+          "url": {
+            "type": "string",
+            "format": "uri",
+            "description": "DOI or URL to the publication"
+          },
+          "formattedHTML": {
+            "type": "string",
+            "description": "Pre-formatted citation HTML (from BibTeX or manual)"
+          },
+          "source": {
+            "type": "string",
+            "enum": ["bibtex", "manual"],
+            "description": "Source of this publication entry"
+          },
+          "authors": {
+            "type": "array",
+            "items": { "type": "string" },
+            "description": "List of authors"
+          },
+          "publisher": {
+            "type": "string",
+            "description": "Journal/conference name or publisher"
+          },
+          "releaseDate": {
+            "type": "string",
+            "description": "Publication date"
+          },
+          "citationKey": {
+            "type": "string",
+            "description": "BibTeX citation key (for BibTeX entries)"
+          },
+          "bibtexEntry": {
+            "type": "object",
+            "description": "Full BibTeX entry data (for BibTeX entries)"
+          }
+        },
+        "required": ["name", "type", "formattedHTML", "source"]
+      }
+    },
+    "skills": {
+      "type": "array",
+      "description": "List out your professional skill-set",
+      "items": {
+        "type": "object",
+        "additionalProperties": true,
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "e.g. Web Development"
+          },
+          "level": {
+            "type": "string",
+            "description": "e.g. Master"
+          },
+          "summary": {
+            "type": "string",
+            "description": "e.g. Expert level proficiency in web development with extensive knowledge and experience in multiple programming languages, frameworks and web technologies."
+          },
+          "keywords": {
+            "type": "array",
+            "description": "List some keywords pertaining to this skill",
+            "items": {
+              "type": "string",
+              "description": "e.g. HTML"
+            }
+          }
+        }
+      }
+    },
+    "languages": {
+      "type": "array",
+      "description": "List any other languages you speak",
+      "items": {
+        "type": "object",
+        "additionalProperties": true,
+        "properties": {
+          "language": {
+            "type": "string",
+            "description": "e.g. English, Spanish"
+          },
+          "fluency": {
+            "type": "string",
+            "description": "e.g. Fluent, Beginner"
+          },
+          "summary": {
+            "type": "string",
+            "description": "e.g. Proficient in English with a pretty good level of speaking, writing and comprehension abilities."
+          }
+        }
+      }
+    },
+    "interests": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": true,
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "e.g. Philosophy"
+          },
+          "keywords": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "description": "e.g. Friedrich Nietzsche"
+            }
+          }
+        }
+      }
+    },
+    "references": {
+      "type": "array",
+      "description": "List references you have received",
+      "items": {
+        "type": "object",
+        "additionalProperties": true,
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "e.g. Timothy Cook"
+          },
+          "reference": {
+            "type": "string",
+            "description": "e.g. Joe blogs was a great employee, who turned up to work at least once a week. He exceeded my expectations when it came to doing nothing."
+          }
+        }
+      }
+    },
+    "projects": {
+      "type": "array",
+      "description": "Specify career projects and research grants",
+      "items": {
+        "type": "object",
+        "additionalProperties": true,
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "e.g. The World Wide Web"
+          },
+          "description": {
+            "type": "string",
+            "description": "Short summary of project. e.g. Collated works of 2017."
+          },
+          "highlights": {
+            "type": "array",
+            "description": "Specify multiple features",
+            "items": {
+              "type": "string",
+              "description": "e.g. Directs you close but not quite there"
+            }
+          },
+          "keywords": {
+            "type": "array",
+            "description": "Specify special elements involved",
+            "items": {
+              "type": "string",
+              "description": "e.g. AngularJS"
+            }
+          },
+          "startDate": {
+            "type": "string", 
+            "description": "e.g. 2024-02-01"
+          },
+          "endDate": {
+            "type": "string",
+            "description": "e.g. 2024-02-01"
+          },
+          "url": {
+            "type": "string",
+            "format": "uri",
+            "description": "e.g. http://www.computer.org/csdl/mags/co/1996/10/rx069-abs.html"
+          },
+          "roles": {
+            "type": "array",
+            "description": "Specify your role on this project or in company",
+            "items": {
+              "type": "string",
+              "description": "e.g. Team Lead, Speaker, Writer"
+            }
+          },
+          "entity": {
+            "type": "string",
+            "description": "Specify the relevant company/entity affiliations e.g. 'greenpeace', 'corporationXYZ'"
+          },
+          "type": {
+            "type": "string",
+            "description": " e.g. 'volunteering', 'presentation', 'talk', 'application', 'conference'"
+          },
+          "projectType": {
+            "type": "string",
+            "description": "Type of project",
+            "enum": ["research", "software", "education", "grant", "other"]
+          },
+          "fundingDetails": {
+            "type": "object",
+            "description": "Funding information if project is a grant",
+            "properties": {
+              "role": {
+                "type": "string",
+                "description": "e.g. PI, co-PI"
+              },
+              "fundingAgency": {
+                "type": "string",
+                "description": "e.g. National Science Foundation"
+              },
+              "amount": {
+                "type": "string",
+                "description": "e.g. $500,000"
+              },
+              "status": {
+                "type": "string",
+                "enum": ["active", "completed", "pending"]
+              }
+            }
+          }
+        }
+      }
+    },
+    "sideProjects": {
+      "type": "array",
+      "description": "Specify side projects",
+      "items": {
+        "type": "object",
+        "additionalProperties": true,
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "e.g. The World Wide Web"
+          },
+          "url": {
+            "type": "string",
+            "format": "uri",
+            "description": "e.g. http://www.computer.org/csdl/mags/co/1996/10/rx069-abs.html"
+          },
+          "description": {
+            "type": "string",
+            "description": "Short summary of project. e.g. Collated works of 2017."
+          },
+          "keywords": {
+            "type": "array",
+            "description": "Specify special elements involved",
+            "items": {
+              "type": "string",
+              "description": "e.g. AngularJS"
+            }
+          },
+          "startDate": {
+            "type": "string",
+            "description": "e.g. 2024-02-01"
+          },
+          "endDate": {
+            "type": "string",
+            "description": "e.g. 2024-02-01"
+          }
+        }
+      }
+    },
+    "meta": {
+      "type": "object",
+      "description": "The schema version and any other tooling configuration lives here",
+      "additionalProperties": true,
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "The name of this JSONCV data, will be used as part of the filename when downloading."
+        },
+        "canonical": {
+          "type": "string",
+          "description": "URL (as per RFC 3986) to latest version of this document",
+          "format": "uri"
+        },
+        "version": {
+          "type": "string",
+          "description": "A version field which follows semver - e.g. v1.0.0"
+        },
+        "lastModified": {
+          "type": "string",
+          "description": "Using ISO 8601 with YYYY-MM-DDThh:mm:ss"
+        },
+        "colorPrimary": {
+          "type": "string",
+          "description": "Primary color in hex format (e.g. #2A3FFB) to be used for styling the CV",
+          "pattern": "^#[0-9A-Fa-f]{6}$"
+        },
+        "colorSecondary": {
+          "type": "string",
+          "description": "Secondary color in hex format (e.g. #777777) to be used for dimmed text in the CV",
+          "pattern": "^#[0-9A-Fa-f]{6}$"
+        },
+        "citationStyles": {
+          "type": "object",
+          "description": "Styles for highlighting names in citations",
+          "properties": {
+            "owner": {
+              "type": "string",
+              "description": "Style for owner's name in citations",
+              "enum": ["bold", "asterisk", "plus"]
+            },
+            "mentee": {
+              "type": "string",
+              "description": "Style for mentee names in citations",
+              "enum": ["bold", "asterisk", "plus"]
+            }
+          },
+          "default": {
+            "owner": "bold",
+            "mentee": "plus"
+          }
+        },
+        "pageSize": {
+          "type": "string",
+          "description": "Page size for the CV (A4 or letter)",
+          "enum": ["A4", "letter"],
+          "default": "A4"
+        },
+        "theme": {
+          "type": "string",
+          "description": "Theme for the CV",
+          "enum": ["reorx", "cuiv"],
+          "default": "reorx"
+        }
+      }
+    },
+    "teaching": {
+      "type": "array",
+      "description": "Courses taught and teaching experience",
+      "items": {
+        "type": "object",
+        "properties": {
+          "courseCode": {
+            "type": "string",
+            "description": "e.g. ECE 4153"
+          },
+          "courseName": {
+            "type": "string",
+            "description": "e.g. Power System Analysis and Design"
+          },
+          "description": {
+            "type": "string",
+            "description": "Course description and topics covered"
+          },
+          "institution": {
+            "type": "string"
+          },
+          "terms": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "description": "e.g. F'22, S'24"
+            }
+          }
+        }
+      }
+    },
+    "mentoring": {
+      "type": "object",
+      "description": "Students mentored/advised by category",
+      "properties": {
+        "current_students": {
+          "type": "array",
+          "description": "Current students at my institution",
+          "items": {
+            "type": "object",
+            "properties": {
+              "name": {
+                "type": "string"
+              },
+              "level": {
+                "type": "string",
+                "enum": ["Ph.D.", "M.S.", "Undergraduate"],
+                "description": "Academic level"
+              },
+              "startDate": {
+                "type": "string",
+                "description": "Start date in any format"
+              },
+              "url": {
+                "type": "string",
+                "description": "URL to student's website or profile",
+                "format": "uri"
+              },
+              "dissertation": {
+                "type": "string",
+                "description": "Dissertation topic or title (for PhD students)"
+              },
+              "type": {
+                "type": "string",
+                "enum": ["Thesis", "Course-based"],
+                "description": "Type of Master's program (for MS students)"
+              },
+              "thesis_title": {
+                "type": "string",
+                "description": "Thesis title (for thesis-based MS students)"
+              },
+              "program": {
+                "type": "string",
+                "description": "Program name (for undergraduate students)"
+              },
+              "period": {
+                "type": "string",
+                "description": "Academic period (for undergraduate students)"
+              }
+            },
+            "required": ["name", "level"]
+          }
+        },
+        "committee_service": {
+          "type": "array",
+          "description": "PhD committee service at other institutions",
+          "items": {
+            "type": "object",
+            "properties": {
+              "name": {
+                "type": "string"
+              },
+              "institution": {
+                "type": "string",
+                "description": "Institution where the student is/was enrolled"
+              },
+              "dissertation": {
+                "type": "string",
+                "description": "Dissertation title"
+              },
+              "status": {
+                "type": "string",
+                "enum": ["Current", "Completed"],
+                "description": "Current status of the student"
+              },
+              "completionDate": {
+                "type": "string",
+                "description": "Date of completion in any format"
+              }
+            },
+            "required": ["name", "institution", "dissertation", "status"]
+          }
+        },
+        "past_students": {
+          "type": "array",
+          "description": "Past students who have completed their degrees",
+          "items": {
+            "type": "object",
+            "properties": {
+              "name": {
+                "type": "string"
+              },
+              "level": {
+                "type": "string",
+                "enum": ["Ph.D.", "M.S.", "Undergraduate"],
+                "description": "Academic level"
+              },
+              "institution": {
+                "type": "string",
+                "description": "Institution where the student was enrolled"
+              },
+              "startDate": {
+                "type": "string",
+                "description": "Start date in any format"
+              },
+              "endDate": {
+                "type": "string",
+                "description": "End date in any format"
+              },
+              "url": {
+                "type": "string",
+                "description": "URL to student's website or profile",
+                "format": "uri"
+              },
+              "dissertation": {
+                "type": "string",
+                "description": "Dissertation title (for PhD students)"
+              },
+              "type": {
+                "type": "string",
+                "enum": ["Thesis", "Course-based"],
+                "description": "Type of Master's program (for MS students)"
+              },
+              "thesis_title": {
+                "type": "string",
+                "description": "Thesis title (for thesis-based MS students)"
+              },
+              "program": {
+                "type": "string",
+                "description": "Program name (for undergraduate students)"
+              },
+              "period": {
+                "type": "string",
+                "description": "Academic period (for undergraduate students)"
+              },
+              "placement": {
+                "type": "object",
+                "properties": {
+                  "position": {
+                    "type": "string",
+                    "description": "Job title or position"
+                  },
+                  "organization": {
+                    "type": "string",
+                    "description": "Company or institution name"
+                  },
+                  "location": {
+                    "type": "string",
+                    "description": "Location of the position"
+                  }
+                }
+              }
+            },
+            "required": ["name", "level", "institution"]
+          }
+        }
+      }
+    },
+    "software": {
+      "type": "array",
+      "description": "Software projects and tools developed",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "description": {
+            "type": "string"
+          },
+          "url": {
+            "type": "string",
+            "format": "uri"
+          },
+          "metrics": {
+            "type": "object",
+            "properties": {
+              "stars": {
+                "type": "integer"
+              },
+              "forks": {
+                "type": "integer"
+              }
+            }
+          }
+        }
+      }
+    },
+    "researchAreas": {
+      "type": "array",
+      "description": "Research areas and contributions",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "Name of the research area"
+          },
+          "contributions": {
+            "type": "array",
+            "description": "List of contributions in this area",
+            "items": {
+              "type": "string"
+            }
+          }
+        }
+      }
+    },
+    "services": {
+      "type": "object",
+      "description": "Professional service activities",
+      "properties": {
+        "editorialBoards": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "role": {
+                "type": "string",
+                "description": "e.g. Associate Editor, Guest Editor"
+              },
+              "journal": {
+                "type": "string"
+              },
+              "period": {
+                "type": "string",
+                "description": "e.g. 2012-Present"
+              },
+              "details": {
+                "type": "string",
+                "description": "Additional details about the role"
+              }
+            }
+          }
+        },
+        "societyServices": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "role": {
+                "type": "string"
+              },
+              "organization": {
+                "type": "string"
+              },
+              "period": {
+                "type": "string"
+              }
+            }
+          }
+        },
+        "reviewServices": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "type": {
+                "type": "string",
+                "description": "e.g. Proposal Review, Journal Review"
+              },
+              "organization": {
+                "type": "string"
+              },
+              "year": {
+                "type": "string"
+              },
+              "details": {
+                "type": "string"
+              }
+            }
+          }
+        },
+        "departmental": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "role": {
+                "type": "string"
+              },
+              "committee": {
+                "type": "string"
+              },
+              "period": {
+                "type": "string"
+              }
+            }
+          }
+        }
+      }
+    },
+    "presentations": {
+      "type": "object",
+      "description": "Presentations and talks",
+      "properties": {
+        "invitedTalks": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "venue": {
+                "type": "string"
+              },
+              "type": {
+                "type": "string",
+                "description": "e.g. Webinar, Seminar"
+              },
+              "date": {
+                "type": "string"
+              },
+              "title": {
+                "type": "string"
+              },
+              "url": {
+                "type": "string",
+                "description": "URL to presentation materials",
+                "format": "uri"
+              }
+            }
+          }
+        },
+        "conferences": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "title": {
+                "type": "string"
+              },
+              "venue": {
+                "type": "string"
+              },
+              "location": {
+                "type": "string"
+              },
+              "date": {
+                "type": "string"
+              },
+              "type": {
+                "type": "string"
+              },
+              "description": {
+                "type": "string",
+                "description": "Description of the presentation content and significance"
+              },
+              "url": {
+                "type": "string",
+                "description": "URL to presentation materials",
+                "format": "uri"
+              }
+            }
+          }
+        },
+        "outreach": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "activity": {
+                "type": "string"
+              },
+              "date": {
+                "type": "string"
+              },
+              "description": {
+                "type": "string",
+                "description": "Detailed description of the outreach activity and its impact"
+              },
+              "url": {
+                "type": "string",
+                "description": "URL to related materials",
+                "format": "uri"
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "title": "CV Schema",
+  "type": "object"
+}

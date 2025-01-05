@@ -1,0 +1,758 @@
+{
+  "$schema": "https://raw.githubusercontent.com/cuihantao/jsoncv/refs/heads/master/schema/jsoncv.schema.prof.json",
+  "basics": {
+    "name": "Hantao Cui",
+    "label": "Associate Professor",
+    "image": "",
+    "email": "hcui9@ncsu.edu",
+    "phone": "(919) 513-2024",
+    "url": "https://cui.eecps.com",
+    "summary": "Research focuses on computational and analytical techniques for power systems: modeling, simulation, stability analysis, control, and software engineering",
+    "location": {
+      "address": "21 Keystone Science Center, 1791 Varsity Dr.",
+      "postalCode": "27606",
+      "city": "Raleigh",
+      "region": "NC",
+      "countryCode": "US"
+    },
+    "profiles": [
+      {
+        "network": "Google Scholar",
+        "username": "Hantao Cui",
+        "url": "https://scholar.google.com/citations?user=yvsfeQEAAAAJ"
+      },
+      {
+        "network": "LinkedIn",
+        "username": "Hantao Cui",
+        "url": "https://www.linkedin.com/in/hantao-cui/"
+      }
+    ]
+  },
+  "work": [
+    {
+      "name": "North Carolina State University",
+      "location": "Raleigh, NC",
+      "description": "Department of Electrical and Computer Engineering",
+      "position": "Associate Professor",
+      "url": "https://www.ncsu.edu",
+      "startDate": "2024-08-16",
+      "summary": "Research in power systems modeling and simulation, high-performance computing, and machine learning applications"
+    },
+    {
+      "name": "Oklahoma State University",
+      "location": "Stillwater, OK",
+      "description": "School of Electrical and Computer Engineering",
+      "position": "Assistant Professor",
+      "url": "https://www.okstate.edu",
+      "startDate": "2021-08-01",
+      "endDate": "2024-08-15",
+      "summary": "Research and teaching in power systems and scientific computing"
+    },
+    {
+      "name": "University of Tennessee, Knoxville",
+      "location": "Knoxville, TN",
+      "description": "Department of Electrical Engineering and Computer Science",
+      "position": "Research Assistant Professor",
+      "url": "https://www.utk.edu",
+      "startDate": "2019-04-01",
+      "endDate": "2021-07-31",
+      "summary": "Research in power system simulation and open-source software development"
+    },
+    {
+      "name": "University of Tennessee, Knoxville",
+      "location": "Knoxville, TN",
+      "description": "Center for Ultra-Wide-Area Resilient Electric Transmission Networks (CURENT)",
+      "position": "Research Associate",
+      "url": "https://www.utk.edu",
+      "startDate": "2017-01-01",
+      "endDate": "2019-04-30",
+      "summary": "Research in large-scale power system simulation and cyber-physical systems"
+    }
+  ],
+  "volunteer": [
+    {
+      "organization": "2027 North American Power Symposium",
+      "location": "Raleigh, NC",
+      "position": "Co-Chair",
+      "url": "",
+      "startDate": "2024",
+      "endDate": "2027",
+      "summary": "Co-chairing the organization of the 2027 North American Power Symposium",
+      "highlights": []
+    },
+    {
+      "organization": "NSF CSSI-CyberTraining PI Meeting",
+      "location": "Charlotte, NC",
+      "position": "Organizing Committee Member",
+      "url": "",
+      "startDate": "2024-04-01",
+      "endDate": "2024-08-31",
+      "summary": "Served on the organizing committee for the NSF CSSI-CyberTraining PI Meeting",
+      "highlights": []
+    },
+    {
+      "organization": "IEEE Power and Energy Society",
+      "position": "Vice Chair and TCPC",
+      "url": "",
+      "startDate": "2023-01-01",
+      "summary": "Vice Chair and TCPC of Computer and Analytical Methods Subcommittee (CAMS)",
+      "highlights": []
+    },
+    {
+      "organization": "IEEE Power and Energy Society",
+      "position": "Secretary",
+      "url": "",
+      "startDate": "2018-08-01",
+      "endDate": "2023-01-01",
+      "summary": "Secretary of Ultra-Wide-Area HVDC Overlay Studies Task Force",
+      "highlights": []
+    }
+  ],
+  "education": [
+    {
+      "institution": "University of Tennessee, Knoxville",
+      "location": "Tennessee, USA",
+      "url": "https://www.utk.edu",
+      "area": "Electrical Engineering and Computer Science",
+      "studyType": "Ph.D.",
+      "startDate": "2013-08-20",
+      "endDate": "2018-12-18",
+      "score": "",
+      "dissertation": "Large-Scale Simulation of Modern Electric Power Systems",
+      "courses": []
+    },
+    {
+      "institution": "Southeast University",
+      "location": "Nanjing, China",
+      "url": "https://www.seu.edu.cn",
+      "area": "Electrical Engineering",
+      "studyType": "M.S.",
+      "startDate": "2011-09-01",
+      "endDate": "2013-06-30",
+      "score": "",
+      "courses": []
+    },
+    {
+      "institution": "Southeast University",
+      "location": "Nanjing, China",
+      "url": "https://www.seu.edu.cn",
+      "area": "Electrical Engineering | Chien-Shiung Wu Honor College",
+      "studyType": "B.S.",
+      "startDate": "2007-09-01",
+      "endDate": "2011-06-30",
+      "score": "",
+      "courses": []
+    }
+  ],
+  "awards": [
+    {
+      "title": "IEEE PES PSOPE Committee Prize Paper Award",
+      "date": "2024-02-01",
+      "awarder": "IEEE Power and Energy Society"
+    },
+    {
+      "title": "National Science Foundation CAREER Award",
+      "date": "2024-01-01",
+      "awarder": "National Science Foundation"
+    },
+    {
+      "title": "Best Conference Paper, 3rd Place",
+      "date": "2023-10-01",
+      "awarder": "North American Power Symposium (NAPS)"
+    },
+    {
+      "title": "Best Conference Paper",
+      "date": "2022-07-01",
+      "awarder": "IEEE PES General Meeting"
+    },
+    {
+      "title": "Outstanding Reviewer for 2020",
+      "date": "2021-01-30",
+      "awarder": "IEEE Transactions on Power Systems"
+    },
+    {
+      "title": "R&D 100 Award for CURENT Large-Scale Testbed",
+      "date": "2020-09-30",
+      "awarder": "R&D Magazine"
+    },
+    {
+      "title": "Outstanding Reviewer for 2019",
+      "date": "2020-03-01",
+      "awarder": "IEEE Transactions on Power Systems"
+    },
+    {
+      "title": "Highly Cited Paper Award",
+      "date": "2019-07-01",
+      "awarder": "Applied Energy"
+    },
+    {
+      "title": "Top Peer Reviewer (Top 1% in Engineering)",
+      "date": "2018-09-30",
+      "awarder": "Publons.com"
+    },
+    {
+      "title": "ESI Highly Cited Papers",
+      "date": "2018-03-01",
+      "awarder": "Essential Science Indicators"
+    },
+    {
+      "title": "Chancellor's Citation on Extraordinary Professional Promise",
+      "date": "2017-04-18",
+      "awarder": "University of Tennessee, Knoxville"
+    },
+    {
+      "title": "Best Conference Paper",
+      "date": "2016-07-01",
+      "awarder": "IEEE PES General Meeting"
+    }
+  ],
+  "certificates": [
+    {
+      "name": "IEEE Senior Member",
+      "date": "2020-12-20",
+      "issuer": "IEEE",
+      "url": ""
+    }
+  ],
+  "publications": [
+    {
+      "name": "Evaluating the Equivalent Inertia of Grid-Following and Grid-Forming Inverter-Based Resources",
+      "publisher": "IEEE Transactions on Energy Conversion",
+      "releaseDate": "2024",
+      "url": "https://doi.org/10.1109/TEC.2024.3520383",
+      "summary": "Novel method for estimating equivalent inertia in modern power systems with inverter-based resources"
+    },
+    {
+      "name": "Bus Admittance Matrix Revisited: Performance Challenges on Modern Computers",
+      "publisher": "IEEE Open Access Journal of Power and Energy",
+      "releaseDate": "2024",
+      "url": "https://doi.org/10.1109/OAJPE.2024.3366117",
+      "summary": "Analysis of computational performance challenges in power system matrix operations on modern computing architectures"
+    },
+    {
+      "name": "Virtual Inertia Scheduling (VIS) for Microgrids with Static and Dynamic Security Constraints",
+      "publisher": "IEEE Transactions on Sustainable Energy",
+      "releaseDate": "2024",
+      "url": "https://doi.org/10.1109/TSTE.2024.3481239",
+      "summary": "Novel approach to scheduling virtual inertia in microgrids considering both static and dynamic security constraints"
+    },
+    {
+      "name": "Hybrid Symbolic-Numeric Framework for Power System Modeling and Analysis",
+      "publisher": "IEEE Transactions on Power Systems",
+      "releaseDate": "2020",
+      "url": "https://doi.org/10.1109/TPWRS.2020.3017019",
+      "summary": "Innovative framework combining symbolic and numerical methods for power system modeling and simulation"
+    },
+    {
+      "name": "Power Electronics-Interfaced Cyber-Physical Power Systems: A Review on Modeling, Simulation, and Cybersecurity",
+      "publisher": "WIREs Energy and Environment",
+      "releaseDate": "2022",
+      "url": "",
+      "summary": "Comprehensive review of modeling, simulation, and cybersecurity aspects in modern power systems with power electronic interfaces"
+    }
+  ],
+  "skills": [
+    {
+      "name": "Power Systems",
+      "level": "Expert",
+      "summary": "Expert in power system modeling, simulation, stability analysis, and control systems",
+      "keywords": [
+        "Modeling and Simulation",
+        "Stability Analysis",
+        "Control Systems",
+        "High Performance Computing",
+        "Software Engineering",
+        "Machine Learning Applications"
+      ]
+    },
+    {
+      "name": "Software Development",
+      "level": "Expert",
+      "summary": "Extensive experience in scientific computing and high-performance software development",
+      "keywords": [
+        "Python",
+        "Julia",
+        "High Performance Computing",
+        "Open Source Development",
+        "Symbolic Computing"
+      ]
+    }
+  ],
+  "languages": [
+    {
+      "language": "English",
+      "fluency": "Professional",
+      "summary": "Professional working proficiency in academic and technical contexts"
+    },
+    {
+      "language": "Chinese",
+      "fluency": "Native",
+      "summary": "Native speaker"
+    }
+  ],
+  "interests": [
+    {
+      "name": "Power Systems Research",
+      "keywords": [
+        "Grid Modeling",
+        "Stability Analysis",
+        "Control Systems",
+        "Renewable Integration",
+        "High Performance Computing"
+      ]
+    },
+    {
+      "name": "Software Development",
+      "keywords": [
+        "Open Source",
+        "Power System Simulation",
+        "High Performance Computing",
+        "Machine Learning"
+      ]
+    }
+  ],
+  "projects": [
+    {
+      "name": "ANDES",
+      "description": "Python Software for Power System Modeling and Simulation",
+      "summary": "Python Software for Power System Modeling and Simulation. A unique hybrid symbolic-numeric framework that enables descriptive DAE modeling, numerical code generation, and just-in-time compilation for simulation.",
+      "highlights": [
+        "Over 4,000 code commits",
+        "170+ GitHub stars",
+        "80+ forks",
+        "Used in multiple NSF and DOE projects"
+      ],
+      "keywords": ["Python", "Power Systems", "Simulation"],
+      "startDate": "2015",
+      "endDate": "Present",
+      "url": "https://github.com/curent/andes",
+      "roles": ["Lead Developer"],
+      "entity": "CURENT",
+      "type": "Software"
+    },
+    {
+      "name": "NSF CAREER Award",
+      "description": "Multi-Timescale Dynamics Modeling, Simulation, and Analysis of Converter-Dominated Power Systems",
+      "summary": "Multi-Timescale Dynamics Modeling, Simulation, and Analysis of Converter-Dominated Power Systems",
+      "highlights": [
+        "Principal Investigator",
+        "Research on power system dynamics"
+      ],
+      "keywords": ["Power Systems", "Dynamics", "Simulation"],
+      "startDate": "2024-09",
+      "endDate": "2029-08",
+      "url": "",
+      "roles": ["Principal Investigator"],
+      "entity": "NSF",
+      "type": "Research",
+      "projectType": "research",
+      "fundingDetails": {
+        "role": "PI",
+        "fundingAgency": "NSF",
+        "amount": "$500,000",
+        "status": "active"
+      }
+    },
+    {
+      "name": "POSE",
+      "description": "Toward an Open-Source Ecosystem for Power Systems Research, Education, and Industry Applications",
+      "summary": "Toward an Open-Source Ecosystem for Power Systems Research, Education, and Industry Applications",
+      "highlights": [
+        "NSF TIP funded project",
+        "Principal Investigator",
+        "Open-source power system software"
+      ],
+      "keywords": ["Open Source", "Power Systems", "Education"],
+      "startDate": "2024-09",
+      "endDate": "2025-08",
+      "url": "",
+      "roles": ["Principal Investigator"],
+      "entity": "NSF",
+      "type": "Research",
+      "projectType": "research",
+      "fundingDetails": {
+        "role": "PI",
+        "fundingAgency": "NSF",
+        "amount": "$300,000",
+        "status": "active"
+      }
+    },
+    {
+      "name": "HVDC-Learn",
+      "description": "Modular Education & Workforce Training in High Voltage Direct Current Electric Transmission",
+      "summary": "Modular Education & Workforce Training in High Voltage Direct Current Electric Transmission",
+      "highlights": [
+        "Co-Principal Investigator",
+        "Multi-university collaboration",
+        "Education and workforce development"
+      ],
+      "keywords": ["Education", "HVDC", "Power Systems"],
+      "startDate": "2024-01",
+      "endDate": "2026-12",
+      "url": "",
+      "roles": ["Co-Principal Investigator"],
+      "entity": "DOE",
+      "type": "Education",
+      "projectType": "education",
+      "fundingDetails": {
+        "role": "co-PI",
+        "fundingAgency": "DOE",
+        "amount": "$48,875",
+        "status": "active"
+      }
+    },
+    {
+      "name": "PowerCyber",
+      "description": "CyberTraining: Pilot: PowerCyber: Computational Training for Power Engineering Researchers",
+      "summary": "CyberTraining: Pilot: PowerCyber: Computational Training for Power Engineering Researchers",
+      "highlights": [
+        "Lead Principal Investigator",
+        "Computational training development"
+      ],
+      "keywords": ["Education", "Power Systems", "Computation"],
+      "startDate": "2024-01",
+      "endDate": "2025-12",
+      "url": "",
+      "roles": ["Lead Principal Investigator"],
+      "entity": "NSF",
+      "type": "Education",
+      "projectType": "education",
+      "fundingDetails": {
+        "role": "PI",
+        "fundingAgency": "NSF",
+        "amount": "$180,000",
+        "status": "active"
+      }
+    },
+    {
+      "name": "High-Performance Power System Simulation",
+      "description": "High-Performance Transient Stability Simulation of Power Systems on Modern Parallel Computing Hardware",
+      "summary": "High-Performance Transient Stability Simulation of Power Systems on Modern Parallel Computing Hardware",
+      "highlights": [
+        "Principal Investigator",
+        "Advanced computing research"
+      ],
+      "keywords": ["HPC", "Power Systems", "Simulation"],
+      "startDate": "2022-09",
+      "endDate": "2025-08",
+      "url": "",
+      "roles": ["Principal Investigator"],
+      "entity": "NSF",
+      "type": "Research",
+      "projectType": "research",
+      "fundingDetails": {
+        "role": "PI",
+        "fundingAgency": "NSF",
+        "amount": "$320,000",
+        "status": "active"
+      }
+    }
+  ],
+  "mentoring": {
+    "current_students": [
+      {
+        "name": "Ahmad Ali",
+        "level": "Ph.D.",
+        "startDate": "2022-01",
+        "url": "",
+        "dissertation": "High-Performance Computing for Power System Dynamic Simulation"
+      }
+    ],
+    "committee_service": [
+      {
+        "name": "Zaid Ibn Mahmood",
+        "institution": "Oklahoma State University",
+        "status": "Current"
+      }
+    ],
+    "past_students": [
+      {
+        "name": "Haya Monawwar",
+        "level": "Ph.D. Student",
+        "period": "Fall 23, Spring 24",
+        "institution": "Oklahoma State University",
+        "url": ""
+      },
+      {
+        "name": "Karter Caves",
+        "level": "Undergraduate",
+        "period": "Fall 23, Spring 24",
+        "program": "Freshman Research Scholar",
+        "institution": "Oklahoma State University",
+        "url": ""
+      },
+      {
+        "name": "Evelyn Wilson",
+        "level": "Undergraduate",
+        "period": "Spring 22, Fall 23",
+        "institution": "Oklahoma State University"
+      },
+      {
+        "name": "Paul Magna",
+        "level": "Undergraduate",
+        "period": "Fall 21",
+        "institution": "Oklahoma State University"
+      }
+    ]
+  },
+  "teaching": [
+    {
+      "courseCode": "ECEN 5113",
+      "courseName": "Power System Analysis by Computer Methods",
+      "description": "Advanced course covering numerical methods for power system analysis, including power flow, optimal power flow, and dynamic simulation. Emphasis on high-performance computing and modern software development practices.",
+      "institution": "Oklahoma State University",
+      "terms": ["S'23", "F'21"]
+    },
+    {
+      "courseCode": "ECEN 4153",
+      "courseName": "Power System Analysis and Design",
+      "description": "Fundamentals of power system analysis, including per-unit systems, power flow studies, economic operation, and symmetrical components. Introduction to power system stability and protection.",
+      "institution": "Oklahoma State University",
+      "terms": ["F'22", "S'24"]
+    },
+    {
+      "courseCode": "ECEN 4283",
+      "courseName": "Computer Networks",
+      "institution": "Oklahoma State University",
+      "terms": ["S'22", "F'23"]
+    },
+    {
+      "courseCode": "ECE 421",
+      "courseName": "Electric Energy Systems (co-instructor)",
+      "institution": "University of Tennessee, Knoxville",
+      "terms": ["F'19"]
+    },
+    {
+      "courseCode": "ECE 496/691",
+      "courseName": "Power and Energy Systems Seminar",
+      "institution": "University of Tennessee, Knoxville",
+      "terms": ["F'19", "S'21"]
+    }
+  ],
+    "researchAreas": [
+    {
+      "name": "Advanced Grid Modeling, Simulation, and Stability Analysis",
+      "contributions": [
+        "Proposed a symbolic-numeric framework for rapid prototyping of dynamic models",
+        "Proposed a communication-in-the-loop testbed architecture for wide-area control",
+        "Reviewed power electronics control and cybersecurity challenges",
+        "Studied disturbance propagation in systems with grid-following and grid-forming converters"
+      ]
+    },
+    {
+      "name": "High-Performance Computing",
+      "contributions": [
+        "Effective parallelism for accelerating equation and Jacobian evaluation in power flow",
+        "Revisit the computational performance of the Ybus method on modern computers with data parallelism",
+        "Understanding the performance of preconditioned iterative methods for fast-decoupled power flow on GPUs"
+      ]
+    },
+    {
+      "name": "Emerging Learning Techniques for Control",
+      "contributions": [
+        "Development of open-source Andes-Gym environment to support reinforcement learning-based control in power systems",
+        "Using machine learning to integrate dynamic response in a unit-commitment problem",
+        "Transmission and distribution co-simulation and control"
+      ]
+    }
+  ],
+  "services": {
+    "editorialBoards": [
+      {
+        "role": "Associate Editor",
+        "journal": "IET Energy Conversion and Economics",
+        "period": "2012-Present"
+      },
+      {
+        "role": "Associate Editor",
+        "journal": "Protection and Control of Modern Power Systems",
+        "period": "2012-Present"
+      },
+      {
+        "role": "Associate Editor",
+        "journal": "Journal of Modern Power Systems and Clean Energy",
+        "period": "2019-Present"
+      },
+      {
+        "role": "Guest Editor",
+        "journal": "Frontiers in Energy Research",
+        "period": "2022",
+        "details": "Special Issue: Advances in Distributed Energy Resources Aggregation for the Low Carbon Future"
+      },
+      {
+        "role": "Guest Editor",
+        "journal": "IET Generation, Transmission and Distribution",
+        "period": "2021"
+      }
+    ],
+    "societyServices": [
+      {
+        "role": "Vice Chair and TCPC",
+        "organization": "Computer and Analytical Methods Subcommittee (CAMS), IEEE Power and Energy Society",
+        "period": "2023-Present"
+      },
+      {
+        "role": "Secretary",
+        "organization": "Ultra-Wide-Area HVDC Overlay Studies Task Force, IEEE Power and Energy Society",
+        "period": "2018-Present"
+      },
+      {
+        "role": "Member",
+        "organization": "Power System Stability Control Subcommittee",
+        "period": "2022-Present"
+      }
+    ],
+    "reviewServices": [
+      {
+        "type": "Proposal Review",
+        "organization": "National Science Foundation",
+        "year": "2024",
+        "details": "Reviewer for three panels"
+      },
+      {
+        "type": "Proposal Review",
+        "organization": "Department of Energy",
+        "year": "2023",
+        "details": "Panel Reviewer for two panels"
+      }
+    ],
+    "departmental": [
+      {
+        "role": "Member",
+        "committee": "Colloquium Committee",
+        "period": "2024-Present"
+      }
+    ]
+  },
+  "presentations": {
+    "invitedTalks": [
+      {
+        "venue": "IEEE PES Young Professional Phoenix Chapter",
+        "type": "Webinar",
+        "date": "2024-05",
+        "title": "The Pursuit for a Generalized Simulation Framework for Power System Transients and Stability"
+      },
+      {
+        "venue": "Stony Brook University",
+        "type": "Webinar",
+        "date": "2024-05",
+        "title": "Hybrid-Symbolic Numeric Framework for Power System Dynamics: ANDES Package and Future Directions"
+      },
+      {
+        "venue": "NC State University",
+        "type": "Seminar",
+        "date": "2024-03",
+        "title": "The New Dynamics: Computational Solutions to Modeling and Simulation of Sustainable Power Systems"
+      },
+      {
+        "venue": "Clarkson University",
+        "type": "Webinar",
+        "date": "2024-03",
+        "title": "Hybrid-Symbolic Numeric Framework forPower System Dynamics: ANDES Package and Future Directions"
+      },
+      {
+        "venue": "SUNY Buffalo",
+        "type": "Seminar",
+        "date": "2024-03",
+        "title": "The New Dynamics: Computational Solutions to Modeling and Simulation of Sustainable Power Systems"
+      },
+      {
+        "venue": "Southern Methodist University",
+        "type": "Seminar",
+        "date": "2024-03",
+        "title": "The New Dynamics: Computational Solutions to Modeling and Simulation of Sustainable Power Systems"
+      },
+      {
+        "venue": "Rowan University",
+        "type": "Seminar",
+        "date": "2024-02",
+        "title": "The New Dynamics: Computational Solutions to Modeling and Simulation of Sustainable Power Systems"
+      },
+      {
+        "venue": "University of Georgia",
+        "type": "Seminar",
+        "date": "2023-02",
+        "title": "Advancing Cyber-Physical Power Systems Research Using Modern Computer Technologies"
+      },
+      {
+        "venue": "University of Houston",
+        "type": "Webinar",
+        "date": "2022-11",
+        "title": "Symbolics-Assisted Modeling for High-Performance Power System Simulation"
+      },
+      {
+        "venue": "Washington State University",
+        "type": "Webinar",
+        "date": "2022-10",
+        "title": "Composable, Expressive and Portable Modeling for High-Performance Power System Simulation"
+      },
+      {
+        "venue": "CURENT Industry Members",
+        "type": "Presentation",
+        "date": "2022-06",
+        "title": "Disturbance Propagation in Power Grids With High Converter Penetration"
+      }
+    ],
+    "conferences": [
+      {
+        "title": "Andes_gym: A Versatile Environment for Deep Reinforcement Learning in Power Systems",
+        "venue": "2022 IEEE PESGM",
+        "location": "Denver",
+        "date": "2022-06",
+        "type": "Best Paper Presentation",
+        "description": "Presented a novel open-source environment for applying reinforcement learning to power system control problems, featuring integration with ANDES for high-fidelity power system simulation.",
+        "url": ""
+      },
+      {
+        "title": "Application of Electric Grid Simulators for Education",
+        "venue": "2021 IEEE PESGM",
+        "location": "Online",
+        "date": "2021-07",
+        "type": "Panel Session Presentation",
+        "description": "Discussed innovative approaches to using power system simulators in engineering education, focusing on hands-on learning and real-world applications.",
+        "url": ""
+      },
+      {
+        "title": "HVDC Overlays in Testbeds",
+        "venue": "2019 IEEE PESGM",
+        "location": "Atlanta",
+        "date": "2019-08",
+        "type": "Panel Session Presentation",
+        "url": ""
+      }
+    ],
+    "outreach": [
+      {
+        "activity": "Faculty mentor for OSU CEAT Summer Bridge",
+        "date": "2023-07",
+        "description": "Mentored incoming engineering students during the summer bridge program, introducing them to power systems engineering and research opportunities in renewable energy integration."
+      },
+      {
+        "activity": "Organizer, Student visit to Central Rural Electric Coop, Stillwater",
+        "date": "2022-11",
+        "description": "Organized and led a field trip for undergraduate students to learn about electric cooperative operations, smart grid technologies, and career opportunities in power distribution."
+      },
+      {
+        "activity": "Co-Chaired Panel Session at 2022 IEEE PESGM: Combining physics-based and data-driven modeling and simulation for power systems",
+        "date": "2022-08"
+      },
+      {
+        "activity": "Faculty mentor for OSU CEAT Summer Bridge",
+        "date": "2022-07"
+      },
+      {
+        "activity": "Faculty mentor for OSU Discovery Day",
+        "date": "2022-04"
+      }
+    ]
+  },
+  "meta": {
+    "canonical": "https://raw.githubusercontent.com/cuihantao/jsoncv/refs/heads/master/schema/jsoncv.schema.prof.json",
+    "lastModified": "2025-01-02T00:00:00Z",
+    "colorPrimary": "#CC0000",
+    "citationStyles": {
+      "owner": "bold",
+      "mentee": "plus"
+    }
+  }
+}

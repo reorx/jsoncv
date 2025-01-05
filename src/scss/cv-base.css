@@ -1,23 +1,73 @@
 /* Mandatory page setup for all themes */
+:root {
+  /* A4: 210mm x 297mm */
+  /* Letter: 215.9mm x 279.4mm */
+  --page-width: 210mm;  /* default A4 */
+  --page-height: 297mm; /* default A4 */
+  --page-margin: 10mm;
+}
+
+:root[data-page-size="letter"] {
+  --page-width: 215.9mm;
+  --page-height: 279.4mm;
+}
+
 @page {
-  /* A4 */
-  /* size: 210mm 297mm;  */
-  size: A4;
-  margin: 10mm; /* approximately 0.4in */
+  size: var(--page-width) var(--page-height);
+  margin: var(--page-margin);
 }
 
 /* simulate print page size */
 .cv-container {
-  width: calc(210mm - 20mm);
-  padding: 10mm;
+  width: calc(var(--page-width) - 2 * var(--page-margin));
+  min-height: calc(var(--page-height) - 2 * var(--page-margin));
+  padding: var(--page-margin);
+  margin: 0 auto; /* center the container */
+  background: white;
+  box-sizing: border-box;
+  position: relative;
 }
+
+/* Add page size indicator */
+.cv-container::before {
+  content: "A4";
+  position: fixed;
+  top: 5px;
+  right: 5px;
+  background: #f0f0f0;
+  padding: 2px 6px;
+  border-radius: 3px;
+  font-size: 12px;
+  opacity: 0.7;
+}
+
+:root[data-page-size="letter"] .cv-container::before {
+  content: "Letter";
+}
+
 @media print {
-  /* remove the printing simulations and common decorations , let @page decide the size and margin */
-  .cv-container {
+  .cv-container::before {
+    display: none;
+  }
+  
+  @page {
+    size: var(--page-width) var(--page-height);
+    margin: var(--page-margin);
+  }
+  
+  html, body {
+    width: var(--page-width);
+    height: var(--page-height);
     margin: 0;
     padding: 0;
+  }
+  
+  .cv-container {
+    width: 100%;
+    min-height: 100%;
+    margin: 0;
+    padding: var(--page-margin);
     border: 0;
-    width: auto;
   }
 }
 

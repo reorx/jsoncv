@@ -1,0 +1,804 @@
+<%
+function linkInDiv(url) {
+  if (!url) return ''
+  return `<div class="url row"><a href="${url}" target="_blank">${fn.noSchemaURL(url)}</a></div>`
+}
+
+// Format citation from structured data
+function formatCitation(pub, index) {
+  // If we have pre-formatted HTML (from BibTeX), use it but replace the number
+  if (pub.formattedHTML) {
+    // Replace any number in [x] with current index + 1
+    return pub.formattedHTML.replace(/\[\d+\]/, `[${index + 1}]`);
+  }
+  
+  // Otherwise format from structured data
+  const parts = [];
+  if (pub.authors && pub.authors.length > 0) {
+    parts.push(pub.authors.join(', '));
+  }
+  if (pub.name) parts.push(`"${pub.name}"`);
+  if (pub.publisher) parts.push(pub.publisher);
+  if (pub.releaseDate) parts.push(pub.releaseDate);
+  
+  // Return formatted HTML with the same structure as Citation.js output
+  return `<div class="citation"><div class="csl-bib-body"><div class="csl-entry"><div class="csl-left-margin">[${index + 1}]</div><div class="csl-right-inline">${parts.join(', ')}</div></div></div></div>`;
+}
+
+function formatLocation(loc) {
+  const cityToCountry = ['city', 'region', 'postalCode', 'countryCode'].map(key => loc[key]).filter(v => v).join(', ')
+  if (!loc.address) return cityToCountry
+  return `${loc.address}, ${cityToCountry}`
+}
+
+function hasItems(arr) {
+  return Array.isArray(arr) && arr.length > 0
+}
+
+function dateRange(item, level) {
+  let {startDate, endDate} = item
+  if (!startDate && !endDate) return ''
+  let format
+  // level: 1: year, 2: month, 3: day
+  switch (level) {
+    case 1:
+      format = 'YYYY'
+      break;
+    case 2:
+      format = 'MMM YYYY'
+      break;
+  }
+  if (format) {
+    startDate = startDate ? fn.reformatDate(startDate, format) : ''
+    endDate = endDate ? fn.reformatDate(endDate, format) : ''
+  }
+  let result = ''
+  if (startDate && endDate) {
+    result = `${startDate} – ${endDate}`
+  } else if (startDate) {
+    result = `${startDate} – Present`
+  } else if (endDate) {
+    result = `Until ${endDate}`
+  }
+  return `<div class="date-range">${result}</div>`
+}
+
+function date(item, level) {
+  let {date} = item
+  if (!date) return ''
+  let format
+  // level: 1: year, 2: month, 3: day
+  switch (level) {
+    case 1:
+      format = 'YYYY'
+      break;
+    case 2:
+      format = 'MMM YYYY'
+      break;
+  }
+  if (format) {
+    date = date ? fn.reformatDate(date, format) : ''
+  }
+  return `<div class="date-range">${date}</div>`
+}
+%>
+
+  <div class="theme-toggle" onclick="toggleTheme()" data-mode="light">
+    <span class="theme-icon light">☀️</span>
+    <span class="theme-icon dark">🌙</span>
+  </div>
+  
+  <!-- Basics -->
+  <section class="basics-section">
+    <h1><%= cv.basics.name %></h1>
+    <% if (cv.basics.label) { %>
+      <div class="label row subtitle"><%= cv.basics.label %></div>
+    <% } %>
+    <div class="contact row">
+      <% if (cv.basics.email) { %>
+        <div class="item">
+          <%- fn.getIconSVG('mdi:email') %>
+          <span><a href="mailto:<%= cv.basics.email %>"><%= cv.basics.email %></a></span>
+        </div>
+      <% } %>
+      <% if (cv.basics.url) { %>
+        <div class="item">
+          <%- fn.getIconSVG('mdi:link-variant') %>
+          <span><a href="<%= cv.basics.url %>" target="_blank" class="colored-link"><%= fn.noSchemaURL(cv.basics.url) %></a></span>
+        </div>
+      <% } %>
+      <% if (cv.basics.profiles) { %>
+        <% for (const profile of cv.basics.profiles) { %>
+          <div class="item">
+            <% if (profile.network === 'LinkedIn') { %>
+              <%- fn.getIconSVG('mdi:linkedin') %>
+            <% } else if (profile.network === 'Google Scholar') { %>
+              <%- fn.getIconSVG('mdi:school') %>
+            <% } else if (profile.network === 'Scopus') { %>
+              <%- fn.getIconSVG('mdi:database') %>
+            <% } %>
+            <span><a href="<%= profile.url %>" target="_blank" class="colored-link"><%= profile.network %></a></span>
+          </div>
+        <% } %>
+      <% } %>
+    </div>
+    <div class="contact row">
+      <% if (cv.basics.phone) { %>
+        <div class="item">
+          <%- fn.getIconSVG('mdi:phone') %>
+          <span><%= cv.basics.phone %></span>
+        </div>
+      <% } %>
+      <% if (cv.basics.location) { %>
+        <div class="item">
+          <%- fn.getIconSVG('mdi:location') %>
+          <span><%= formatLocation(cv.basics.location) %></span>
+        </div>
+      <% } %>
+    </div>
+    <% if (cv.basics.summary) { %>
+      <div class="summary p"><%- fn.renderMarkdown(cv.basics.summary) %></div>
+    <% } %>
+  </section>
+
+  <!-- Education -->
+  <% if (hasItems(cv.education)) { %>
+  <section class="education-section">
+    <div class="section-title">
+      <h2>Education</h2>
+      <div class="line"></div>
+    </div>
+    <% for (const item of cv.education) { %>
+      <div class="education section-item">
+        <div class="row">
+          <h3><%= item.institution %></h3>
+        </div>
+        <div class="row space-between">
+          <div class="study subtitle">
+            <%= item.studyType %> <%= item.area %>
+          </div>
+          <div class="year">
+            <% 
+              const startYear = item.startDate ? item.startDate.split('-')[0] : '';
+              const endYear = item.endDate === 'Present' ? 'Present' : 
+                            item.endDate ? item.endDate.split('-')[0] : '';
+            %>
+            <%= startYear %><% if (startYear && endYear) { %> - <% } %><%= endYear %>
+          </div>
+        </div>
+        <% if (item.score) { %><div class="score row">Overall GPA: <%= item.score %></div><% } %>
+        <% if (item.dissertation) { %>
+          <div class="dissertation row">Dissertation: <%= item.dissertation %></div>
+        <% } %>
+        <% if (item.thesis) { %>
+          <div class="thesis row">Thesis: <%= item.thesis %></div>
+        <% } %>
+        <% if (item.courses && item.courses.length > 0) { %>
+          <div class="courses row">
+            Courses: <%= item.courses.join('; ') %>
+          </div>
+        <% } %>
+      </div>
+    <% } %>
+  </section>
+  <% } %>
+
+  <!-- Work -->
+  <% if (hasItems(cv.work)) { %>
+  <section class="work-section">
+    <div class="section-title">
+      <h2>Work Experience</h2>
+      <div class="line"></div>
+    </div>
+    <% for (const item of cv.work) { %>
+      <div class="work section-item">
+        <% if (item.name !== (cv.work[cv.work.indexOf(item) - 1] || {}).name) { %>
+        <div class="row">
+          <h3><%= item.name %></h3>
+        </div>
+        <% } %>
+        <div class="row space-between">
+          <div class="position subtitle"><%= item.position %></div>
+          <div class="year">
+            <% 
+              const startYear = item.startDate ? item.startDate.split('-')[0] : '';
+              const endYear = item.endDate === 'Present' ? 'Present' : 
+                            item.endDate ? item.endDate.split('-')[0] : 'Present';
+            %>
+            <%= startYear %><% if (startYear && endYear) { %> - <% } %><%= endYear %>
+          </div>
+        </div>
+        <div class="summary p secondary-text"><%- fn.renderMarkdown(item.summary) %></div>
+        <% if (item.highlights && item.highlights.length > 0) { %>
+          <div class="highlights row">
+            <ul>
+            <% for (const hl of item.highlights) { %>
+              <li><%- fn.renderMarkdown(hl, true) %></li>
+            <% } %>
+            </ul>
+          </div>
+        <% } %>
+      </div>
+    <% } %>
+  </section>
+  <% } %>
+
+  <!-- Research Areas -->
+  <% if (hasItems(cv.researchAreas)) { %>
+  <section class="research-areas-section">
+    <div class="section-title">
+      <h2>Research Areas</h2>
+      <div class="line"></div>
+    </div>
+    <% for (const item of cv.researchAreas) { %>
+      <div class="research-area section-item">
+        <h3><%= item.name %></h3>
+        <% if (item.description) { %>
+          <div class="description p"><%- fn.renderMarkdown(item.description) %></div>
+        <% } %>
+        <% if (item.keywords && Array.isArray(item.keywords) && item.keywords.length > 0) { %>
+          <div class="keywords">
+            <% for (const kw of item.keywords) { %>
+              <span class="item"><%= kw %></span>
+            <% } %>
+          </div>
+        <% } %>
+      </div>
+    <% } %>
+  </section>
+  <% } %>
+
+  <!-- Publications -->
+  <% 
+  // Group publications by type, defaulting to 'other' if type not specified
+  const journalPubs = cv.publications?.filter(p => p.type === 'journal') || []
+  const conferencePubs = cv.publications?.filter(p => p.type === 'conference') || []
+  const otherPubs = cv.publications?.filter(p => !p.type || p.type === 'other') || []
+
+  // Only show section if there are publications
+  if (hasItems(journalPubs) || hasItems(conferencePubs) || hasItems(otherPubs)) { 
+  %>
+  <section class="publications-section">
+    <div class="section-title">
+      <h2>Publications</h2>
+      <div class="line"></div>
+    </div>
+
+    <% if (hasItems(journalPubs)) { %>
+      <div class="subsection">
+        <h3>Journal Papers</h3>
+        <% for (let i = 0; i < journalPubs.length; i++) { %>
+          <div class="publication section-item">
+            <div class="citation"><%- formatCitation(journalPubs[i], i) %></div>
+            <%- linkInDiv(journalPubs[i].url) %>
+          </div>
+        <% } %>
+      </div>
+    <% } %>
+
+    <% if (hasItems(conferencePubs)) { %>
+      <div class="subsection">
+        <h3>Conference Papers</h3>
+        <% for (let i = 0; i < conferencePubs.length; i++) { %>
+          <div class="publication section-item">
+            <div class="citation"><%- formatCitation(conferencePubs[i], i) %></div>
+            <%- linkInDiv(conferencePubs[i].url) %>
+          </div>
+        <% } %>
+      </div>
+    <% } %>
+
+    <% if (hasItems(otherPubs)) { %>
+      <div class="subsection">
+        <h3>Other Publications</h3>
+        <% for (let i = 0; i < otherPubs.length; i++) { %>
+          <div class="publication section-item">
+            <div class="citation"><%- formatCitation(otherPubs[i], i) %></div>
+            <%- linkInDiv(otherPubs[i].url) %>
+          </div>
+        <% } %>
+      </div>
+    <% } %>
+  </section>
+  <% } %>
+
+  <!-- Projects -->
+  <% if (hasItems(cv.projects)) { %>
+  <section class="projects-section">
+    <div class="section-title">
+      <h2>Projects</h2>
+      <div class="line"></div>
+    </div>
+    <% for (const item of cv.projects) { %>
+      <div class="project section-item">
+        <div class="row space-between">
+          <h3><%= item.name %></h3>
+          <%- linkInDiv(item.url) %>
+        </div>
+        <div class="row space-between">
+          <% if (item.roles && item.roles.length > 0) { %>
+            <div class="roles subtitle"><%= item.roles.join(', ') %></div>
+          <% } %>
+          <%- dateRange(item, 2) %>
+        </div>
+        <div class="row _text-dim"><%- fn.renderMarkdown(item.description, true) %></div>
+        <% if (item.highlights && item.highlights.length > 0) { %>
+          <% if (item.highlights.length === 1) { %>
+            <div class="highlights p"><%- fn.renderMarkdown(item.highlights[0], true) %></div>
+          <% } else { %>
+            <div class="highlights row">
+              <ul>
+              <% for (const hl of item.highlights) { %>
+                <li><%- fn.renderMarkdown(hl, true) %></li>
+              <% } %>
+              </ul>
+            </div>
+          <% } %>
+        <% } %>
+        <% if (item.keywords && Array.isArray(item.keywords) && item.keywords.length > 0) { %>
+          <div class="keywords row">
+            <% for (const kw of item.keywords) { %>
+              <span class="item"><%= kw %></span>
+            <% } %>
+          </div>
+        <% } %>
+      </div>
+    <% } %>
+  </section>
+  <% } %>
+
+  <!-- Teaching -->
+  <% if (hasItems(cv.teaching)) { %>
+  <section class="teaching-section">
+    <div class="section-title">
+      <h2>Teaching Experience</h2>
+      <div class="line"></div>
+    </div>
+    <% for (const item of cv.teaching) { %>
+      <div class="course section-item">
+        <div class="row space-between">
+          <div class="course-info">
+            <div class="code"><%= item.courseCode %></div>
+            <div class="name"><%= item.courseName %></div>
+          </div>
+          <div class="terms"><%= item.terms.join(', ') %></div>
+        </div>
+        <% if (item.description) { %>
+          <div class="description p"><%- fn.renderMarkdown(item.description) %></div>
+        <% } %>
+      </div>
+    <% } %>
+  </section>
+  <% } %>
+
+  <!-- Mentoring -->
+  <% if (cv.mentoring) { %>
+  <section class="mentoring-section">
+    <div class="section-title">
+      <h2>Mentoring</h2>
+      <div class="line"></div>
+    </div>
+    
+    <% if (hasItems(cv.mentoring.current_students)) { %>
+      <h3>Current Students</h3>
+      
+      <!-- PhD Students -->
+      <% const phd_students = cv.mentoring.current_students.filter(s => s.level === 'Ph.D.') %>
+      <% if (phd_students.length > 0) { %>
+        <h4>Ph.D. Students</h4>
+        <% for (const student of phd_students) { %>
+          <div class="student section-item">
+            <div class="row space-between">
+              <div class="name">
+                <%= student.name %>
+                <% if (student.url) { %>
+                  <a href="<%= student.url %>" target="_blank"><%- fn.getIconSVG('mdi:link-variant') %></a>
+                <% } %>
+              </div>
+              <% if (student.startDate) { %>
+                <div class="period">Since <%= student.startDate %></div>
+              <% } %>
+            </div>
+            <% if (student.dissertation) { %>
+              <div class="details">
+                <div class="dissertation">Dissertation: <%= student.dissertation %></div>
+              </div>
+            <% } %>
+          </div>
+        <% } %>
+      <% } %>
+
+      <!-- Master's Students -->
+      <% const ms_students = cv.mentoring.current_students.filter(s => s.level === 'M.S.') %>
+      <% if (ms_students.length > 0) { %>
+        <h4>Master's Students</h4>
+        <% for (const student of ms_students) { %>
+          <div class="student section-item">
+            <div class="row space-between">
+              <div class="name">
+                <%= student.name %>
+                <% if (student.url) { %>
+                  <a href="<%= student.url %>" target="_blank"><%- fn.getIconSVG('mdi:link-variant') %></a>
+                <% } %>
+              </div>
+              <% if (student.startDate) { %>
+                <div class="period">Since <%= student.startDate %></div>
+              <% } %>
+            </div>
+            <div class="details">
+              <% if (student.type) { %>
+                <div class="type"><%= student.type %> Program</div>
+              <% } %>
+              <% if (student.type === 'Thesis' && student.thesis_title) { %>
+                <div class="thesis">Thesis: <%= student.thesis_title %></div>
+              <% } %>
+            </div>
+          </div>
+        <% } %>
+      <% } %>
+
+      <!-- Undergraduate Students -->
+      <% const ug_students = cv.mentoring.current_students.filter(s => s.level === 'Undergraduate') %>
+      <% if (ug_students.length > 0) { %>
+        <h4>Undergraduate Researchers</h4>
+        <% for (const student of ug_students) { %>
+          <div class="student section-item">
+            <div class="row space-between">
+              <div class="name">
+                <%= student.name %>
+                <% if (student.url) { %>
+                  <a href="<%= student.url %>" target="_blank"><%- fn.getIconSVG('mdi:link-variant') %></a>
+                <% } %>
+              </div>
+              <% if (student.period) { %>
+                <div class="period"><%= student.period %></div>
+              <% } %>
+            </div>
+            <% if (student.program) { %>
+              <div class="details">
+                <div class="program"><%= student.program %></div>
+              </div>
+            <% } %>
+          </div>
+        <% } %>
+      <% } %>
+    <% } %>
+
+    <% if (hasItems(cv.mentoring.committee_service)) { %>
+      <h3>Ph.D. Committee Service</h3>
+      <% const current = cv.mentoring.committee_service.filter(s => s.status === 'Current') %>
+      <% const completed = cv.mentoring.committee_service.filter(s => s.status === 'Completed') %>
+      
+      <% if (current.length > 0) { %>
+        <h4>Current</h4>
+        <% for (const student of current) { %>
+          <div class="student section-item">
+            <div class="row space-between">
+              <div class="name"><%= student.name %></div>
+              <div class="institution"><%= student.institution %></div>
+            </div>
+            <div class="details">
+              <div class="dissertation">Dissertation: <%= student.dissertation %></div>
+            </div>
+          </div>
+        <% } %>
+      <% } %>
+
+      <% if (completed.length > 0) { %>
+        <h4>Completed</h4>
+        <% for (const student of completed) { %>
+          <div class="student section-item">
+            <div class="row space-between">
+              <div class="name"><%= student.name %></div>
+              <div class="institution"><%= student.institution %></div>
+            </div>
+            <div class="details">
+              <div class="dissertation">Dissertation: <%= student.dissertation %></div>
+              <% if (student.completionDate) { %>
+                <div class="completion-date">Completed: <%= student.completionDate %></div>
+              <% } %>
+            </div>
+          </div>
+        <% } %>
+      <% } %>
+    <% } %>
+
+    <% if (hasItems(cv.mentoring.past_students)) { %>
+      <h3>Past Students</h3>
+      <% for (const student of cv.mentoring.past_students) { %>
+        <div class="student section-item">
+          <div class="row space-between">
+            <div class="name">
+              <%= student.name %>
+              <% if (student.url) { %>
+                <a href="<%= student.url %>" target="_blank"><%- fn.getIconSVG('mdi:link-variant') %></a>
+              <% } %>
+            </div>
+            <div class="level"><%= student.level %></div>
+          </div>
+          <div class="details">
+            <div class="institution"><%= student.institution %></div>
+            <% if (student.startDate || student.endDate) { %>
+              <div class="period">
+                <%= student.startDate || '' %><% if (student.startDate && student.endDate) { %> - <% } %><%= student.endDate || '' %>
+              </div>
+            <% } %>
+            <% if (student.level === 'Ph.D.' && student.dissertation) { %>
+              <div class="dissertation">Dissertation: <%= student.dissertation %></div>
+            <% } %>
+            <% if (student.level === 'M.S.') { %>
+              <% if (student.type) { %>
+                <div class="type"><%= student.type %> Program</div>
+              <% } %>
+              <% if (student.type === 'Thesis' && student.thesis_title) { %>
+                <div class="thesis">Thesis: <%= student.thesis_title %></div>
+              <% } %>
+            <% } %>
+            <% if (student.level === 'Undergraduate' && student.program) { %>
+              <div class="program"><%= student.program %></div>
+            <% } %>
+            <% if (student.placement) { %>
+              <div class="placement">
+                <% if (student.placement.position && student.placement.organization) { %>
+                  Currently <%= student.placement.position %> at <%= student.placement.organization %>
+                  <% if (student.placement.location) { %>
+                    , <%= student.placement.location %>
+                  <% } %>
+                <% } else { %>
+                  <% if (student.placement.position) { %>
+                    Currently <%= student.placement.position %>
+                  <% } %>
+                  <% if (student.placement.organization) { %>
+                    at <%= student.placement.organization %>
+                  <% } %>
+                  <% if (student.placement.location) { %>
+                    , <%= student.placement.location %>
+                  <% } %>
+                <% } %>
+              </div>
+            <% } %>
+          </div>
+        </div>
+      <% } %>
+    <% } %>
+  </section>
+  <% } %>
+
+  <!-- Presentations -->
+  <% if (cv.presentations) { %>
+  <section class="presentations-section">
+    <div class="section-title">
+      <h2>Presentations</h2>
+      <div class="line"></div>
+    </div>
+
+    <% if (hasItems(cv.presentations.invitedTalks)) { %>
+      <h3>Invited Talks</h3>
+      <% for (const item of cv.presentations.invitedTalks) { %>
+        <div class="talk section-item">
+          <div class="row space-between">
+            <h4><%= item.title || 'TBD' %></h4>
+            <%- date(item, 2) %>
+          </div>
+          <div class="venue row subtitle secondary-text">
+            <%= item.venue %> (<%= item.type %>)
+          </div>
+          <% if (item.description) { %>
+            <div class="description p secondary-text"><%- fn.renderMarkdown(item.description) %></div>
+          <% } %>
+        </div>
+      <% } %>
+    <% } %>
+
+    <% if (hasItems(cv.presentations.conferences)) { %>
+      <h3>Conference Presentations</h3>
+      <% for (const item of cv.presentations.conferences) { %>
+        <div class="presentation section-item">
+          <div class="row space-between">
+            <h4><%= item.title %></h4>
+            <%- date(item, 2) %>
+          </div>
+          <div class="venue row subtitle secondary-text">
+            <%= item.venue %> (<%= item.type %>)
+            <% if (item.location) { %> - <%= item.location %><% } %>
+          </div>
+          <% if (item.description) { %>
+            <div class="description p secondary-text"><%- fn.renderMarkdown(item.description) %></div>
+          <% } %>
+          <%- linkInDiv(item.url) %>
+        </div>
+      <% } %>
+    <% } %>
+
+    <% if (hasItems(cv.presentations.outreach)) { %>
+      <h3>Outreach Activities</h3>
+      <% for (const item of cv.presentations.outreach) { %>
+        <div class="outreach section-item">
+          <div class="row space-between">
+            <h4><%= item.activity %></h4>
+            <%- date(item, 2) %>
+          </div>
+          <% if (item.description) { %>
+            <div class="description p secondary-text"><%- fn.renderMarkdown(item.description) %></div>
+          <% } %>
+          <%- linkInDiv(item.url) %>
+        </div>
+      <% } %>
+    <% } %>
+  </section>
+  <% } %>
+
+  <!-- Awards -->
+  <% if (hasItems(cv.awards)) { %>
+  <section class="awards-section">
+    <div class="section-title">
+      <h2>Awards</h2>
+      <div class="line"></div>
+    </div>
+    <% for (const item of cv.awards) { %>
+      <div class="award section-item">
+        <div class="row space-between">
+          <h4><%= item.title %></h4>
+          <%- date(item, 2) %>
+        </div>
+        <div class="awarder row subtitle"><%= item.awarder %></div>
+        <% if (item.summary) { %>
+          <div class="summary p secondary-text"><%- fn.renderMarkdown(item.summary) %></div>
+        <% } %>
+      </div>
+    <% } %>
+  </section>
+  <% } %>
+
+  <!-- Professional Services -->
+  <% if (cv.services) { %>
+  <section class="professional-services-section">
+    <div class="section-title">
+      <h2>Professional Services</h2>
+      <div class="line"></div>
+    </div>
+
+    <!-- Editorial Boards -->
+    <% if (hasItems(cv.services.editorialBoards)) { %>
+      <h3>Editorial Service</h3>
+      <% for (const item of cv.services.editorialBoards) { %>
+        <div class="service section-item">
+          <div class="row space-between">
+            <div class="role"><%= item.role %></div>
+            <div class="period"><%= item.period %></div>
+          </div>
+          <div class="journal subtitle"><%= item.journal %></div>
+          <% if (item.details) { %>
+            <div class="details p secondary-text"><%- fn.renderMarkdown(item.details) %></div>
+          <% } %>
+        </div>
+      <% } %>
+    <% } %>
+
+    <!-- Society Services -->
+    <% if (hasItems(cv.services.societyServices)) { %>
+      <h3>Society Service</h3>
+      <% for (const item of cv.services.societyServices) { %>
+        <div class="service section-item">
+          <div class="row space-between">
+            <div class="role"><%= item.role %></div>
+            <div class="period"><%= item.period %></div>
+          </div>
+          <div class="organization subtitle"><%= item.organization %></div>
+        </div>
+      <% } %>
+    <% } %>
+
+    <!-- Review Services -->
+    <% if (hasItems(cv.services.reviewServices)) { %>
+      <h3>Review Service</h3>
+      <% for (const item of cv.services.reviewServices) { %>
+        <div class="service section-item">
+          <div class="row space-between">
+            <div class="type"><%= item.type %></div>
+            <div class="year"><%= item.year %></div>
+          </div>
+          <div class="organization subtitle"><%= item.organization %></div>
+          <% if (item.details) { %>
+            <div class="details p"><%- fn.renderMarkdown(item.details) %></div>
+          <% } %>
+        </div>
+      <% } %>
+    <% } %>
+
+    <!-- Department Services -->
+    <% if (hasItems(cv.services.departmental)) { %>
+      <h3>Department Service</h3>
+      <% for (const item of cv.services.departmental) { %>
+        <div class="service section-item">
+          <div class="row space-between">
+            <div class="role"><%= item.role %></div>
+            <div class="period"><%= item.period %></div>
+          </div>
+          <div class="committee subtitle"><%= item.committee %></div>
+        </div>
+      <% } %>
+    <% } %>
+  </section>
+  <% } %>
+
+  <!-- Certificates -->
+  <% if (hasItems(cv.certificates)) { %>
+  <section class="certificates-section">
+    <div class="section-title">
+      <h2>Certificates</h2>
+      <div class="line"></div>
+    </div>
+    <% for (const item of cv.certificates) { %>
+      <div class="certificate section-item">
+        <div class="row space-between">
+          <h3><%= item.name %></h3>
+          <%- date(item, 2) %>
+        </div>
+        <div class="fluency row subtitle"><%= item.issuer %></div>
+        <%- linkInDiv(item.url) %>
+      </div>
+    <% } %>
+  </section>
+  <% } %>
+
+  <!-- Skills -->
+  <% if (hasItems(cv.skills)) { %>
+  <section class="skills-section">
+    <div class="section-title">
+      <h2>Skills</h2>
+      <div class="line"></div>
+    </div>
+    <div class="two-columns">
+    <% for (const item of cv.skills) { %>
+      <div class="skill section-item">
+        <h3><%= item.name %></h3>
+        <div class="level row subtitle"><%= item.level %></div>
+        <% if (item.summary) { %>
+          <div class="summary p"><%- fn.renderMarkdown(item.summary) %></div>
+        <% } %>
+        <% if (item.keywords && Array.isArray(item.keywords) && item.keywords.length > 0) { %>
+          <div class="keywords">
+            <% for (const kw of item.keywords) { %>
+              <span class="item"><%= kw %></span>
+            <% } %>
+          </div>
+        <% } %>
+      </div>
+    <% } %>
+    </div>
+  </section>
+  <% } %>
+
+  <!-- Languages -->
+  <% if (hasItems(cv.languages)) { %>
+  <section class="languages-section page-unit">
+    <div class="section-title">
+      <h2>Languages</h2>
+      <div class="line"></div>
+    </div>
+    <div class="two-columns">
+    <% for (const item of cv.languages) { %>
+      <div class="language section-item">
+        <h3><%= item.language %></h3>
+        <div class="fluency row subtitle"><%= item.fluency %></div>
+        <% if (item.summary) { %>
+          <div class="summary p"><%- fn.renderMarkdown(item.summary) %></div>
+        <% } %>
+      </div>
+    <% } %>
+    </div>
+  </section>
+  <% } %>
+
+  <!-- meta -->
+  <% if (cv.meta) { %>
+  <footer>
+    <% if (cv.meta.version) { %>
+      <div class="version">Version: <%= cv.meta.version %></div>
+    <% } %>
+    <% if (cv.meta.lastModified) { %>
+      <div class="version">Last modified: <%= cv.meta.lastModified.slice(0, 10) %></div>
+    <% } %>
+  </footer>
+  <% } %> 

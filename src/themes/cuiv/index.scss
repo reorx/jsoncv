@@ -1,0 +1,721 @@
+/* Naming convention: https://ricostacruz.com/rscss/ */
+
+// Colors
+$color-black: #000;
+$color-text-dim: #777;
+$color-text-dimmer: #999;
+$color-border-dim: #aaa;
+$color-border-dimmer: #ccc;
+
+// Font sizes
+$fz-1: 32px;
+$fz-2: 20px;
+$fz-3: 16px;
+$fz-4: 14px;
+$fz-5: 13px;
+$fz-6: 12px;
+$lh-p: 1.3;
+
+// Layout system
+:root {
+  // Theme colors
+  --bg-color: #fff;
+  --text-color: #{$color-black};
+  --text-dim: #{$color-text-dim};
+  --text-dimmer: #{$color-text-dimmer};
+  --border-dim: #{$color-border-dim};
+  --border-dimmer: #{$color-border-dimmer};
+  --keyword-bg: #f1f1f1;
+  
+  // Default color that can be overridden by meta.colorPrimary
+  --color-primary: #aaa;
+  
+  // Time display properties
+  --time-color: var(--text-color);
+  --time-font-style: italic;
+  --time-min-width: 7em;
+  --time-text-align: right;
+  --time-content-ratio: 75%;
+  
+  // Spacing system
+  --content-indent: 10em;      // Left indentation for content
+  --content-padding: 1em;      // Right padding for content
+  --section-gap-large: 1.2em;  // Large gaps between sections
+  --section-gap-medium: 1em;   // Medium gaps for major subsections
+  --section-gap: 0.8em;        // Normal gaps between sections
+  --section-gap-small: 0.4em;  // Small gaps between items
+  --section-gap-tiny: 0.2em;   // Tiny gaps for tight spacing
+  
+  // Print settings
+  --print-margin-top: 0.5in;    // Standard Letter margins
+  --print-margin-bottom: 0.5in;
+  --print-margin-left: 0.5in;
+  --print-margin-right: 0.5in;
+}
+
+// Dark mode
+:root[data-theme="dark"] {
+  --bg-color: #1a1a1a;
+}
+
+body {
+  margin: 0;
+  padding: 1rem;
+  min-height: 100vh;
+}
+
+.theme-toggle {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  background: #fff;
+  border: 1px solid var(--border-dimmer);
+  border-radius: 20px;
+  padding: 0.5rem;
+  cursor: pointer;
+  z-index: 1000;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  
+  @media print {
+    display: none;
+  }
+  
+  .theme-icon {
+    display: none;
+    font-size: 1.2rem;
+    line-height: 1;
+    
+    &.light {
+      display: inline;  // Show sun icon by default
+    }
+  }
+  
+  // Override default when dark mode is explicitly set
+  &[data-mode="dark"] {
+    .theme-icon.light { display: none; }
+    .theme-icon.dark { display: inline; }
+  }
+}
+
+.cv-container {
+  background: #fff;
+  color: var(--text-color);
+  font-size: 14px;
+  font-family: system-ui, sans-serif;
+  max-width: 8.5in;  // Letter width
+  margin: 0 auto;    // Center on screen
+  padding: 2rem;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  transition: background-color 0.3s, color 0.3s;
+  
+  &[data-color-mode="dark"] {
+    background: #1a1a1a;
+    color: #fff;
+    --text-color: #fff;
+    --text-dim: #aaa;
+    --text-dimmer: #888;
+    --border-dim: #666;
+    --border-dimmer: #444;
+    --keyword-bg: #2a2a2a;
+  }
+  
+  @media print {
+    width: 100%;
+    max-width: none;
+    margin: 0;
+    padding: 0;
+    box-shadow: none;
+    background: #fff !important;
+    color: #{$color-black} !important;
+    --text-color: #{$color-black} !important;
+    --text-dim: #{$color-text-dim} !important;
+    --text-dimmer: #{$color-text-dimmer} !important;
+    --border-dim: #{$color-border-dim} !important;
+    --border-dimmer: #{$color-border-dimmer} !important;
+    
+    // Only protect header and footer from breaking
+    .basics-section {
+      break-inside: avoid;
+      page-break-inside: avoid;
+    }
+  }
+}
+
+.date-range {
+  font-style: italic;
+}
+
+a {
+  color: var(--text-dim);
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+section {
+  .section-title {
+    margin-top: var(--section-gap-large);
+    margin-bottom: var(--section-gap);
+    display: flex;
+
+    h2 {
+      font-size: $fz-2;
+      font-weight: 600;
+      color: var(--color-primary);
+      margin: 0;
+    }
+    .line {
+      flex-grow: 1;
+      margin: 12px 0 0 1em;
+      height: 2px;
+      background-color: var(--color-primary);
+    }
+  }
+
+  .section-item {
+    margin-top: var(--section-gap-small);
+    margin-left: var(--content-indent);
+    padding-right: var(--content-padding);
+
+    h3 {
+      font-size: $fz-3;
+      line-height: 1.2;
+      margin: 0;
+    }
+
+    h4 {
+      font-size: $fz-4;
+      line-height: 1.2;
+      margin: 0;
+    }
+
+    ul {
+      margin: .3em 0;
+      padding-left: 1.5em;
+      li {
+        margin-bottom: .15em;
+      }
+    }
+  }
+
+  svg {
+    vertical-align: bottom;
+    position: relative;
+    bottom: 1px;
+  }
+  .row {
+    margin: .15em 0;
+  }
+  .p, p {
+    line-height: $lh-p;
+    margin: .3em 0;
+  }
+  .subtitle {
+    font-size: $fz-4;
+    // font-weight: 300;
+
+    @media screen and (max-width: 500px) {
+      display: flex;
+      align-items: center;
+    }
+  }
+
+  .space-between {
+    display: flex;
+    justify-content: space-between;
+
+    a {
+      color: var(--text-dim);
+    }
+  }
+
+  .keywords {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px 8px;
+    margin-top: .8em;
+
+    .item {
+      font-size: $fz-5;
+      color: var(--text-color);
+      padding: 2px 8px;
+      background: var(--keyword-bg);
+      border-radius: 4px;
+    }
+  }
+
+  .two-columns {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0 1.5em;
+
+    @media screen and (max-width: 500px) {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  /* helpers */
+  ._fz-4 {
+    font-size: $fz-4;
+  }
+  ._ul {
+    text-decoration: underline;
+  }
+  ._text-dim {
+    color: var(--text-dim);
+  }
+}
+
+@media print {
+  section {
+    .section-title {
+      margin-top: var(--section-gap);
+      margin-bottom: var(--section-gap-small);
+    }
+    .section-item {
+      margin-top: var(--section-gap-small);
+      margin-left: var(--content-indent);
+      padding-right: var(--content-padding);
+    }
+  }
+}
+
+.basics-section {
+  h1 {
+    font-size: $fz-1;
+    font-weight: 600;
+    margin: .1em 0;
+  }
+  .subtitle {
+    font-size: $fz-2;
+  }
+  .contact {
+    color: var(--text-dim);
+    display: flex;
+    flex-wrap: wrap;
+    gap: .4em 1em;
+
+    @media screen and (max-width: 500px) {
+      flex-direction: column;
+    }
+
+    .item {
+      a {
+        color: var(--color-primary);
+        &.colored-link {
+          color: var(--color-primary);
+          text-decoration: none;
+          &:hover {
+            text-decoration: underline;
+          }
+        }
+      }
+    }
+  }
+  .colored-links {
+    color: var(--color-primary);
+    display: flex;
+    flex-wrap: nowrap;
+    gap: 1em;
+    
+    .item {
+      white-space: nowrap;
+    }
+    
+    a {
+      color: inherit;
+      text-decoration: none;
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+  }
+}
+
+// Shared styles for sections with smaller text
+%academic-section {
+  font-size: $fz-5;
+  
+  .section-item {
+    line-height: 1.4;
+    
+    h3 {
+      font-size: $fz-4;
+    }
+    
+    h4 {
+      font-size: $fz-5;
+    }
+    
+    .subtitle {
+      font-size: $fz-5;
+    }
+  }
+}
+
+// Shared time display style and layout
+%time-display {
+  color: var(--text-color);
+  font-style: var(--time-font-style);
+  min-width: var(--time-min-width);
+  text-align: var(--time-text-align);
+}
+
+%time-container {
+  display: flex;
+  justify-content: space-between;
+  
+  // Content side
+  > *:first-child {
+    max-width: var(--time-content-ratio);
+  }
+  
+  // Time side - include all possible time-related classes
+  > .year,
+  > .date-range,
+  > .period,
+  > .terms {
+    @extend %time-display;
+  }
+}
+
+.education-section {
+  @extend %academic-section;
+  .space-between {
+    @extend %time-container;
+  }
+}
+
+.work-section {
+  @extend %academic-section;
+  .space-between {
+    @extend %time-container;
+  }
+}
+
+.projects-section {
+  @extend %academic-section;
+  .space-between {
+    @extend %time-container;
+  }
+}
+
+.sideprojects-section {
+  .description p:last-of-type {
+    margin-bottom: 0;
+  }
+}
+
+.research-metrics-section {
+  .metrics {
+    display: flex;
+    gap: 2em;
+    font-size: $fz-4;
+    
+    .item {
+      color: var(--text-dim);
+    }
+  }
+}
+
+.academic-appointments-section {
+  .appointment {
+    .department {
+      color: var(--text-dim);
+    }
+    .institution {
+      font-style: italic;
+    }
+  }
+}
+
+.teaching-section {
+  .course {
+    .row {
+      @extend %time-container;
+    }
+    .course-info {
+      display: flex;
+      gap: 1em;
+    }
+    .code {
+      font-weight: 600;
+    }
+    .terms {
+      @extend %time-display;
+    }
+  }
+}
+
+.grants-section {
+  .grant {
+    .amount {
+      font-weight: 600;
+      color: var(--color-primary);
+    }
+    .agency {
+      font-style: italic;
+      color: var(--text-dim);
+    }
+  }
+}
+
+.mentoring-section {
+  @extend %academic-section;
+  
+  h3 {
+    margin-top: var(--section-gap-medium);
+    margin-bottom: var(--section-gap-small);
+    color: var(--color-primary);
+    font-size: $fz-4;
+  }
+
+  h4 {
+    margin-top: 0.3em;
+    margin-bottom: 0.2em;
+    color: var(--text-dim);
+    font-size: $fz-5;
+  }
+  
+  .student {
+    margin-top: 0.2em;
+    
+    .row {
+      @extend %time-container;
+    }
+    
+    .name {
+      font-weight: 600;
+    }
+    
+    .details {
+      margin-top: 0.1em;
+    }
+    
+    .program, .period {
+      color: var(--text-dim);
+    }
+    
+    .dissertation, .thesis {
+      margin-top: 0.1em;
+    }
+  }
+}
+
+.editorial-positions-section {
+  .position {
+    .role {
+      font-weight: 600;
+    }
+    .journal {
+      font-style: italic;
+      color: var(--text-dim);
+    }
+  }
+}
+
+.professional-services-section {
+  @extend %academic-section;
+  
+  h3 {
+    margin-top: var(--section-gap-medium);
+    margin-bottom: var(--section-gap-small);
+    color: var(--color-primary);
+    font-size: $fz-4;
+  }
+
+  // Editorial Boards
+  .service {
+    margin-top: var(--section-gap-tiny);
+    
+    .space-between {
+      @extend %time-container;
+    }
+    
+    .role {
+      font-weight: 600;
+    }
+    
+    .journal, .organization, .committee {
+      font-style: italic;
+      color: var(--text-dim);
+    }
+    
+    .details {
+      margin: var(--section-gap-tiny) 0;
+      font-size: $fz-5;
+    }
+  }
+}
+
+.presentations-section {
+  @extend %academic-section;
+  
+  h3 {
+    margin-top: var(--section-gap-medium);
+    margin-bottom: var(--section-gap-small);
+    color: var(--color-primary);
+    font-size: $fz-4;
+  }
+
+  .talk, .presentation, .outreach {
+    margin-top: var(--section-gap-tiny);
+    
+    .space-between {
+      @extend %time-container;
+    }
+
+    .venue {
+      margin-top: var(--section-gap-tiny);
+      font-size: $fz-5;
+    }
+
+    .description {
+      margin: var(--section-gap-tiny) 0;
+      font-size: $fz-5;
+    }
+  }
+}
+
+.awards-section {
+  @extend %academic-section;
+  .space-between {
+    @extend %time-container;
+  }
+}
+
+.certificates-section {
+  @extend %academic-section;
+  .space-between {
+    @extend %time-container;
+  }
+}
+
+.publications-section {
+  @extend %academic-section;
+  
+  .subsection {
+    margin-bottom: var(--section-gap-medium);
+    
+    h3 {
+      color: var(--color-primary);
+      margin-bottom: var(--section-gap-small);
+      font-size: $fz-3;
+    }
+  }
+
+  .publication {
+    margin-bottom: var(--section-gap-small);
+
+    .citation {
+      line-height: $lh-p;
+      
+      strong {  // For CV owner highlighting
+        color: var(--color-primary);
+      }
+      
+      em {  // For mentee highlighting
+        font-style: italic;
+        color: var(--text-dim);
+      }
+
+      // Make citation number and content appear inline
+      .csl-bib-body {
+        display: flex;
+        align-items: flex-start;
+      }
+      
+      .csl-entry {
+        display: flex;
+        align-items: flex-start;
+        flex: 1;
+        
+        .csl-left-margin {
+          min-width: 2.5em;
+          padding-right: 0.5em;
+        }
+        
+        .csl-right-inline {
+          flex: 1;
+        }
+      }
+    }
+
+    .url {
+      margin-top: var(--section-gap-tiny);
+      font-size: $fz-5;
+      margin-left: 3em;  // Match citation content alignment (2.5em + 0.5em padding)
+    }
+
+    .summary {
+      margin-top: var(--section-gap-tiny);
+      color: var(--text-dim);
+      font-size: $fz-5;
+    }
+  }
+
+  .url a {
+    color: var(--text-dim);
+    &:hover {
+      color: var(--text-dim);
+    }
+  }
+}
+
+.research-areas-section {
+  @extend %academic-section;
+  
+  .section-item {
+    h3 {
+      font-size: $fz-4;
+      margin-bottom: 0.2em;
+    }
+    
+    .description {
+      font-size: $fz-5;
+      line-height: 1.3;
+    }
+    
+    .keywords {
+      margin-top: 0.4em;
+    }
+  }
+}
+
+// Update all other hardcoded color references
+.research-metrics-section .metrics .item,
+.academic-appointments-section .department,
+.teaching-section .terms,
+.grants-section .agency,
+.mentoring-section h4,
+.mentoring-section .program,
+.mentoring-section .period,
+.editorial-positions-section .journal,
+.professional-services-section .journal,
+.professional-services-section .organization,
+.professional-services-section .committee,
+.publications-section .citation em,
+.publications-section .summary,
+.publications-section .url a {
+  color: var(--text-dim);
+}
+
+footer {
+  margin-top: var(--section-gap-large);
+  padding-top: var(--section-gap);
+  border-top: 1px solid var(--border-dimmer);
+  color: var(--text-dimmer);
+  font-size: $fz-5;
+  
+  display: flex;
+  gap: 1em;
+}
+
+// Dark mode override
+.cv-container[data-color-mode="dark"] {
+  .keywords .item {
+    background: #2a2a2a;
+  }
+}

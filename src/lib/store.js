@@ -1,35 +1,44 @@
-export const storeKeys = {
-  cvJSON: 'cvJSON',
-  cvSavedTime: 'cvSavedTime',
-  primaryColor: 'primary-color',
-}
+const storeKeyCV = 'cv-data'
+const storeKeyCVSavedTime = 'cv-data-saved-time'
+const storeKeyPrimaryColor = 'primary-color'
+const storeKeyPageSize = 'page-size'
+const storeKeyTheme = 'theme'
 
-const defaultPrimaryColor = '#2A3FFB'
-
-function updateSavedTime() {
-  localStorage.setItem(storeKeys.cvSavedTime, Date.now())
-}
-
-export function saveCVJSON(str) {
-  localStorage.setItem(storeKeys.cvJSON, str)
-  updateSavedTime()
+export function saveCVJSON(json) {
+  localStorage.setItem(storeKeyCV, json)
+  localStorage.setItem(storeKeyCVSavedTime, Date.now().toString())
 }
 
 export function getCVData() {
-  const v = localStorage.getItem(storeKeys.cvJSON)
-  if (!v) return
-  return JSON.parse(v)
+  const json = localStorage.getItem(storeKeyCV)
+  if (!json) return null
+  return JSON.parse(json)
 }
 
 export function getCVSavedTime() {
-  return localStorage.getItem(storeKeys.cvSavedTime)
+  return localStorage.getItem(storeKeyCVSavedTime)
 }
 
 export function savePrimaryColor(color) {
-  localStorage.setItem(storeKeys.primaryColor, color)
-  updateSavedTime()
+  localStorage.setItem(storeKeyPrimaryColor, color)
 }
 
 export function getPrimaryColor() {
-  return localStorage.getItem(storeKeys.primaryColor) || defaultPrimaryColor
+  return localStorage.getItem(storeKeyPrimaryColor) || '#aaaaaa'
+}
+
+export function savePageSize(size) {
+  localStorage.setItem(storeKeyPageSize, size)
+}
+
+export function getPageSize() {
+  return localStorage.getItem(storeKeyPageSize) || 'A4'
+}
+
+export function saveTheme(theme) {
+  localStorage.setItem(storeKeyTheme, theme)
+}
+
+export function getTheme() {
+  return localStorage.getItem(storeKeyTheme) || 'reorx'
 }

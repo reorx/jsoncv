@@ -26,13 +26,29 @@
             <span class="value">#aaaaaa</span>
           </div>
         </label>
+        <label class="theme-picker">
+          <div>Theme</div>
+          <select id="fn-theme-picker"></select>
+        </label>
         <button id="fn-toggle-preview">Preview/JSON</button>
         <button id="fn-download-json">Download JSON</button>
         <button id="fn-download-html">Download HTML</button>
         <button onclick="dialog.showModal()">PDF?</button>
         <button id="fn-new-data" class="-green">New Data</button>
         <button id="fn-upload-data" class="-green">Upload Data</button>
-        <input type="file" name="upload-data" style="display: none;">
+        <input type="file" name="upload-data" accept=".json" style="display: none;">
+        
+        <div class="publications-box">
+          <div class="box-title">BibTeX</div>
+          <button id="fn-upload-bibtex" class="-green">Upload</button>
+          <button id="fn-download-bibtex">Download</button>
+          <div class="bibtex-mode">
+            <label><input type="radio" name="bibtex-mode" value="replace" checked> Replace</label>
+            <label><input type="radio" name="bibtex-mode" value="merge"> Merge</label>
+          </div>
+        </div>
+        <input type="file" name="upload-bibtex" accept=".bib,.txt" style="display: none;">
+        
         <button id="fn-load-sample" class="-green">Load Sample</button>
       </div>
     </div>

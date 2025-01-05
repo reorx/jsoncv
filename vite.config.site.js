@@ -28,6 +28,14 @@ const renderData = {
 
 export default defineConfig({
   root: 'src',
+  optimizeDeps: {
+    include: [
+      '@json-editor/json-editor/dist/jsoneditor',
+      'cash-dom',
+      'object-path',
+      'iconify-icon'
+    ]
+  },
   build: {
     // allows 'import.meta.glob' to work
     target: 'esnext',

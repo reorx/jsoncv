@@ -284,30 +284,60 @@
     },
     "publications": {
       "type": "array",
-      "description": "Specify your publications through your career",
       "items": {
         "type": "object",
-        "additionalProperties": true,
         "properties": {
           "name": {
             "type": "string",
-            "description": "e.g. The World Wide Web"
+            "description": "Title of the publication"
           },
-          "publisher": {
+          "authors": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "List of authors with highlighting markers"
+          },
+          "venue": {
             "type": "string",
-            "description": "e.g. IEEE, Computer Magazine"
+            "description": "Journal or conference name"
           },
           "releaseDate": {
-            "$ref": "#/definitions/iso8601"
+            "type": "string",
+            "description": "Publication year"
           },
           "url": {
             "type": "string",
-            "description": "e.g. http://www.computer.org.example.com/csdl/mags/co/1996/10/rx069-abs.html",
-            "format": "uri"
+            "format": "uri",
+            "description": "DOI or URL to the publication"
           },
           "summary": {
             "type": "string",
-            "description": "Short summary of publication. e.g. Discussion of the World Wide Web, HTTP, HTML."
+            "description": "Abstract or summary"
+          },
+          "citation": {
+            "type": "string",
+            "description": "Pre-formatted citation"
+          },
+          "formattedHTML": {
+            "type": "string",
+            "description": "HTML-formatted citation"
+          },
+          "type": {
+            "type": "string",
+            "enum": ["journal", "conference", "other"],
+            "description": "Type of publication"
+          },
+          "highlightInfo": {
+            "type": "object",
+            "properties": {
+              "hasOwner": {
+                "type": "boolean"
+              },
+              "hasMentee": {
+                "type": "boolean"
+              }
+            }
           }
         }
       }
@@ -516,11 +546,27 @@
         },
         "version": {
           "type": "string",
-          "description": "A version field which follows semver - e.g. v1.0.0"
+          "description": "Version of the CV"
         },
         "lastModified": {
           "type": "string",
-          "description": "Using ISO 8601 with YYYY-MM-DDThh:mm:ss"
+          "description": "Last modified time of the CV"
+        },
+        "colorPrimary": {
+          "type": "string",
+          "description": "Primary color for the CV theme"
+        },
+        "pageSize": {
+          "type": "string",
+          "description": "Page size for the CV (A4 or letter)",
+          "enum": ["A4", "letter"],
+          "default": "A4"
+        },
+        "theme": {
+          "type": "string",
+          "description": "Theme for the CV",
+          "enum": ["reorx", "cuiv"],
+          "default": "reorx"
         }
       }
     }

@@ -112,14 +112,32 @@ button {
       }
     }
   }
+
+  .theme-picker {
+    @include vars.button-base;
+    border: 1px solid var(--grey-2);
+    border-radius: 2px;
+    padding: 3px 8px;
+    font-size: 13px;
+    display: block;
+    width: 85px;
+
+    select {
+      width: 100%;
+      margin-top: 4px;
+      padding: 2px;
+    }
+  }
 }
 
 .output-html {
   // set a fixed size so that responsive styles won't be applied in the iframe
-  width: 795px; // 210mm ≈ 793px
+  width: 875px; // 795px * 1.1 ≈ 875px
   height: 100%;
-  margin: 0; padding: 0; border: 0;
+  margin: 0; // remove auto margin since we're in a grid
+  padding: 0; border: 0;
   border-right: 1px solid var(--grey-2);
+  display: block;
 }
 
 .output-json {
@@ -148,5 +166,67 @@ dialog {
   }
   100% {
     background-color: transparent;
+  }
+}
+
+.bibtex-controls {
+  margin: 5px 0;
+  
+  .bibtex-mode {
+    margin-top: 4px;
+    display: flex;
+    gap: 12px;
+    justify-content: center;
+    font-size: 0.9em;
+    
+    label {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      cursor: pointer;
+      
+      input[type="radio"] {
+        margin: 0;
+        cursor: pointer;
+      }
+    }
+  }
+}
+
+.publications-box {
+  margin: 12px 0;
+  padding: 6px 8px;
+  border: 1px solid var(--grey-2);
+  border-radius: 4px;
+  
+  .box-title {
+    font-weight: 500;
+    margin-bottom: 6px;
+    padding-bottom: 3px;
+    border-bottom: 1px solid var(--grey-2);
+  }
+  
+  button {
+    margin-bottom: 4px;
+  }
+  
+  .bibtex-mode {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+    margin-top: 2px;
+    font-size: 0.9em;
+    
+    label {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      cursor: pointer;
+      
+      input[type="radio"] {
+        margin: 0;
+        cursor: pointer;
+      }
+    }
   }
 }

@@ -224,3 +224,45 @@ section {
     margin-bottom: 0;
   }
 }
+
+.publications {
+  .item {
+    margin-bottom: 1.5em;
+    
+    .title {
+      font-weight: bold;
+      margin-bottom: 0.3em;
+    }
+    
+    .authors {
+      color: var(--color-primary);
+      margin-bottom: 0.3em;
+    }
+    
+    .publisher {
+      font-style: italic;
+      margin-bottom: 0.2em;
+    }
+    
+    .date {
+      color: #666;
+      font-size: 0.9em;
+      margin-bottom: 0.2em;
+    }
+    
+    .summary {
+      margin: 0.5em 0;
+    }
+    
+    .url {
+      font-size: 0.9em;
+      a {
+        color: var(--color-primary);
+        text-decoration: none;
+        &:hover {
+          text-decoration: underline;
+        }
+      }
+    }
+  }
+}

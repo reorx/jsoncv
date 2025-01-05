@@ -18,7 +18,6 @@ renderData.meta = {
   description: data.basics.summary.replace('\n', ' '),
 }
 
-
 export default defineConfig({
   build: {
     outDir: outDir,
