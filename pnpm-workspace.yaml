@@ -1,0 +1,20 @@
+# This file makes jsoncv its own pnpm workspace root. It matters when jsoncv is
+# used as a submodule of another pnpm project (see "Build a static CV site" in
+# README.md): without it, running pnpm here would climb up to the parent
+# project's pnpm-workspace.yaml and install the parent's dependency tree.
+
+onlyBuiltDependencies:
+  - esbuild
+
+# neither is needed: @parcel/watcher only speeds up `sass --watch`,
+# core-js' postinstall script just prints a donation notice
+ignoredBuiltDependencies:
+  - '@parcel/watcher'
+  - core-js
+
+overrides:
+  # vite >= 4.3 refuses to require() an ESM package while bundling a CJS
+  # vite.config.js, which breaks `import '@iconify/json/json/mdi.json'`
+  # in src/lib/icons.js. Pin to the version this project was built with
+  # until the config is migrated to ESM.
+  vite: 4.1.1

@@ -16,20 +16,24 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
         
+      # pnpm version comes from the "packageManager" field in package.json
+      - name: Set up pnpm
+        uses: pnpm/action-setup@v4
+
       - name: Set up Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: '18'
-          cache: 'npm'
-          
+          node-version: '24.18.0'  # keep in sync with mise.toml
+          cache: 'pnpm'
+
       - name: Install dependencies
-        run: npm install
-        
+        run: pnpm install --frozen-lockfile
+
       - name: Build HTML from sample.cv.json
         run: |
           DATA_FILENAME="${{ github.workspace }}/sample.cv.json" \
           OUT_DIR="${{ github.workspace }}/output" \
-          npm run build
+          pnpm run build
           
       - name: Upload HTML artifact
         uses: actions/upload-artifact@v4
@@ -40,7 +44,7 @@ jobs:
 
       - name: Build site
         if: github.ref == 'refs/heads/master'
-        run: npm run build-site
+        run: pnpm run build-site
 
       - name: Publish
         if: github.ref == 'refs/heads/master'

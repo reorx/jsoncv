@@ -121,12 +121,14 @@ The `index.html` file in the root of the project is the entry point for builing 
 
 Here are the steps to build a CV HTML using your own data:
 
-1. Make sure that you are using NodeJS version 18 or higher.
-2. Install the dependencies by running: `npm run install`
+1. Make sure that you are using the NodeJS version pinned in `mise.toml` (run `mise install`,
+   or install that version by other means). The package manager is [pnpm](https://pnpm.io/),
+   pinned by the `packageManager` field in `package.json`.
+2. Install the dependencies by running: `pnpm i`
 3. Build your CV HTML by specifying `DATA_FILENAME` and `OUT_DIR` environment variables:
 
     ```
-    DATA_FILENAME="$HOME/Downloads/mycv/cv.json" OUT_DIR="$HOME/Downloads/mycv" npm run build
+    DATA_FILENAME="$HOME/Downloads/mycv/cv.json" OUT_DIR="$HOME/Downloads/mycv" pnpm build
     ```
 
     This will build your CV HTML using the data file located at `$HOME/Downloads/mycv/cv.json`,
@@ -160,16 +162,40 @@ you can follow these steps:
     git submodule add https://github.com/reorx/jsoncv.git
     ```
 3. Put your CV data file, for example `cv.json`, in the project.
-4. Initialize `package.json` by running `npm init`.
-5. Install jsoncv as a dependency by running `npm i ./jsoncv`.
-6. Copy the `scripts` and `devDependencies` from `./jsoncv/package.json` to `package.json`, and then run `npm i` to install them.
-7. Copy `./jsoncv/vite.json.js` to `vite.json.js` and make the following changes:
+4. Initialize `package.json` by running `pnpm init`.
+5. Make jsoncv a workspace package by creating `pnpm-workspace.yaml`:
+
+    ```yaml
+    packages:
+      - jsoncv
+
+    onlyBuiltDependencies:
+      - esbuild
+
+    overrides:
+      # vite >= 4.3 refuses to require() the ESM @iconify/json package
+      # while bundling a CJS vite.config.js
+      vite: 4.1.1
+    ```
+
+    A workspace is used instead of a plain `pnpm i ./jsoncv`, because your
+    `vite.config.js` and `index.html` import `./jsoncv/src` by relative path.
+    Those files must be able to resolve jsoncv's own dependencies, which only
+    happens when pnpm installs them into `jsoncv/node_modules`.
+6. Declare jsoncv as a dependency in `package.json`: `"jsoncv": "workspace:*"`.
+7. Copy the `scripts` and `devDependencies` from `./jsoncv/package.json` to `package.json`, and then run `pnpm i` to install them.
+8. Copy `./jsoncv/vite.config.js` to `vite.config.js` and make the following changes:
    - Change all instances of `./src` to `./jsoncv/src`.
    - Change the value of `dataFilename` to your CV data file, for example `cv.json`.
    - Change `renderData.theme` to the theme you want to use.
-8. Copy `./jsoncv/index.html` to `index.html` and change all instances of `./src` to `./jsoncv/src`.
+9. Copy `./jsoncv/index.html` to `index.html` and change all instances of `./src` to `./jsoncv/src`.
    Then Copy `./jsoncv/index.scss` to `index.scss`.
-9. Run `npm run build` to test if everything works.
+10. Run `pnpm build` to test if everything works.
+
+Note that jsoncv keeps its own `pnpm-lock.yaml`, which is only used when jsoncv
+is developed on its own. Inside your project, the lockfile at the project root
+is the one in charge, and `jsoncv/node_modules` is populated by it — so after
+switching between the two, run `pnpm i` again in the directory you are working in.
 
 After completing these steps, you can now add your own elements and styles to `index.html` and `index.scss`
 to further customize your CV website. You can use HTML, CSS, and JavaScript to add
