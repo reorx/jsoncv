@@ -287,7 +287,7 @@ function date(item, level, fieldName = 'date') {
   </div>
   <div class="two-columns">
   <% for (const item of cv.skills) { %>
-    <div class="skill section-item">
+    <div class="skill section-item<%= item.isDetailed ? ' -detailed' : '' %>">
       <h3><%= item.name %></h3>
       <div class="level row subtitle"><%= item.level %></div>
       <% if (item.summary) { %>

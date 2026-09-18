@@ -337,6 +337,10 @@
               "type": "string",
               "description": "e.g. HTML"
             }
+          },
+          "isDetailed": {
+            "type": "boolean",
+            "description": "e.g. true. If true, this skill is rendered on its own full-width row instead of sharing the two-column grid"
           }
         }
       }

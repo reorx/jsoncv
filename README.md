@@ -29,6 +29,9 @@ with the following differences:
 - Additional `name` property in `meta` section
 
     jsoncv includes a `name` property in the `meta` section, which allows the user to specify the desired name for exported HTML/PDF files.
+- Additional `isDetailed` property in `skills` items
+
+    jsoncv includes a boolean `isDetailed` property in the items of the `skills` section. Skills are normally rendered in a two-column grid, when `isDetailed` is `true`, the skill takes a whole row instead, which gives enough space for a skill that has a long `summary`.
 
 These differences do not impact the compatibility between jsoncv and JSON Resume. This means that you can easily import JSON Resume data into jsoncv and vice versa, as jsoncv data will pass the validation of JSON Resume Schema .
 

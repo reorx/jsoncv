@@ -169,6 +169,19 @@
   ],
   "skills": [
     {
+      "name": "Data Compression",
+      "level": "Expert",
+      "summary": "Applied information theory with a focus on **lossless compression**, covering both length-limited and adaptive variants. Designed and shipped the middle-out compression engine behind Pied Piper, pushing the Weissman score well beyond the state of the art, and authored the reference implementation that the platform's distributed storage layer is built on.",
+      "keywords": [
+        "Information Theory",
+        "Lossless Compression",
+        "Huffman Coding",
+        "Middle-out",
+        "C++"
+      ],
+      "isDetailed": true
+    },
+    {
       "name": "Web Development",
       "level": "Master",
       "summary": "Experience with Matlab, Blender, Solidworks, Unity, Python, Java, C, C++, CSS, Javascript, HTML, Adobe Premiere for VR film, Adobe Photoshop; with eagerness to keep improving and learning new technologies",

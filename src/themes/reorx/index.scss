@@ -224,3 +224,10 @@ section {
     margin-bottom: 0;
   }
 }
+
+.skills-section {
+  // a detailed skill takes a whole row instead of sharing the two-column grid
+  .skill.-detailed {
+    grid-column: 1 / -1;
+  }
+}
