@@ -46,12 +46,12 @@ jobs:
         if: github.ref == 'refs/heads/master'
         run: pnpm run build-site
 
+      # cloudflare/pages-action was removed by Cloudflare; wrangler-action is the official replacement
       - name: Publish
         if: github.ref == 'refs/heads/master'
-        uses: cloudflare/pages-action@v1
+        uses: cloudflare/wrangler-action@v4
         with:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
-          projectName: jsoncv
-          directory: src/dist
-          branch: master
+          packageManager: pnpm
+          command: pages deploy src/dist --project-name=jsoncv --branch=master
